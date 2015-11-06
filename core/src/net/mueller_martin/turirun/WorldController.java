@@ -18,6 +18,13 @@ public class WorldController {
     public WorldController(Turirun game) {
     	this.game = game;
     	this.objs = new ObjectController();
+
+    	this.init();
+    }
+
+    // Start Game
+    public void init() {
+
     }
 
     public void draw() {
