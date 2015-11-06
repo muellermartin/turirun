@@ -10,10 +10,14 @@ import com.badlogic.gdx.math.Vector3;
 
 public class GameScreen extends ScreenAdapter {
 	Turirun game;
+	WorldController world;
+
 	Texture img;
 
 	public GameScreen (Turirun game) {
 		this.game = game;
+		this.world = new WorldController(game);
+
 		img = new Texture("badlogic.jpg");
 	}
 

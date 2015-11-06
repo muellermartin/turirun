@@ -10,8 +10,12 @@ package net.mueller_martin.turirun;
  */
 public class WorldController {
     public final static String TAG = WorldController.class.getName();
-    public WorldController()
-    {
 
+    public Turirun game;
+    public ObjectController objs;
+
+    public WorldController(Turirun game) {
+    	this.game = game;
+    	this.objs = new ObjectController();
     }
 }
