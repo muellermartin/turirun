@@ -2,9 +2,7 @@ package net.mueller_martin.turirun;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.utils.TimeUtils;
 
-import turbomine.manager.Constants;
 
 
 public class CameraHelper
