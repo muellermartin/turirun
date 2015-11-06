@@ -12,7 +12,7 @@ public class Turirun extends Game {
 		// Load Settings
 		// Load Assets
 
-		setScreen(new MainMenuScreen(this));
+		setScreen(new GameScreen(this));
 	}
 
 	@Override
