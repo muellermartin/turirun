@@ -19,5 +19,6 @@ public class Turirun extends Game {
 	@Override
 	public void render () {
 		super.render();
+		CameraHelper.instance.update();
 	}
 }

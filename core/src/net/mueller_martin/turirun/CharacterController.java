@@ -7,6 +7,7 @@ import net.mueller_martin.turirun.gameobjects.GameObject;
 public class CharacterController {
 
 	public GameObject character;
+	private int speed = 7;
 
 	public CharacterController() {
 	}
@@ -21,14 +22,14 @@ public class CharacterController {
 		this.character.lastPosition = this.character.currentPosition;
 		if (Gdx.input.isKeyPressed(Input.Keys.LEFT))
 		{
-			this.character.currentPosition.add(-1,0);
+			this.character.currentPosition.add(-speed,0);
 		} else if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
-			this.character.currentPosition.add(+1,0);
+			this.character.currentPosition.add(+speed,0);
 		}
 		if (Gdx.input.isKeyPressed(Input.Keys.UP)) {
-			this.character.currentPosition.add(0,1);
+			this.character.currentPosition.add(0,speed);
 		} else if (Gdx.input.isKeyPressed(Input.Keys.DOWN)) {
-			this.character.currentPosition.add(0,-1);
+			this.character.currentPosition.add(0,-speed);
 		}
 	}
 
