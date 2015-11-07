@@ -48,6 +48,6 @@ public class GameObject {
 	}
 
 	public void isCollusion(GameObject otherObject) {
-
+		
 	}
 }

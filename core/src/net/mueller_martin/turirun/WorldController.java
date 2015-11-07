@@ -48,7 +48,6 @@ public class WorldController {
         this.objs.addObject(playerObj);
         controller.setPlayerObj(playerObj);
 
-
         // Spawn Checkpoint
         CheckpointGameObject checkpoint = new CheckpointGameObject(300, 300, 200, 200);
         this.objs.addObject(checkpoint);
