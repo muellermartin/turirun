@@ -19,13 +19,13 @@ public class CharacterObject extends GameObject {
 	private ShapeRenderer shapeRenderer;
 	public boolean isDead = false;
 
-	private int xOffsetTexture = -64;
-	private int yOffsetTexture = -32;
+	public int xOffsetTexture = 0;
+	public int yOffsetTexture = 0;
 
-	public CharacterObject (float x, float y, float width, float height)
+	public CharacterObject (float x, float y)
 	{
 		super(x,y,AssetOrganizer.instance.player.player);
-		this.size = new Vector2(125, 205); // texture.getRegionHeight()
+		this.size = new Vector2(texture.getRegionWidth(), texture.getRegionHeight()); // texture.getRegionHeight()
 		this.bounds = new TheTrueRectangle(x, y, size.x , size.y);
 		this.shapeRenderer = new ShapeRenderer();
 	}

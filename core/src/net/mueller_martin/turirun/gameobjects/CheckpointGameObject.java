@@ -38,11 +38,9 @@ public class CheckpointGameObject extends GameObject {
     @Override
     public void isCollusion(GameObject otherObject , CollusionDirections.CollusionDirectionsTypes type)
     {
-
         if(otherObject instanceof CharacterObject) {
-            this.active = true;
+                this.active = true;
         }
-
     }
 
 
@@ -67,17 +65,16 @@ public class CheckpointGameObject extends GameObject {
         }
     }
 
-    public void draw(SpriteBatch batch) {
-
+    public void draw(SpriteBatch batch)
+    {
         shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
         shapeRenderer.setProjectionMatrix(CameraHelper.instance.camera.combined);
-        shapeRenderer.setColor(Color.BLUE);
+        shapeRenderer.setColor(Color.RED);
         shapeRenderer.rect(this.currentPosition.x, this.currentPosition.y, this.size.x, this.size.y);
         shapeRenderer.end();
 
-        if (this.active && !checked) {
-
-
+        if (this.active && !checked)
+        {
             shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
             Gdx.gl.glEnable(GL20.GL_BLEND);
             shapeRenderer.setProjectionMatrix(CameraHelper.instance.camera.combined);
