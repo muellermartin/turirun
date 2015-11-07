@@ -13,11 +13,11 @@ public class CharacterObject extends GameObject {
 
 	@Override
 	public void isCollusion(GameObject otherObject) {
-		//if(otherObject instanceof WallGameObject)
-		//{
+		if(otherObject instanceof WallGameObject)
+		{
 			System.out.println("I HIT A WALL");
 			this.currentPosition = this.lastPosition;
 			this.bounds.setPosition(this.currentPosition.x, this.currentPosition.y);
-		//}
+		}
 	}
 }
