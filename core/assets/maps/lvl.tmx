@@ -1,14 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" renderorder="right-down" width="25" height="25" tilewidth="250" tileheight="250" nextobjectid="3">
- <tileset firstgid="1" name="ground1" tilewidth="250" tileheight="250" spacing="1" tilecount="4">
-  <image source="tileset.png" width="1005" height="252"/>
- </tileset>
- <tileset firstgid="5" name="ground2" tilewidth="250" tileheight="250" spacing="1" tilecount="6">
-  <image source="tileset2.png" width="1507" height="252"/>
+ <tileset firstgid="1" name="tileset2" tilewidth="250" tileheight="250" tilecount="7">
+  <image source="tileset2.png" width="1750" height="250"/>
  </tileset>
  <layer name="ground" width="25" height="25">
   <data encoding="base64" compression="zlib">
-   eJyllDkSgDAMAxP+/2gaCiajYw1FCiDItg7vtdZ+zvWc9/P7/VXebfGvwnLfT/zznqqv7ihMdUj9NoPjxPVIuXQY7V/Hl5q14bu5EidpVqdtqpnqUz6StkTThNu86O4lrqj+rZekt/MJ1SB5zs1Gs+OwE29TTKpF8x3xCPFd8zTdeanPtBenO4rMkjI21XDSO9ll04ym3DQ8xUXLS8tu44VmuXn3a8Zo/v7q6PigvbaaTo/JLFQjuh/P5xtLWQP+
+   eJytlEsOgDAIBVvvf2g3mhjzPoNxQWJbgfIGutda+7Ljsuf6uX+UvS183ffbR8VXvu/86p4qpjKSX9WkNEhrqmXKQTk4vVKdLRbhnHg1tkSTVkuqIbElTFNcx69pnWaM8m93SXPj+oQySD3naqOz42In3aYxCYvJDJEaUt+1nm595jRyrEmepmWrhbwRlOEfb0qLR3gn39QbjlXjOGHQ2E75Nl/qR//5wtGd07u2nIoRsclsqx4gOt12AkpdA/s=
   </data>
  </layer>
  <layer name="stengel" width="25" height="25">
@@ -18,12 +15,17 @@
  </layer>
  <layer name="bushs" width="25" height="25">
   <data encoding="base64" compression="zlib">
-   eJxjYIAATgbKATXMGAp2DldAalhiUz9c4oOa/iDWrOESdrjAQPlvuIfrSAWj8Tr0AKVxRu04H+g0RI06FwAYhQCa
+   eJxjYIAAVgbKATXMGAp2DldAalhiUz9c4oOa/iDWrOESdrjAQPlvuIfrSAWj8Tr0AKVxNtzinBp1LgC4wwBR
   </data>
  </layer>
  <layer name="stones" width="25" height="25">
   <data encoding="base64" compression="zlib">
-   eJxjYCAfcJEgh08tNe2lpp6BNJcUMBBuoLWd1DJ/MMQPNoDLXZTkG2xqibVnJAJSwosaZhMjT0s3DXZAC38OhrAbjOXzQIc1vcOE3m0GSv1HSjkAAHW2AVU=
+   eJxjYCAfsJEgh08tNe2lpp6BNJcUMBBuoLWd1DJ/MMQPNoDLXZTkG2xqibVnJAJSwosaZhMjT0s3DXZAC38OhrAbjOXzQIc1vcOE3m0GSv1HSjkAAOQZAM0=
+  </data>
+ </layer>
+ <layer name="checkpoint" width="25" height="25">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo2BkAPaBdsAoGAWjYEiDkVqGDFd/Dwd/AQBcWAAd
   </data>
  </layer>
 </map>
