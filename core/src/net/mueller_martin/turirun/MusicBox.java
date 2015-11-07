@@ -9,12 +9,15 @@ public class MusicBox
 	public final static String TAG = MusicBox.class.getName();
 	private boolean audio;
 	Sound sound;
+	Sound bgSound;
 	public static final MusicBox instance = new MusicBox();
 	private MusicBox assetOrganizer;
+
 
 	public MusicBox()
 	{
 		audio = true;
+
 		Gdx.app.log(TAG,"audio: "+audio);
 
 	}
@@ -101,7 +104,7 @@ public class MusicBox
 
 	public long loopTheme(int x)
 	{
-		Sound sound = null;
+		sound = null;
 		long id = 0;
 		switch(x)
 		{
@@ -180,7 +183,13 @@ public class MusicBox
 	}
 	public void stopId(long x)
 	{
+		Gdx.app.log(TAG,"X: "+x);
+		if(sound == null)
+		{
+			Gdx.app.log(TAG,"sound null ");
+		}
 		sound.stop(x);
+		sound.dispose();
 
 	}
 
