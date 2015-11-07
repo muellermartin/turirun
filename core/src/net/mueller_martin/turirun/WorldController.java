@@ -79,7 +79,7 @@ public class WorldController {
         WallGameObject wall3 = new WallGameObject(120, 340, 80, 80);
         this.objs.addObject(wall3);
 
-        //map
+        //map size
         level = new Level();
 
         MapProperties prop = level.map.getProperties();
@@ -97,6 +97,8 @@ public class WorldController {
         mapPixelHeight = mapHeight * tilePixelHeight;
 
         System.out.println("mapPixelWidth: " + mapPixelWidth + ", " + "mapPixelHeight: " + mapPixelHeight);
+
+        // set bounding boxes for tilemap sprites
 
 		this.client.start();
 
