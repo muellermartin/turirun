@@ -132,7 +132,7 @@ public class WorldController {
 
 		try {
 			// Block for max. 3000ms // 172.18.12.25
-			client.connect(3000, this.game.host, this.game.port);
+			client.connect(3000, this.game.host, this.game.port, TurirunNetwork.udpPort);
 			// Server communication after connection can go here, or in Listener#connected()
 		}
 		catch (IOException e) {
@@ -145,7 +145,6 @@ public class WorldController {
 		register.type = 1;
 
 		client.sendTCP(register);
-        System.out.println("TEST");
     }
 
     public void draw(SpriteBatch batch) {
