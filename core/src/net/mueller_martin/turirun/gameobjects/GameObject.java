@@ -28,6 +28,7 @@ public class GameObject {
 
 	public void update() {
 		this.bounds.setPosition(this.position.x, this.position.y);
+		System.out.print("Player Position: " + position.x + ", " + position.y);
 	}
 
 	public void draw(SpriteBatch batch) {

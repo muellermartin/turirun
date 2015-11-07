@@ -32,11 +32,11 @@ public class WorldController {
 
     // Start Game
     public void init() {
-        GameObject obj = new GameObject(100, 100, 20, 20);
-        this.objs.addObject(obj);
+        System.out.print("INIT!");
+        GameObject playerObj = new GameObject(10, 10 ,5 ,5);
+        this.objs.addObject(playerObj);
+        controller.setPlayerObj(playerObj);
 
-//        DynamicGameObject playerObj = new DynamicGameObject();
-//        controller.setPlayerObj(playerObj);
     }
 
     public void draw(SpriteBatch batch) {
@@ -50,6 +50,7 @@ public class WorldController {
         controller.update(deltaTime);
 
     	for (GameObject obj: objs.getObjects()) {
+            System.out.print("LOOP!");
     		obj.update();
     	}
     }
