@@ -17,6 +17,7 @@ import net.mueller_martin.turirun.gameobjects.*;
 import net.mueller_martin.turirun.network.TurirunNetwork;
 import net.mueller_martin.turirun.network.TurirunNetwork.Register;
 import net.mueller_martin.turirun.network.TurirunNetwork.MoveCharacter;
+import net.mueller_martin.turirun.utils.CollusionDirections;
 
 public class WorldController {
     public final static String TAG = WorldController.class.getName();
@@ -53,9 +54,12 @@ public class WorldController {
         this.objs.addObject(checkpoint);
 
 
-        // Spawn Wall
+        // Spawn Walls
         WallGameObject wall = new WallGameObject(100, 300, 80, 80);
         this.objs.addObject(wall);
+
+        WallGameObject wall2 = new WallGameObject(100, 380, 80, 80);
+        this.objs.addObject(wall2);
 
         //map
         level = new Level();
@@ -186,8 +190,9 @@ public class WorldController {
                 if (obj == collusionObj)
                     continue;
 
-                if (obj.bounds.intersection(collusionObj.bounds)) {
-                    obj.isCollusion(collusionObj);
+                CollusionDirections.CollusionDirectionsTypes col = obj.bounds.intersection(collusionObj.bounds);
+                if (col != CollusionDirections.CollusionDirectionsTypes.NONE) {
+                    obj.isCollusion(collusionObj, col);
                 }
             }
         }

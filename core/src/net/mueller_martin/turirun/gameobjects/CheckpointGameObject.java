@@ -3,6 +3,7 @@ package net.mueller_martin.turirun.gameobjects;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
+import net.mueller_martin.turirun.utils.CollusionDirections;
 
 /**
  * Created by Dorothea on 07.11.2015.
@@ -19,7 +20,7 @@ public class CheckpointGameObject extends GameObject {
     }
 
     @Override
-    public void isCollusion(GameObject otherObject)
+    public void isCollusion(GameObject otherObject , CollusionDirections.CollusionDirectionsTypes type)
     {
         System.out.println("I HIT A CHECKPOINT");
         this.active = true;
