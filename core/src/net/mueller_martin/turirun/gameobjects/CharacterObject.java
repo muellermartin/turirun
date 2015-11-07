@@ -19,12 +19,21 @@ public class CharacterObject extends GameObject {
 	private ShapeRenderer shapeRenderer;
 	public boolean isDead = false;
 
+	private int xOffsetTexture = -64;
+	private int yOffsetTexture = -32;
+
 	public CharacterObject (float x, float y, float width, float height)
 	{
 		super(x,y,AssetOrganizer.instance.player.player);
 		this.size = new Vector2(125, 205); // texture.getRegionHeight()
-		this.bounds = new TheTrueRectangle(x + 200, y + 200, size.x , size.y);
+		this.bounds = new TheTrueRectangle(x, y, size.x , size.y);
 		this.shapeRenderer = new ShapeRenderer();
+	}
+
+	@Override
+	public void update(float deltaTime)
+	{
+		this.bounds.setPosition(this.currentPosition.x, this.currentPosition.y);
 	}
 
 	@Override
@@ -53,16 +62,19 @@ public class CharacterObject extends GameObject {
 	}
 
 	@Override
-	public void draw(SpriteBatch batch) {
+	public void draw(SpriteBatch batch)
+	{
+		/*
 		shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
 		shapeRenderer.setProjectionMatrix(CameraHelper.instance.camera.combined);
 		shapeRenderer.setColor(Color.BLUE);
 		shapeRenderer.rect(this.bounds.x, this.bounds.y, this.bounds.getWidth(), this.bounds.getHeight());
 		shapeRenderer.end();
+		*/
 
 		batch.begin();
 		batch.setProjectionMatrix(CameraHelper.instance.camera.combined);
-		batch.draw(texture, currentPosition.x, currentPosition.y, texture.getRegionWidth(), texture.getRegionHeight());
+		batch.draw(texture, currentPosition.x + xOffsetTexture, currentPosition.y + yOffsetTexture, texture.getRegionWidth(), texture.getRegionHeight());
 		batch.end();
 	}
 }

@@ -38,11 +38,13 @@ public class WallGameObject extends GameObject
     @Override
     public void draw(SpriteBatch batch)
     {
+        /*
         shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
         shapeRenderer.setProjectionMatrix(CameraHelper.instance.camera.combined);
         shapeRenderer.setColor(Color.BLUE);
         shapeRenderer.rect(this.currentPosition.x, this.currentPosition.y, this.size.x, this.size.y);
         shapeRenderer.end();
+        */
 
     }
 }
