@@ -9,6 +9,9 @@ public class Turirun extends Game
 {
 	public SpriteBatch batch;
 	ScreenManager screenManager;
+	String host = "127.0.0.1";
+	int port = 1337;
+	String nickname = "Unnamed";
 	
 	@Override
 	public void create () {
@@ -18,9 +21,6 @@ public class Turirun extends Game
 		AssetOrganizer.instance.init(new AssetManager());
 		screenManager = new ScreenManager(this);
 		screenManager.setScreenState(Constants.MENUSCREEN);
-
-
-
 	}
 
 	@Override
