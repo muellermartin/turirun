@@ -49,13 +49,7 @@ public class GameObject {
 		batch.begin();
 		batch.draw(texture, currentPosition.x, currentPosition.y, bounds.width,bounds.height);
 		batch.end();
-		/*
-		shapeRenderer.begin(ShapeType.Filled);
-		shapeRenderer.setProjectionMatrix(CameraHelper.instance.camera.combined);
-		shapeRenderer.setColor(Color.BLUE);
-		shapeRenderer.rect(this.currentPosition.x, this.currentPosition.y, this.size.x, this.size.y);
-		shapeRenderer.end();
-		 */
+
 	}
 
 	public void isCollusion(GameObject otherObject, CollusionDirections.CollusionDirectionsTypes type) {

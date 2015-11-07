@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import net.mueller_martin.turirun.AssetOrganizer;
 import net.mueller_martin.turirun.CameraHelper;
 import net.mueller_martin.turirun.utils.CollusionDirections;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 /**
  * Created by DM on 06.11.15.
@@ -41,7 +42,7 @@ public class CharacterObject extends GameObject {
 		}
 	}
 
-
+	@Override
 	public void draw(SpriteBatch batch) {
 		batch.setProjectionMatrix(CameraHelper.instance.camera.combined);
 		batch.begin();
