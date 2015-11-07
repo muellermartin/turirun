@@ -7,6 +7,7 @@ import com.badlogic.gdx.assets.AssetErrorListener;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.utils.Disposable;
@@ -22,7 +23,7 @@ public class AssetOrganizer implements Disposable, AssetErrorListener
     public static final AssetOrganizer instance = new AssetOrganizer();
     private AssetOrganizer assetOrganizer;
     Audio audio;
-
+    public float stateTime;
 
     // Menu
     public BtnPlay btnPlay;
@@ -36,6 +37,12 @@ public class AssetOrganizer implements Disposable, AssetErrorListener
     public Audio_Running1 audio_running1;
     public Audio_Walking1 audio_walking1;
     public Audio_Walking2 audio_walking2;
+
+    // Gfx
+    public Stone stone;
+    public Player player;
+
+    public Animation touriRunDown;
 
 
     public AssetOrganizer()
@@ -81,6 +88,11 @@ public class AssetOrganizer implements Disposable, AssetErrorListener
         audio_running1 = new Audio_Running1();
         audio_walking1 = new Audio_Walking1();
         audio_walking2 = new Audio_Walking2();
+        // Gfx
+        stone = new Stone(atlas);
+        player = new Player(atlas);
+
+        //gamegfx
     }
 
         public class MenuBtnBg
@@ -108,6 +120,24 @@ public class AssetOrganizer implements Disposable, AssetErrorListener
         {
             btnPlay = atlas.findRegion("btnPlay");
         }
+    }
+
+
+
+
+    // GFX
+    public class Stone
+    {
+        public final TextureRegion stone;
+        public Stone(TextureAtlas atlas)
+        {
+            stone = atlas.findRegion("tile_5botanik");
+        }
+    }
+    public class Player
+    {
+        public final TextureAtlas.AtlasRegion player;
+        public Player(TextureAtlas atlas){ player = atlas.findRegion("tourist");}
     }
 
     // AUDIO

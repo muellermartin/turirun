@@ -10,7 +10,9 @@ public class CharacterController {
 	public GameObject character;
 	private int speed = 7;
 
-	public CharacterController() {
+	public CharacterController()
+	{
+
 	}
 
 	public void update(float deltaTime) {
@@ -19,6 +21,7 @@ public class CharacterController {
 			System.out.println("Character: null");
 			return;
 		}
+
 
 		this.character.lastPosition = new Vector2(this.character.currentPosition.x, this.character.currentPosition.y);
 		if (Gdx.input.isKeyPressed(Input.Keys.LEFT))
