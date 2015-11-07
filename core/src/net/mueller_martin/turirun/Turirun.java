@@ -18,9 +18,6 @@ public class Turirun extends Game
 		AssetOrganizer.instance.init(new AssetManager());
 		screenManager = new ScreenManager(this);
 		screenManager.setScreenState(Constants.MENUSCREEN);
-
-
-
 	}
 
 	@Override
