@@ -9,18 +9,18 @@ import net.mueller_martin.turirun.gameobjects.GameObject;
  */
 public class ObjectController {
 
-	private static int next_id = 0;
 	private HashMap<Integer,GameObject> objs_map = new HashMap<Integer,GameObject>();
 	private ArrayList<GameObject> objs = new ArrayList<GameObject>();
 
 	public void addObject(GameObject obj) {
-		this.next_id++;
-		
-		int id = next_id;
-		obj.id = next_id;
+		objs.add(obj);
+	}
+
+	public void addObject(int id, GameObject obj) {
+		obj.id = id;
 
 		objs_map.put(id, obj);
-		objs.add(obj);
+		objs.add(obj);				
 	}
 
 	public void removeObject(GameObject obj) {
