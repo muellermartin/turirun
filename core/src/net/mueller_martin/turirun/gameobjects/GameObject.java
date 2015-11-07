@@ -28,6 +28,8 @@ public class GameObject {
 
 	private ShapeRenderer shapeRenderer;
 
+
+
 	public GameObject (float x, float y, TextureRegion t) {
 		this.texture = t;
 		this.currentPosition = new Vector2(x, y);
