@@ -7,6 +7,7 @@ import com.badlogic.gdx.maps.MapProperties;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.math.Vector2;
 
 import com.esotericsoftware.kryonet.Client;
@@ -79,11 +80,10 @@ public class WorldController {
         WallGameObject wall3 = new WallGameObject(120, 340, 80, 80);
         this.objs.addObject(wall3);
 
-        //map
+        //map size
         level = new Level();
 
         MapProperties prop = level.map.getProperties();
-
         int mapWidth = prop.get("width", Integer.class);
         int mapHeight = prop.get("height", Integer.class);
         System.out.println("mapWidth: " + mapWidth + ", " + "mapHeight: " + mapHeight);
@@ -97,6 +97,19 @@ public class WorldController {
         mapPixelHeight = mapHeight * tilePixelHeight;
 
         System.out.println("mapPixelWidth: " + mapPixelWidth + ", " + "mapPixelHeight: " + mapPixelHeight);
+
+        // set bounding boxes for tilemap sprites
+        TiledMapTileLayer layer = (TiledMapTileLayer) level.map.getLayers().get(0);
+
+        int cellCount = mapWidth * mapHeight;
+
+        for(int x = 0; x < mapWidth; x++)
+        {
+            for(int y = 0; y < mapHeight; y++)
+            {
+               System.out.println("Cell: " + x + ", " + y + " " + layer.getCell(x, y).getClass().toString());
+            }
+        }
 
 		this.client.start();
 
@@ -165,7 +178,13 @@ public class WorldController {
         float cameraHalfHeight = cam.viewportHeight * .5f;
 
         // Move camera after player as normal
-        CameraHelper.instance.camera.position.set((int)controller.character.currentPosition.x,(int)controller.character.currentPosition.y,0);
+        int pos_x = (int)controller.character.currentPosition.x;
+        if (pos_x % 2 == 0)
+            pos_x++;
+        int pos_y = (int)controller.character.currentPosition.y;
+        if (pos_y % 2 == 0)
+            pos_y++;
+        CameraHelper.instance.camera.position.set(pos_x,pos_y,0);
 
         float cameraLeft = cam.position.x - cameraHalfWidth;
         float cameraRight = cam.position.x + cameraHalfWidth;
