@@ -1,6 +1,7 @@
 package net.mueller_martin.turirun.gameobjects;
 
 
+import net.mueller_martin.turirun.AssetOrganizer;
 import net.mueller_martin.turirun.utils.CollusionDirections;
 
 /**
@@ -9,7 +10,7 @@ import net.mueller_martin.turirun.utils.CollusionDirections;
 public class WallGameObject extends GameObject{
 
     public WallGameObject (float x, float y, float width, float height) {
-        super(x, y, width, height);
+        super(x, y, AssetOrganizer.instance.player.player);
     }
 
     public void update(float deltaTime)
