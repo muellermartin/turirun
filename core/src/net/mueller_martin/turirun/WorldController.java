@@ -15,7 +15,6 @@ import com.esotericsoftware.kryonet.Listener.ThreadedListener;
 
 import net.mueller_martin.turirun.gameobjects.GameObject;
 import net.mueller_martin.turirun.gameobjects.CharacterObject;
-import net.mueller_martin.turirun.gameobjects.DynamicGameObject;
 import net.mueller_martin.turirun.CharacterController;
 import net.mueller_martin.turirun.network.TurirunNetwork;
 import net.mueller_martin.turirun.network.TurirunNetwork.Register;
