@@ -16,6 +16,7 @@ import com.esotericsoftware.kryonet.Listener.ThreadedListener;
 import net.mueller_martin.turirun.gameobjects.*;
 import net.mueller_martin.turirun.network.TurirunNetwork;
 import net.mueller_martin.turirun.network.TurirunNetwork.Register;
+import net.mueller_martin.turirun.network.TurirunNetwork.MoveCharacter;
 
 public class WorldController {
     public final static String TAG = WorldController.class.getName();
@@ -46,7 +47,6 @@ public class WorldController {
         CharacterObject playerObj = new CharacterObject(10, 10 ,50 ,50);
         this.objs.addObject(playerObj);
         controller.setPlayerObj(playerObj);
-
 
         // Spawn Checkpoint
         CheckpointGameObject checkpoint = new CheckpointGameObject(300, 300, 200, 200);
@@ -119,6 +119,20 @@ public class WorldController {
     public void update(float deltaTime) {
         // Input Update
         controller.update(deltaTime);
+
+		if (client != null) {
+			// FIXME: last and current postition are always equal
+			//if (controller.character.currentPosition.x != controller.character.lastPosition.x || controller.character.currentPosition.y != controller.character.lastPosition.y)
+			{
+				MoveCharacter move = new MoveCharacter();
+
+				move.x = controller.character.currentPosition.x;
+				move.y = controller.character.currentPosition.y;
+
+				client.sendTCP(move);
+			}
+		}
+
         Camera cam = CameraHelper.instance.camera;
         // The camera dimensions, halved
         float cameraHalfWidth = cam.viewportWidth * .5f;
