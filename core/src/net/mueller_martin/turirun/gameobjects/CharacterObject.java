@@ -1,20 +1,39 @@
 package net.mueller_martin.turirun.gameobjects;
 
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.badlogic.gdx.math.Vector2;
 import net.mueller_martin.turirun.AssetOrganizer;
 import net.mueller_martin.turirun.CameraHelper;
 import net.mueller_martin.turirun.utils.CollusionDirections;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import net.mueller_martin.turirun.utils.TheTrueRectangle;
 
 /**
  * Created by DM on 06.11.15.
  */
 public class CharacterObject extends GameObject {
 	public String username = "Gast";
+	private ShapeRenderer shapeRenderer;
+	public boolean isDead = false;
 
-	public CharacterObject (float x, float y, float width, float height) {
+	private int xOffsetTexture = -64;
+	private int yOffsetTexture = -32;
+
+	public CharacterObject (float x, float y, float width, float height)
+	{
 		super(x,y,AssetOrganizer.instance.player.player);
+		this.size = new Vector2(125, 205); // texture.getRegionHeight()
+		this.bounds = new TheTrueRectangle(x, y, size.x , size.y);
+		this.shapeRenderer = new ShapeRenderer();
+	}
+
+	@Override
+	public void update(float deltaTime)
+	{
+		this.bounds.setPosition(this.currentPosition.x, this.currentPosition.y);
 	}
 
 	@Override
@@ -43,17 +62,19 @@ public class CharacterObject extends GameObject {
 	}
 
 	@Override
-	public void draw(SpriteBatch batch) {
-		batch.setProjectionMatrix(CameraHelper.instance.camera.combined);
-		batch.begin();
-		batch.draw(texture, currentPosition.x, currentPosition.y, bounds.width,bounds.height);
-		batch.end();
+	public void draw(SpriteBatch batch)
+	{
 		/*
-		shapeRenderer.begin(ShapeType.Filled);
+		shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
 		shapeRenderer.setProjectionMatrix(CameraHelper.instance.camera.combined);
 		shapeRenderer.setColor(Color.BLUE);
-		shapeRenderer.rect(this.currentPosition.x, this.currentPosition.y, this.size.x, this.size.y);
+		shapeRenderer.rect(this.bounds.x, this.bounds.y, this.bounds.getWidth(), this.bounds.getHeight());
 		shapeRenderer.end();
-		 */
+		*/
+
+		batch.begin();
+		batch.setProjectionMatrix(CameraHelper.instance.camera.combined);
+		batch.draw(texture, currentPosition.x + xOffsetTexture, currentPosition.y + yOffsetTexture, texture.getRegionWidth(), texture.getRegionHeight());
+		batch.end();
 	}
 }
