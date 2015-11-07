@@ -39,7 +39,6 @@ public class GameObject {
 
 	public void draw(SpriteBatch batch) {
 		batch.begin();
-
 		shapeRenderer.begin(ShapeType.Filled);
 		shapeRenderer.setProjectionMatrix(CameraHelper.instance.camera.combined);
 		shapeRenderer.setColor(Color.BLUE);

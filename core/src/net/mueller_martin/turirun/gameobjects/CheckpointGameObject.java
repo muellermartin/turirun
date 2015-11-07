@@ -1,6 +1,8 @@
 package net.mueller_martin.turirun.gameobjects;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Rectangle;
@@ -60,7 +62,6 @@ public class CheckpointGameObject extends GameObject {
 
     public void draw(SpriteBatch batch)
     {
-        //super.draw(new SpriteBatch());
         batch.begin();
 
         shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
@@ -76,8 +77,9 @@ public class CheckpointGameObject extends GameObject {
             batch.begin();
 
             shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
+            Gdx.gl.glEnable(GL20.GL_BLEND);
             shapeRenderer.setProjectionMatrix(CameraHelper.instance.camera.combined);
-            shapeRenderer.setColor(0, 250, 0, 0.5f);
+            shapeRenderer.setColor(new Color(0, 150, 0, 0.5f));
             shapeRenderer.circle(this.currentPosition.x + this.size.x/2, this.currentPosition.y + this.size.y/2, this.size.x * ((MAX_TIMER - this.timer) / MAX_TIMER));
             shapeRenderer.end();
 
