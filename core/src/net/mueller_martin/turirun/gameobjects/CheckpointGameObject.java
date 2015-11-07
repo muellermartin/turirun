@@ -14,6 +14,7 @@ import net.mueller_martin.turirun.network.TurirunNetwork;
 import net.mueller_martin.turirun.utils.CollusionDirections;
 
 import net.mueller_martin.turirun.AssetOrganizer;
+import net.mueller_martin.turirun.gameobjects.CharacterObject;
 
 /**
  * Created by Dorothea on 07.11.2015.
@@ -37,8 +38,11 @@ public class CheckpointGameObject extends GameObject {
     @Override
     public void isCollusion(GameObject otherObject , CollusionDirections.CollusionDirectionsTypes type)
     {
-        if(otherObject instanceof CharacterObject)
-        this.active = true;
+
+        if(otherObject instanceof CharacterObject) {
+            this.active = true;
+        }
+
     }
 
 
