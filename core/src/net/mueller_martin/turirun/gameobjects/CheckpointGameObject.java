@@ -29,6 +29,7 @@ public class CheckpointGameObject extends GameObject {
 
     public CheckpointGameObject (float x, float y, float width, float height) {
         super(x, y, AssetOrganizer.instance.stone.stone);
+        this.shapeRenderer = new ShapeRenderer();
     }
 
 
@@ -61,7 +62,6 @@ public class CheckpointGameObject extends GameObject {
     }
 
     public void draw(SpriteBatch batch) {
-        batch.begin();
 
         shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
         shapeRenderer.setProjectionMatrix(CameraHelper.instance.camera.combined);
@@ -69,10 +69,8 @@ public class CheckpointGameObject extends GameObject {
         shapeRenderer.rect(this.currentPosition.x, this.currentPosition.y, this.size.x, this.size.y);
         shapeRenderer.end();
 
-        batch.end();
-
         if (this.active && !checked) {
-            batch.begin();
+
 
             shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
             Gdx.gl.glEnable(GL20.GL_BLEND);
