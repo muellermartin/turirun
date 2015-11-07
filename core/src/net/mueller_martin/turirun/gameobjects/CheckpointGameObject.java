@@ -10,6 +10,7 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import net.mueller_martin.turirun.CameraHelper;
+import net.mueller_martin.turirun.network.TurirunNetwork;
 import net.mueller_martin.turirun.utils.CollusionDirections;
 
 import net.mueller_martin.turirun.AssetOrganizer;
@@ -37,8 +38,11 @@ public class CheckpointGameObject extends GameObject {
     @Override
     public void isCollusion(GameObject otherObject , CollusionDirections.CollusionDirectionsTypes type)
     {
-        if (otherObject instanceof CharacterObject)
+
+        if(otherObject instanceof CharacterObject) {
             this.active = true;
+        }
+
     }
 
 
