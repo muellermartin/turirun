@@ -51,7 +51,7 @@ public class WorldController {
     	this.client = new Client();
 
         // Create Character Input Controller
-        controller = new CharacterController();
+        controller = new CharacterController(this.objs, this.client);
 
         // Events
         WorldController.events = Collections.synchronizedList(new ArrayList<Object>());
@@ -143,6 +143,7 @@ public class WorldController {
 		register.type = 1;
 
 		client.sendTCP(register);
+        System.out.println("TEST");
     }
 
     public void draw(SpriteBatch batch) {
@@ -307,6 +308,10 @@ public class WorldController {
                         objs.removeObject(player);
                     }
                 }
+                // HitCharacter
+                /*if (event instanceof HitCharacter) {
+                    HitCharacter msg = (HitCharacter)event;
+                }*/
             }
         }
 

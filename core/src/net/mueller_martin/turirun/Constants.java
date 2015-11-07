@@ -33,7 +33,8 @@ public class Constants
 	public final static int AUDIO_WALKING2 = 50;
 	public final static int AUDIO_SOUNDTRACK = 60;
 
-
+	// Battle Radius
+	public final static int BATTLE_RADIUS = 64;
 
 
 }

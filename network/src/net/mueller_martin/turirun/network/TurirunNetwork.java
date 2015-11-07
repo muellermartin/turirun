@@ -49,7 +49,7 @@ public class TurirunNetwork {
 	}
 
 	public static class HitCharacter {
-		public Character attacker;
-		public Character victim;
+		public int attackerId;
+		public int victimId;
 	}
 }
