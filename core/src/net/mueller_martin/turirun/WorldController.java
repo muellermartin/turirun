@@ -3,6 +3,7 @@ package net.mueller_martin.turirun;
 import java.io.IOException;
 
 import com.badlogic.gdx.graphics.Camera;
+import com.badlogic.gdx.maps.MapObjects;
 import com.badlogic.gdx.maps.MapProperties;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -99,15 +100,16 @@ public class WorldController {
         System.out.println("mapPixelWidth: " + mapPixelWidth + ", " + "mapPixelHeight: " + mapPixelHeight);
 
         // set bounding boxes for tilemap sprites
-        TiledMapTileLayer layer = (TiledMapTileLayer) level.map.getLayers().get("stones");
-        System.out.println("Layer: " + layer );
+        TiledMapTileLayer layer = (TiledMapTileLayer) level.map.getLayers().get(0);
+        System.out.println("Layer: " + layer);
+        MapObjects objects = layer.getObjects();
 
         for(int x = 0; x < layer.getWidth(); x++)
         {
             for(int y = 0; y < layer.getHeight(); y++)
             {
                 System.out.println("Cell: " + x + ", " + y);
-                // System.out.println("" + layer.getCell(x, y).getClass().toString());
+               // System.out.println("" + layer.getCell(x, y).getClass().toString());
             }
         }
 
