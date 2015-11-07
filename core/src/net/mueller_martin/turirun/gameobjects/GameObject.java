@@ -27,7 +27,7 @@ public class GameObject {
 	}
 
 	public void update() {
-
+		this.bounds.setPosition(this.position.x, this.position.y);
 	}
 
 	public void draw(SpriteBatch batch) {
