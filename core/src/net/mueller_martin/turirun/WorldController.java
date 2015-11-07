@@ -64,12 +64,13 @@ public class WorldController {
 
     // Start Game
     public void init() {
-        CharacterObject playerObj = new CharacterObject(10, 10, 50, 50);
+        //TODO ask server for CharacterObject type
+        CharacterObject playerObj = new CharacterObject(10, 10);
         this.objs.addObject(playerObj);
         controller.setPlayerObj(playerObj);
 
         // Spawn Checkpoint
-        CheckpointGameObject checkpoint = new CheckpointGameObject(300, 300, 200, 200);
+        CheckpointGameObject checkpoint = new CheckpointGameObject(300, 800, 200, 200);
         this.objs.addObject(checkpoint);
 
         //map size
@@ -91,9 +92,9 @@ public class WorldController {
         System.out.println("mapPixelWidth: " + mapPixelWidth + ", " + "mapPixelHeight: " + mapPixelHeight);
 
         // set bounding boxes for tilemap sprites
+        // stones
         TiledMapTileLayer layer = (TiledMapTileLayer) level.map.getLayers().get("stones");
         System.out.println("Layer: " + layer);
-        MapObjects objects = layer.getObjects();
 
         for(int x = 0; x < layer.getWidth(); x++)
         {
@@ -104,6 +105,22 @@ public class WorldController {
                     // Spawn Walls
                     WallGameObject wall = new WallGameObject(x * tilePixelWidth + 16, y*tilePixelWidth + 64, 218, 97);
                     this.objs.addObject(wall);
+                }
+            }
+        }
+
+        // bushs
+        layer = (TiledMapTileLayer) level.map.getLayers().get("bushs");
+
+        for(int x = 0; x < layer.getWidth(); x++)
+        {
+            for(int y = 0; y < layer.getHeight(); y++)
+            {
+                if(layer.getCell(x, y) != null)
+                {
+                    // Spawn Bush
+                    BushGameObject bush = new BushGameObject(x * tilePixelWidth + 16, y*tilePixelWidth + 64, 218, 110);
+                    this.objs.addObject(bush);
                 }
             }
         }
@@ -230,7 +247,9 @@ public class WorldController {
                     continue;
 
                 CollusionDirections.CollusionDirectionsTypes col = obj.bounds.intersection(collusionObj.bounds);
-                if (col != CollusionDirections.CollusionDirectionsTypes.NONE) {
+                if (col != CollusionDirections.CollusionDirectionsTypes.NONE)
+                {
+                    System.out.println("Collusion!");
                     obj.isCollusion(collusionObj, col);
                 }
             }
@@ -281,7 +300,7 @@ public class WorldController {
                 if (event instanceof AddCharacter) {
                     AddCharacter msg = (AddCharacter)event;
 
-                    CharacterObject newPlayer = new CharacterObject(msg.character.x, msg.character.y, 50, 50);
+                    CharacterObject newPlayer = new CharacterObject(msg.character.x, msg.character.y);
                     objs.addObject(msg.character.id, newPlayer);
 
                     del.add(event);
