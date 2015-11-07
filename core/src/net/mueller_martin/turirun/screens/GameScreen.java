@@ -32,11 +32,11 @@ public class GameScreen extends ScreenAdapter {
 		world.update(deltaTime);
 
 		// Back To Menu
-		if(Gdx.input.isButtonPressed(Input.Keys.ESCAPE))
+/*		if(Gdx.input.isButtonPressed(Input.Keys.ESCAPE))
 		{
 			Gdx.app.log(TAG," esc pressed - back to main Menu");
 			screenManager.setScreenState(Constants.MENUSCREEN);
-		}
+		}*/
 	}
 
 	@Override

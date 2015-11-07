@@ -26,7 +26,7 @@ public class TurirunNetwork {
 
 	public static class Character {
 		public String nick;
-		public int type, id;
+		public int type, id, direction;
 		public float x, y;
 	};
 
@@ -39,11 +39,11 @@ public class TurirunNetwork {
 	}
 
 	public static class UpdateCharacter {
-		public int id;
+		public int id, direction;
 		public float x, y;
 	}
 
 	public static class MoveCharacter {
-		public float x, y;
+		public float x, y, direction;
 	}
 }
