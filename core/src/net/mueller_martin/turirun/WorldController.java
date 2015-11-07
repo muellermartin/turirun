@@ -99,15 +99,15 @@ public class WorldController {
         System.out.println("mapPixelWidth: " + mapPixelWidth + ", " + "mapPixelHeight: " + mapPixelHeight);
 
         // set bounding boxes for tilemap sprites
-        TiledMapTileLayer layer = (TiledMapTileLayer) level.map.getLayers().get(0);
+        TiledMapTileLayer layer = (TiledMapTileLayer) level.map.getLayers().get("stones");
+        System.out.println("Layer: " + layer );
 
-        int cellCount = mapWidth * mapHeight;
-
-        for(int x = 0; x < mapWidth; x++)
+        for(int x = 0; x < layer.getWidth(); x++)
         {
-            for(int y = 0; y < mapHeight; y++)
+            for(int y = 0; y < layer.getHeight(); y++)
             {
-               System.out.println("Cell: " + x + ", " + y + " " + layer.getCell(x, y).getClass().toString());
+                System.out.println("Cell: " + x + ", " + y);
+                // System.out.println("" + layer.getCell(x, y).getClass().toString());
             }
         }
 
