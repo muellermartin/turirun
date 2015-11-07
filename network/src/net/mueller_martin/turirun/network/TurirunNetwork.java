@@ -12,6 +12,11 @@ public class TurirunNetwork {
 		Kryo kryo = endPoint.getKryo();
 
 		kryo.register(Register.class);
+		kryo.register(Character.class);
+		kryo.register(AddCharacter.class);
+		kryo.register(RemoveCharacter.class);
+		kryo.register(UpdateCharacter.class);
+		kryo.register(MoveCharacter.class);
 	}
 
 	public static class Register {
@@ -23,4 +28,20 @@ public class TurirunNetwork {
 		public String nick;
 		public int type, id, x, y;
 	};
+
+	public static class AddCharacter {
+		public Character character;
+	}
+
+	public static class RemoveCharacter {
+		public int id;
+	}
+
+	public static class UpdateCharacter {
+		public int id, x, y;
+	}
+
+	public static class MoveCharacter {
+		public int x, y;
+	}
 }
