@@ -20,7 +20,7 @@ public class ObjectController {
 		obj.id = id;
 
 		objs_map.put(id, obj);
-		objs.add(obj);				
+		objs.add(obj);
 	}
 
 	public void removeObject(GameObject obj) {
