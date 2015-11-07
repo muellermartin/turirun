@@ -23,6 +23,7 @@ public class CameraHelper
 		height = Gdx.graphics.getHeight();
 		camera = new OrthographicCamera(1, height/width);
 		camera.position.set(width/2,height/2,0);
+		camera.zoom = 2.f;
 		camera.viewportWidth = Constants.VIEWPORTWIDTH;
 		camera.viewportHeight = Constants.VIEWPORTHEIGHT;
 		Gdx.app.log(TAG, "init(): "+Constants.VIEWPORTWIDTH+" "+Constants.VIEWPORTHEIGHT);
