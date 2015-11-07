@@ -35,6 +35,9 @@ public class CharacterController {
 		} else if (Gdx.input.isKeyPressed(Input.Keys.DOWN)) {
 			this.character.currentPosition.add(0,-speed);
 		}
+		if (Gdx.input.isKeyPressed(Input.Keys.SPACE)) {
+			//this.character.tryBattle();
+		}
 	}
 
 	public void setPlayerObj(GameObject character) {
