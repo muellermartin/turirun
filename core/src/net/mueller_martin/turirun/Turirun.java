@@ -2,6 +2,7 @@ package net.mueller_martin.turirun;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import net.mueller_martin.turirun.screens.GameScreen;
 
 public class Turirun extends Game {
 	public SpriteBatch batch;
