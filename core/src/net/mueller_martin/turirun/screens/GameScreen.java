@@ -30,13 +30,13 @@ public class GameScreen extends ScreenAdapter {
 		game.batch.end();
 	}
 
-	public void update() {
-		world.update();
+	public void update(float deltaTime) {
+		world.update(deltaTime);
 	}
 
 	@Override
 	public void render (float delta) {
-		update();
+		update(delta);
 		draw();
 	}
 }
