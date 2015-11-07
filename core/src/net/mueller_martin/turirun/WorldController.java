@@ -21,6 +21,11 @@ import net.mueller_martin.turirun.network.TurirunNetwork.AddCharacter;
 import net.mueller_martin.turirun.network.TurirunNetwork.UpdateCharacter;
 import net.mueller_martin.turirun.network.TurirunNetwork.MoveCharacter;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Collections;
+import java.util.Collections.*;
+
 public class WorldController {
     public final static String TAG = WorldController.class.getName();
     public int mapPixelWidth =  300;
@@ -33,6 +38,8 @@ public class WorldController {
 
     public CharacterController controller;
 
+    public static List<Object> events;
+
     public WorldController(Turirun game) {
     	this.game = game;
     	this.objs = new ObjectController();
@@ -40,6 +47,9 @@ public class WorldController {
 
         // Create Character Input Controller
         controller = new CharacterController();
+
+        // Events
+        WorldController.events = Collections.synchronizedList(new ArrayList<Object>());
 
     	this.init();
     }
@@ -88,21 +98,7 @@ public class WorldController {
 			}
 
 			public void received(Connection connection, Object object) {
-				//if (object instanceof AddCharacter) {
-				//	AddCharacter msg = (AddCharacter)object;
-				//	CharacterObject newPlayer = new CharacterObject(msg.character.x, msg.character.y, 50, 50);
-
-				//	objs.addObject(msg.character.id, newPlayer);
-
-				//	return;
-				//}
-
-				//if (object instanceof UpdateCharacter) {
-				//	UpdateCharacter msg = (UpdateCharacter)object;
-				//	CharacterObject player = (CharacterObject)objs.getObject(msg.id);
-
-				//	player.currentPosition = new Vector2(msg.x, msg.y);
-				//}
+                WorldController.events.add(object);
 			}
 
 			public void disconnected(Connection connection) {
@@ -136,6 +132,9 @@ public class WorldController {
     public void update(float deltaTime) {
         // Input Update
         controller.update(deltaTime);
+
+        // Netzwerk Update
+        this.updateEvents();
 
 		if (client != null) {
 			// FIXME: last and current postition are always equal
@@ -230,6 +229,35 @@ public class WorldController {
         if (obj.currentPosition.y + obj.size.y> mapPixelHeight) {
             System.out.println("y: " + obj.currentPosition.y + "  " + mapPixelHeight);
             obj.currentPosition.y = mapPixelHeight - obj.size.y;
+        }
+    }
+
+    private void updateEvents() {
+        ArrayList<Object> del = new ArrayList<Object>();
+
+        synchronized (WorldController.events) {
+            for (Object event : WorldController.events) {
+                // Add Player
+                if (event instanceof AddCharacter) {
+                    AddCharacter msg = (AddCharacter)event;
+
+                    CharacterObject newPlayer = new CharacterObject(msg.character.x, msg.character.y, 50, 50);
+                    objs.addObject(msg.character.id, newPlayer);
+
+                    del.add(event);
+                    continue;
+                }
+                // Update Player
+                if (event instanceof UpdateCharacter) {
+                    UpdateCharacter msg = (UpdateCharacter)event;
+                    CharacterObject player = (CharacterObject)objs.getObject(msg.id);
+                    player.currentPosition = new Vector2(msg.x, msg.y);
+                }
+            }
+        }
+
+        for (Object event : del) {
+            WorldController.events.remove(event);
         }
     }
 }
