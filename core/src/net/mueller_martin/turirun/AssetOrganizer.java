@@ -188,7 +188,7 @@ public class AssetOrganizer implements Disposable, AssetErrorListener
     public class Player
     {
         public final TextureAtlas.AtlasRegion player;
-        public Player(TextureAtlas atlas){ player = atlas.findRegion("tourist");}
+        public Player(TextureAtlas atlas){ player = atlas.findRegion("tourist_front_walk1");}
     }
 
 
