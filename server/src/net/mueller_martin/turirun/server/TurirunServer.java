@@ -18,7 +18,7 @@ import net.mueller_martin.turirun.network.TurirunNetwork.MoveCharacter;
 public class TurirunServer {
 	static Server server;
 	// Will hold all the players
-	static HashSet<Character> characters = new HashSet<Character>();
+	static HashSet<CharacterConnection> characters = new HashSet<CharacterConnection>();
 
 	public static void main(String[] args) {
 		try {
@@ -54,23 +54,22 @@ public class TurirunServer {
 
 						connection.character = character;
 
+						AddCharacter newCharacter = new AddCharacter();
+						newCharacter.character = character;
+
 						// Add existing characters to new logged in connection
-						for (Character other : characters) {
+						for (CharacterConnection other : characters) {
 							AddCharacter addCharacter = new AddCharacter();
 
-							addCharacter.character = other;
+							addCharacter.character = other.character;
 
+							// Send new Client old Client
 							connection.sendTCP(addCharacter);
+							// Send other Client the new Client
+							other.sendTCP(newCharacter);
 						}
 
-						characters.add(character);
-
-						// Add logged in character to all connections
-						AddCharacter addCharacter = new AddCharacter();
-
-						addCharacter.character = character;
-
-						server.sendToAllTCP(addCharacter);
+						characters.add(connection);
 
 						System.out.println("New player registered: " + character.nick);
 					}
@@ -93,7 +92,10 @@ public class TurirunServer {
 						update.x = character.x;
 						update.y = character.y;
 
-						server.sendToAllTCP(update);
+						for (CharacterConnection other : characters) {
+							if (other.character != character)
+								other.sendTCP(update);							
+						}
 					}
 				}
 
@@ -101,7 +103,7 @@ public class TurirunServer {
 					CharacterConnection connection = (CharacterConnection) c;
 
 					if (connection.character != null) {
-						characters.remove(connection.character);
+						characters.remove(connection);
 
 						RemoveCharacter removeCharacter = new RemoveCharacter();
 

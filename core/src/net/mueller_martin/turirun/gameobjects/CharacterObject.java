@@ -2,6 +2,7 @@ package net.mueller_martin.turirun.gameobjects;
 
 import net.mueller_martin.turirun.gameobjects.GameObject;
 import net.mueller_martin.turirun.utils.CollusionDirections;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 /**
  * Created by DM on 06.11.15.
@@ -36,5 +37,12 @@ public class CharacterObject extends GameObject {
 		{
 			//TODO Wenn verschedene Spielertpen (Kannibale und Touri) töte Touri
 		}
+	}
+
+	@Override
+	public void draw(SpriteBatch batch) {
+		super.draw(batch);
+
+//		System.out.println(this.currentPosition.x+":"+this.currentPosition.y);
 	}
 }
