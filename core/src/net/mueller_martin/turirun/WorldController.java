@@ -138,7 +138,7 @@ public class WorldController {
         }
 
         // checkpoints
-        layer = (TiledMapTileLayer) level.map.getLayers().get("bushs");
+        layer = (TiledMapTileLayer) level.map.getLayers().get("checkpoint");
 
         for(int x = 0; x < layer.getWidth(); x++)
         {
@@ -147,7 +147,7 @@ public class WorldController {
                 if(layer.getCell(x, y) != null)
                 {
                     // Spawn Bush
-                    CheckpointGameObject checkpoint = new CheckpointGameObject(x * tilePixelWidth + 16, y*tilePixelWidth + 64, 218, 110);
+                    CheckpointGameObject checkpoint = new CheckpointGameObject(x * tilePixelWidth, y*tilePixelWidth, 168, 119);
                     this.objs.addObject(checkpoint);
                 }
             }
