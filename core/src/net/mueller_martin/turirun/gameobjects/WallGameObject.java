@@ -10,7 +10,7 @@ import net.mueller_martin.turirun.utils.CollusionDirections;
 public class WallGameObject extends GameObject{
 
     public WallGameObject (float x, float y, float width, float height) {
-        super(x, y, AssetOrganizer.instance.player.player);
+        super(x, y, AssetOrganizer.instance.stone.stone);
     }
 
     public void update(float deltaTime)
