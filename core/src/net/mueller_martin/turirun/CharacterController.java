@@ -3,6 +3,7 @@ package net.mueller_martin.turirun;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import net.mueller_martin.turirun.gameobjects.GameObject;
+import com.badlogic.gdx.math.Vector2;
 
 public class CharacterController {
 
@@ -19,7 +20,7 @@ public class CharacterController {
 			return;
 		}
 
-		this.character.lastPosition = this.character.currentPosition;
+		this.character.lastPosition = new Vector2(this.character.currentPosition.x, this.character.currentPosition.y);
 		if (Gdx.input.isKeyPressed(Input.Keys.LEFT))
 		{
 			this.character.currentPosition.add(-speed,0);
