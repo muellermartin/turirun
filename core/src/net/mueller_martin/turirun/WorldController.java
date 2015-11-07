@@ -111,7 +111,7 @@ public class WorldController {
 
 		try {
 			// Block for max. 3000ms
-			client.connect(3000, "127.0.0.1", TurirunNetwork.tcpPort, TurirunNetwork.udpPort);
+			client.connect(3000, "172.18.12.1", TurirunNetwork.tcpPort, TurirunNetwork.udpPort);
 			// Server communication after connection can go here, or in Listener#connected()
 		}
 		catch (IOException e) {
