@@ -13,7 +13,12 @@ import net.mueller_martin.turirun.network.TurirunNetwork.Register;
 public class TurirunServer {
 	public static void main(String[] args) {
 		try {
-			Server server = new Server();
+			Server server = new Server() {
+				protected Connection newConnection() {
+					// By providing our own connection implementation, we can store per connection state without a connection ID to state look up
+					return new CharacterConnection();
+				}
+			};
 
 			// For consistency, the classes to be sent over the network are registered by the same method for both the client and server
 			TurirunNetwork.register(server);
