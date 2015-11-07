@@ -18,6 +18,7 @@ import net.mueller_martin.turirun.gameobjects.CharacterObject;
 import net.mueller_martin.turirun.CharacterController;
 import net.mueller_martin.turirun.network.TurirunNetwork;
 import net.mueller_martin.turirun.network.TurirunNetwork.Register;
+import net.mueller_martin.turirun.network.TurirunNetwork.MoveCharacter;
 
 import net.mueller_martin.turirun.gameobjects.CheckpointGameObject;
 
@@ -46,7 +47,6 @@ public class WorldController {
 
     // Start Game
     public void init() {
-
         GameObject playerObj = new GameObject(10, 10 ,50 ,50);
 
         this.objs.addObject(playerObj);
@@ -118,6 +118,20 @@ public class WorldController {
     public void update(float deltaTime) {
         // Input Update
         controller.update(deltaTime);
+
+		if (client != null) {
+			// FIXME: last and current postition are always equal
+			//if (controller.character.currentPosition.x != controller.character.lastPosition.x || controller.character.currentPosition.y != controller.character.lastPosition.y)
+			{
+				MoveCharacter move = new MoveCharacter();
+
+				move.x = controller.character.currentPosition.x;
+				move.y = controller.character.currentPosition.y;
+
+				client.sendTCP(move);
+			}
+		}
+
         Camera cam = CameraHelper.instance.camera;
         // The camera dimensions, halved
         float cameraHalfWidth = cam.viewportWidth * .5f;
