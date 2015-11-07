@@ -14,6 +14,7 @@ import com.esotericsoftware.kryonet.Listener;
 import com.esotericsoftware.kryonet.Listener.ThreadedListener;
 
 import net.mueller_martin.turirun.gameobjects.GameObject;
+import net.mueller_martin.turirun.gameobjects.CharacterObject;
 import net.mueller_martin.turirun.gameobjects.DynamicGameObject;
 import net.mueller_martin.turirun.CharacterController;
 import net.mueller_martin.turirun.network.TurirunNetwork;
@@ -46,7 +47,9 @@ public class WorldController {
 
     // Start Game
     public void init() {
+
         GameObject playerObj = new GameObject(10, 10 ,50 ,50);
+
         this.objs.addObject(playerObj);
         controller.setPlayerObj(playerObj);
 

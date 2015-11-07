@@ -7,7 +7,7 @@ public class Constants
 {
 
 	// GFX
-	public final static String TEXTURE_ATLAS_OBJECTS = "turirun.pack";
+	public final static String TEXTURE_ATLAS_OBJECTS = "gfx/turirun.pack";
 
 	// KAMERA
 	public final static int VIEWPORTWIDTH = 640;
@@ -19,7 +19,9 @@ public class Constants
 	public final static int TILEWIDTH = 250;
 	public final static int TILEHEIGHT = 250;
 
-
+	// Screens
+	public final static int GAMESCREEN = 10;
+	public final static int MENUSCREEN = 20;
 
 
 
