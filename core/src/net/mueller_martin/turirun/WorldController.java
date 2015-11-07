@@ -161,11 +161,6 @@ public class WorldController {
                 if (obj.bounds.contains(collusionObj.bounds)) {
                     obj.isCollusion(collusionObj);
                 }
-
-                if(false)/* TODO collusion detection */
-                {
-                    obj.solveCollusion();
-                }
             }
         }
     }
