@@ -31,8 +31,10 @@ public class WorldController {
 
     // Start Game
     public void init() {
-//        DynamicGameObject playerObj = new DynamicGameObject();
-//        controller.setPlayerObj(playerObj);
+        System.out.print("INIT!");
+        GameObject playerObj = new GameObject(10, 10 ,5 ,5);
+        this.objs.addObject(playerObj);
+        controller.setPlayerObj(playerObj);
     }
 
     public void draw() {
@@ -46,6 +48,7 @@ public class WorldController {
         controller.update(deltaTime);
 
     	for (GameObject obj: objs.getObjects()) {
+            System.out.print("LOOP!");
     		obj.update();
     	}
     }

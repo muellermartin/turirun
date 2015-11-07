@@ -1,38 +1,36 @@
 package net.mueller_martin.turirun;
 
-//import net.mueller_martin.turirun.gameobjects.DynamicGameObject;
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
+import net.mueller_martin.turirun.gameobjects.GameObject;
 
 public class CharacterController {
-/*	public static final float VELOCITY_X = 0.2f;
-	public static final float VELOCITY_Y = 0.2f;
-	public static final float GRAVITY = 1.0f;
-*/
-//	public DynamicGameObject character;
+
+	public GameObject character;
 
 	public CharacterController() {
 	}
 
 	public void update(float deltaTime) {
-/*		// No GameObject?
-		if (!this.character)
+		// No GameObject?
+		if (this.character != null)
 			return;
 
-		this.character.velocity.add(GRAVITY * deltaTime, GRAVITY * deltaTime);
-		this.character.position.add(this.character.velocity.x * deltaTime, this.character.velocity.y * deltaTime);
-
-		if (Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
-			this.character.velocity.add(-VELOCITY_X, 0);
+		if (Gdx.input.isKeyPressed(Input.Keys.LEFT))
+		{
+			this.character.position.add(-1,0);
+			System.out.print("LEFT KEY PRESSED!: ");
 		} else if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
-			this.character.velocity.add(VELOCITY_X, 0);
+			this.character.position.add(+1,0);
 		}
 		if (Gdx.input.isKeyPressed(Input.Keys.UP)) {
-			this.character.velocity.add(0, -VELOCITY_X);
+			this.character.position.add(0,-1);
 		} else if (Gdx.input.isKeyPressed(Input.Keys.DOWN)) {
-			this.character.velocity.add(0, VELOCITY_X);
-		}*/
+			this.character.position.add(0,1);
+		}
 	}
 
-//	public void setPlayerObj(DynamicGameObject character) {
-//		this.character = character;		
-//	}
+	public void setPlayerObj(GameObject character) {
+		this.character = character;
+	}
 }
