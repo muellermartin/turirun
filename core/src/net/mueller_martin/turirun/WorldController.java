@@ -71,7 +71,8 @@ public class WorldController {
         if(spawnCannibal)
         {
             spawnCannibal = !spawnCannibal;
-            KannibaleCharacterObject playerObj = new KannibaleCharacterObject(500, 500);
+            KannibaleCharacterObject playerObj = new KannibaleCharacterObject(10, 10);
+            playerObj.setNick(this.game.nickname);
             this.objs.addObject(playerObj);
             controller.setPlayerObj(playerObj);
         }
@@ -79,6 +80,7 @@ public class WorldController {
         {
             spawnCannibal = !spawnCannibal;
             TouriCharacterObject playerObj = new TouriCharacterObject(10, 10);
+            playerObj.setNick(this.game.nickname);
             this.objs.addObject(playerObj);
             controller.setPlayerObj(playerObj);
         }
@@ -322,6 +324,8 @@ public class WorldController {
                     AddCharacter msg = (AddCharacter)event;
 
                     CharacterObject newPlayer = new CharacterObject(msg.character.x, msg.character.y);
+
+                    newPlayer.setNick(msg.character.nick);
                     objs.addObject(msg.character.id, newPlayer);
 
                     del.add(event);
