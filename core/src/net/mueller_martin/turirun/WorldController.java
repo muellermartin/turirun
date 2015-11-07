@@ -48,11 +48,11 @@ public class WorldController {
         this.objs.addObject(playerObj);
         controller.setPlayerObj(playerObj);
 
-        /*
+
         // Spawn Checkpoint
         CheckpointGameObject checkpoint = new CheckpointGameObject(300, 300, 200, 200);
         this.objs.addObject(checkpoint);
-        */
+
 
         // Spawn Wall
         WallGameObject wall = new WallGameObject(100, 300, 80, 80);
@@ -171,6 +171,8 @@ public class WorldController {
         for (GameObject obj: objs.getObjects()) {
             for (GameObject collusionObj: objs.getObjects()) {
                 if (obj.bounds.contains(collusionObj.bounds)) {
+                    if (obj == collusionObj)
+                        continue;
                     //System.out.println("COLLUSION DETECTED");
                     obj.isCollusion(collusionObj);
                 }
