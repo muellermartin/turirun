@@ -16,6 +16,7 @@ import com.esotericsoftware.kryonet.Listener.ThreadedListener;
 import net.mueller_martin.turirun.gameobjects.*;
 import net.mueller_martin.turirun.network.TurirunNetwork;
 import net.mueller_martin.turirun.network.TurirunNetwork.Register;
+import net.mueller_martin.turirun.network.TurirunNetwork.MoveCharacter;
 
 public class WorldController {
     public final static String TAG = WorldController.class.getName();
@@ -44,10 +45,8 @@ public class WorldController {
     public void init() {
 
         CharacterObject playerObj = new CharacterObject(10, 10 ,50 ,50);
-
         this.objs.addObject(playerObj);
         controller.setPlayerObj(playerObj);
-
 
         // Spawn Checkpoint
         CheckpointGameObject checkpoint = new CheckpointGameObject(300, 300, 200, 200);
@@ -120,6 +119,20 @@ public class WorldController {
     public void update(float deltaTime) {
         // Input Update
         controller.update(deltaTime);
+
+		if (client != null) {
+			// FIXME: last and current postition are always equal
+			//if (controller.character.currentPosition.x != controller.character.lastPosition.x || controller.character.currentPosition.y != controller.character.lastPosition.y)
+			{
+				MoveCharacter move = new MoveCharacter();
+
+				move.x = controller.character.currentPosition.x;
+				move.y = controller.character.currentPosition.y;
+
+				client.sendTCP(move);
+			}
+		}
+
         Camera cam = CameraHelper.instance.camera;
         // The camera dimensions, halved
         float cameraHalfWidth = cam.viewportWidth * .5f;
@@ -170,10 +183,10 @@ public class WorldController {
         // check for collusion
         for (GameObject obj: objs.getObjects()) {
             for (GameObject collusionObj: objs.getObjects()) {
-                if (obj.bounds.contains(collusionObj.bounds)) {
-                    if (obj == collusionObj)
-                        continue;
-                    //System.out.println("COLLUSION DETECTED");
+                if (obj == collusionObj)
+                    continue;
+
+                if (obj.bounds.intersection(collusionObj.bounds)) {
                     obj.isCollusion(collusionObj);
                 }
             }

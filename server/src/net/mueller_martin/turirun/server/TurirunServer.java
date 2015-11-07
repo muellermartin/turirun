@@ -52,6 +52,26 @@ public class TurirunServer {
 						character.x = 0;
 						character.y = 0;
 
+						connection.character = character;
+
+						// Add existing characters to new logged in connection
+						for (Character other : characters) {
+							AddCharacter addCharacter = new AddCharacter();
+
+							addCharacter.character = other;
+
+							connection.sendTCP(addCharacter);
+						}
+
+						characters.add(character);
+
+						// Add logged in character to all connections
+						AddCharacter addCharacter = new AddCharacter();
+
+						addCharacter.character = character;
+
+						server.sendToAllTCP(addCharacter);
+
 						System.out.println("New player registered: " + character.nick);
 					}
 
@@ -64,6 +84,8 @@ public class TurirunServer {
 
 						character.x = move.x;
 						character.y = move.y;
+
+						//System.out.println("Receiving position of character " + character.id + ": " + character.x + " / " + character.y);
 
 						UpdateCharacter update = new UpdateCharacter();
 
