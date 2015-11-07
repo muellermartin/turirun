@@ -2,6 +2,7 @@ package net.mueller_martin.turirun;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -28,6 +29,8 @@ public class JoinMenuScreen extends ScreenAdapter {
 
 	public JoinMenuScreen(ScreenManager s) {
 		this.screenManager = s;
+
+		MusicBox.instance.loopTheme(Constants.AUDIO_LOOP1);
 		stage = new Stage();
 		table = new Table();
 		BitmapFont font = new BitmapFont();
@@ -66,6 +69,7 @@ public class JoinMenuScreen extends ScreenAdapter {
 		backButton.addListener(new ClickListener() {
 			@Override
 			public void clicked(InputEvent event, float x, float y) {
+				MusicBox.instance.stopMusic(Constants.AUDIO_LOOP1);
 				screenManager.setScreenState(Constants.MENUSCREEN);
 			}
 		});
@@ -76,6 +80,7 @@ public class JoinMenuScreen extends ScreenAdapter {
 				screenManager.game.host = hostText.getText();
 				screenManager.game.port = Integer.parseInt(portText.getText());
 				screenManager.game.nickname = nickText.getText();
+				MusicBox.instance.stopMusic(Constants.AUDIO_LOOP1);
 				screenManager.setScreenState(Constants.GAMESCREEN);
 			}
 		});
