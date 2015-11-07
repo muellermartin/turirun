@@ -10,7 +10,33 @@ import com.badlogic.gdx.math.Vector2;
 public class CheckpointGameObject extends GameObject {
     public boolean active = false;
 
+    public float timer = 0.0f;
+
+    public static float MAX_TIMER = 20.0f;
+
     public CheckpointGameObject (float x, float y, float width, float height) {
         super(x, y, width, height);
+    }
+
+    @Override
+    public void isCollusion(GameObject otherObject) {
+    	this.active = true;
+    }
+
+    public void update(float deltaTime) {
+    	// Steht ein Spieler auf dem Feld
+    	if (this.active)
+	    	this.timer+= deltaTime;
+	    else
+	    	this.timer = 0.0f;
+
+
+    	if (this.timer > MAX_TIMER) {
+    		this.timer = 0.0f;
+    		System.out.println("TIMER BAAAAAAM");
+    	}
+
+    	// Reset für nächsten Test
+    	this.active = false;
     }
 }

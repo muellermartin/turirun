@@ -7,6 +7,8 @@ import net.mueller_martin.turirun.gameobjects.GameObject;
 import net.mueller_martin.turirun.gameobjects.DynamicGameObject;
 import net.mueller_martin.turirun.CharacterController;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+
+import net.mueller_martin.turirun.gameobjects.CheckpointGameObject;
 /**
  * Created by DM on 06.11.15.
  *
@@ -41,6 +43,11 @@ public class WorldController {
         GameObject playerObj = new GameObject(10, 10 ,5 ,5);
         this.objs.addObject(playerObj);
         controller.setPlayerObj(playerObj);
+
+        // Spawn Checkpoint
+        CheckpointGameObject checkpoint = new CheckpointGameObject(40, 40, 20, 20);
+        this.objs.addObject(checkpoint);
+
         //map
         level = new Level();
 
@@ -109,12 +116,15 @@ public class WorldController {
         }
 
     	for (GameObject obj: objs.getObjects()) {
-    		obj.update();
+    		obj.update(deltaTime);
             resetIfOutsideOfMap(obj);
     	}
 
         for (GameObject obj: objs.getObjects()) {
             for (GameObject collusionObj: objs.getObjects()) {
+                if (obj.bounds.contains(collusionObj.bounds)) {
+                    obj.isCollusion(collusionObj);
+                }
 
                 if(false)/* TODO collusion detection */
                 {
