@@ -7,6 +7,7 @@ import com.badlogic.gdx.maps.MapProperties;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.math.Vector2;
 
 import com.esotericsoftware.kryonet.Client;
 import com.esotericsoftware.kryonet.Connection;
@@ -16,6 +17,8 @@ import com.esotericsoftware.kryonet.Listener.ThreadedListener;
 import net.mueller_martin.turirun.gameobjects.*;
 import net.mueller_martin.turirun.network.TurirunNetwork;
 import net.mueller_martin.turirun.network.TurirunNetwork.Register;
+import net.mueller_martin.turirun.network.TurirunNetwork.AddCharacter;
+import net.mueller_martin.turirun.network.TurirunNetwork.UpdateCharacter;
 import net.mueller_martin.turirun.network.TurirunNetwork.MoveCharacter;
 import net.mueller_martin.turirun.utils.CollusionDirections;
 
@@ -44,8 +47,7 @@ public class WorldController {
 
     // Start Game
     public void init() {
-
-        CharacterObject playerObj = new CharacterObject(10, 10 ,50 ,50);
+        CharacterObject playerObj = new CharacterObject(10, 10, 50, 50);
         this.objs.addObject(playerObj);
         controller.setPlayerObj(playerObj);
 
@@ -89,7 +91,22 @@ public class WorldController {
 			public void connected(Connection connection) {
 			}
 
-			public void received(Connection connection) {
+			public void received(Connection connection, Object object) {
+				//if (object instanceof AddCharacter) {
+				//	AddCharacter msg = (AddCharacter)object;
+				//	CharacterObject newPlayer = new CharacterObject(msg.character.x, msg.character.y, 50, 50);
+
+				//	objs.addObject(msg.character.id, newPlayer);
+
+				//	return;
+				//}
+
+				//if (object instanceof UpdateCharacter) {
+				//	UpdateCharacter msg = (UpdateCharacter)object;
+				//	CharacterObject player = (CharacterObject)objs.getObject(msg.id);
+
+				//	player.currentPosition = new Vector2(msg.x, msg.y);
+				//}
 			}
 
 			public void disconnected(Connection connection) {
