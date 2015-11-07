@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.Color;
 
 import net.mueller_martin.turirun.CameraHelper;
+import net.mueller_martin.turirun.utils.CollusionDirections;
 import net.mueller_martin.turirun.utils.TheTrueRectangle;
 
 /**
@@ -47,7 +48,7 @@ public class GameObject {
 		batch.end();
 	}
 
-	public void isCollusion(GameObject otherObject) {
+	public void isCollusion(GameObject otherObject, CollusionDirections.CollusionDirectionsTypes type) {
 
 	}
 }

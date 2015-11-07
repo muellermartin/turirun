@@ -1,6 +1,8 @@
 package net.mueller_martin.turirun.gameobjects;
 
 
+import net.mueller_martin.turirun.utils.CollusionDirections;
+
 /**
  * Created by Dorothea on 07.11.2015.
  */
@@ -15,7 +17,7 @@ public class WallGameObject extends GameObject{
 
     }
 
-    public void isCollusion(GameObject otherObject) {
+    public void isCollusion(GameObject otherObject, CollusionDirections.CollusionDirectionsTypes type) {
 
     }
 
