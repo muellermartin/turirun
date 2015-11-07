@@ -15,8 +15,8 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
  */
 public class WorldController {
     public final static String TAG = WorldController.class.getName();
-    // public final mapWidth = get from tile map;
-    // public final mapHeight = get from tile map;
+    public final int mapWidth =  300; //get from tile map;
+    public final int mapHeight = 300; //get from tile map;
 
     public Turirun game;
     public ObjectController objs;
@@ -54,6 +54,28 @@ public class WorldController {
 
     	for (GameObject obj: objs.getObjects()) {
     		obj.update();
+            resetIfOutsideOfMap(obj);
     	}
+
+        for (GameObject obj: objs.getObjects()) {
+            for (GameObject collusionObj: objs.getObjects()) {
+
+                if(false)/* TODO collusion detection */
+                {
+                    obj.solveCollusion();
+                }
+            }
+        }
+    }
+
+    private void resetIfOutsideOfMap(GameObject obj)
+    {
+        if (obj.currentPosition.x > mapWidth || obj.currentPosition.x < mapWidth) {
+            obj.solveCollusion();
+        }
+
+        if (obj.currentPosition.y > mapHeight || obj.currentPosition.y < mapHeight) {
+            obj.solveCollusion();
+        }
     }
 }

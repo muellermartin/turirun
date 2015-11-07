@@ -41,4 +41,10 @@ public class GameObject {
 		batch.end();
 	}
 
+	public void solveCollusion()
+	{
+		this.currentPosition = this.lastPosition;
+		this.bounds.setPosition(this.currentPosition.x, this.currentPosition.y);
+	}
+
 }
