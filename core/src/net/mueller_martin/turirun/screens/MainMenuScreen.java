@@ -20,7 +20,6 @@ public class MainMenuScreen extends ScreenAdapter {
 	private ImageButton.ImageButtonStyle playBtnStyle,quitBtnStyle;
 	 NinePatch patchQuit;
 	 NinePatch patchPlay;
-	long soundId;
 
 	Skin skin;
 	Stage stage;
@@ -37,7 +36,8 @@ public class MainMenuScreen extends ScreenAdapter {
 		{
 			Gdx.app.log(TAG,"ist NULL");
 		}
-		soundId =	MusicBox.instance.loopTheme(Constants.AUDIO_LOOP1);
+		Gdx.app.log(TAG,"sound loopTheme");
+		MusicBox.instance.loopTheme(Constants.AUDIO_LOOP1);
 
 		patchQuit = new NinePatch(new TextureRegion(AssetOrganizer.instance.btnQuit.btnQuit));
 		patchPlay = new NinePatch(new TextureRegion(AssetOrganizer.instance.btnPlay.btnPlay));
@@ -81,7 +81,7 @@ public class MainMenuScreen extends ScreenAdapter {
 			@Override
 			public void clicked(InputEvent event, float x, float y) {
 				MusicBox.instance.playSound(Constants.AUDIO_MENUSWITCH);
-				MusicBox.instance.stopId(soundId);
+				MusicBox.instance.stopMusic(Constants.AUDIO_LOOP1);
 				screenManager.setScreenState(Constants.JOINMENUSCREEN);
 			}
 		});
@@ -91,7 +91,7 @@ public class MainMenuScreen extends ScreenAdapter {
 			@Override
 			public void clicked(InputEvent event, float x, float y) {
 				MusicBox.instance.playSound(Constants.AUDIO_MENUSWITCH);
-				MusicBox.instance.stopId(soundId);
+				MusicBox.instance.stopMusic(Constants.AUDIO_LOOP1);
 				Gdx.app.exit();
 			}
 		});

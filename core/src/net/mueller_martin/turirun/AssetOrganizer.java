@@ -5,6 +5,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetDescriptor;
 import com.badlogic.gdx.assets.AssetErrorListener;
 import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
@@ -45,12 +46,12 @@ public class AssetOrganizer implements Disposable, AssetErrorListener
     public Audio_MenuSwitch audio_MenuSwitch;
 
     // AUDIO LOOPS
-    public Audio_Loop1 audio_loop1;
-    public Audio_Loop2 audio_loop2;
-    public Audio_Loop3 audio_loop3;
-    public Audio_Loop4 audio_loop4;
-    public Audio_Loop5 audio_loop5;
-    public Audio_Loop6 audio_loop6;
+    public Music_Loop1 music_loop1;
+    public Music_Loop2 music_loop2;
+    public Music_Loop3 music_loop3;
+    public Music_Loop4 music_loop4;
+    public Music_Loop5 music_loop5;
+    public Music_Loop6 music_loop6;
 
     // Gfx
     public Stone stone;
@@ -119,12 +120,12 @@ public class AssetOrganizer implements Disposable, AssetErrorListener
         audio_MenuSwitch = new Audio_MenuSwitch();
 
         // AUDIO LOOPS
-        audio_loop1 = new Audio_Loop1();
-        audio_loop2 = new Audio_Loop2();
-        audio_loop3 = new Audio_Loop3();
-        audio_loop4 = new Audio_Loop4();
-        audio_loop5 = new Audio_Loop5();
-        audio_loop6 = new Audio_Loop6();
+        music_loop1 = new Music_Loop1();
+        music_loop2 = new Music_Loop2();
+        music_loop3 = new Music_Loop3();
+        music_loop4 = new Music_Loop4();
+        music_loop5 = new Music_Loop5();
+        music_loop6 = new Music_Loop6();
 
 
         // Gfx
@@ -361,57 +362,57 @@ public class AssetOrganizer implements Disposable, AssetErrorListener
         }
     }
 
-    public class Audio_Loop1
+    public class Music_Loop1
     {
-        public final Sound audio_loop1;
-        public Audio_Loop1()
+        public final Music music_loop1;
+        public Music_Loop1()
         {
-            audio_loop1 = audio.newSound(Gdx.files.internal("audio/audio_themeLoop1.ogg"));
+            music_loop1 = audio.newMusic(Gdx.files.internal("audio/audio_themeLoop1.ogg"));
         }
     }
 
-    public class Audio_Loop2
+    public class Music_Loop2
     {
-        public final Sound audio_loop2;
-        public Audio_Loop2()
+        public final Music music_loop2;
+        public Music_Loop2()
         {
-            audio_loop2 = audio.newSound(Gdx.files.internal("audio/audio_themeLoop2.ogg"));
-        }
-    }
-
-
-    public class Audio_Loop3
-    {
-        public final Sound audio_loop3;
-        public Audio_Loop3()
-        {
-            audio_loop3 = audio.newSound(Gdx.files.internal("audio/audio_themeLoop3.ogg"));
+            music_loop2 = audio.newMusic(Gdx.files.internal("audio/audio_themeLoop2.ogg"));
         }
     }
 
 
-    public class Audio_Loop4
+    public class Music_Loop3
     {
-        public final Sound audio_loop4;
-        public Audio_Loop4()
+        public final Music music_loop3;
+        public Music_Loop3()
         {
-            audio_loop4 = audio.newSound(Gdx.files.internal("audio/audio_themeLoop4.ogg"));
+            music_loop3 = audio.newMusic(Gdx.files.internal("audio/audio_themeLoop3.ogg"));
         }
     }
-    public class Audio_Loop5
+
+
+    public class Music_Loop4
     {
-        public final Sound audio_loop5;
-        public Audio_Loop5()
+        public final Music music_loop4;
+        public Music_Loop4()
         {
-            audio_loop5 = audio.newSound(Gdx.files.internal("audio/audio_themeLoop5.ogg"));
+            music_loop4 = audio.newMusic(Gdx.files.internal("audio/audio_themeLoop4.ogg"));
         }
     }
-    public class Audio_Loop6
+    public class Music_Loop5
     {
-        public final Sound audio_loop6;
-        public Audio_Loop6()
+        public final Music music_loop5;
+        public Music_Loop5()
         {
-            audio_loop6 = audio.newSound(Gdx.files.internal("audio/audio_themeLoop6.ogg"));
+            music_loop5 = audio.newMusic(Gdx.files.internal("audio/audio_themeLoop5.ogg"));
+        }
+    }
+    public class Music_Loop6
+    {
+        public final Music music_loop6;
+        public Music_Loop6()
+        {
+            music_loop6 = audio.newMusic(Gdx.files.internal("audio/audio_themeLoop6.ogg"));
         }
     }
 
