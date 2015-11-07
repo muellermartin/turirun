@@ -16,8 +16,8 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
  */
 public class WorldController {
     public final static String TAG = WorldController.class.getName();
-    public final int mapPixelWidth =  300; //get from tile map;
-    public final int mapPixelHeight = 300; //get from tile map;
+    public int mapPixelWidth =  300;
+    public int mapPixelHeight = 300;
 
     public Turirun game;
     public ObjectController objs;
@@ -31,7 +31,6 @@ public class WorldController {
 
         // Create Character Input Controller
         controller = new CharacterController();
-
 
     	this.init();
     }
@@ -52,8 +51,8 @@ public class WorldController {
         int tilePixelWidth = prop.get("tilewidth", Integer.class);
         int tilePixelHeight = prop.get("tileheight", Integer.class);
 
-        int mapPixelWidth = mapWidth * tilePixelWidth;
-        int mapPixelHeight = mapHeight * tilePixelHeight;
+        mapPixelWidth = mapWidth * tilePixelWidth;
+        mapPixelHeight = mapHeight * tilePixelHeight;
 
     }
 
