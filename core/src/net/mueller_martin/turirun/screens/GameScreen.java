@@ -1,4 +1,4 @@
-package net.mueller_martin.turirun;
+package net.mueller_martin.turirun.screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
@@ -7,6 +7,8 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
+import net.mueller_martin.turirun.Turirun;
+import net.mueller_martin.turirun.WorldController;
 
 public class GameScreen extends ScreenAdapter {
 	Turirun game;
@@ -30,13 +32,13 @@ public class GameScreen extends ScreenAdapter {
 		game.batch.end();
 	}
 
-	public void update() {
-		world.update();
+	public void update(float deltaTime) {
+		world.update(deltaTime);
 	}
 
 	@Override
 	public void render (float delta) {
-		update();
+		update(delta);
 		draw();
 	}
 }

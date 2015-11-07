@@ -1,6 +1,8 @@
 package net.mueller_martin.turirun;
 
 import net.mueller_martin.turirun.gameobjects.GameObject;
+import net.mueller_martin.turirun.gameobjects.DynamicGameObject;
+import net.mueller_martin.turirun.CharacterController;
 /**
  * Created by DM on 06.11.15.
  *
@@ -15,16 +17,22 @@ public class WorldController {
     public Turirun game;
     public ObjectController objs;
 
+    public CharacterController controller;
+
     public WorldController(Turirun game) {
     	this.game = game;
     	this.objs = new ObjectController();
+
+        // Create Character Input Controller
+        controller = new CharacterController();
 
     	this.init();
     }
 
     // Start Game
     public void init() {
-
+//        DynamicGameObject playerObj = new DynamicGameObject();
+//        controller.setPlayerObj(playerObj);
     }
 
     public void draw() {
@@ -33,7 +41,10 @@ public class WorldController {
     	}
     }
 
-    public void update() {
+    public void update(float deltaTime) {
+        // Input Update
+        controller.update(deltaTime);
+
     	for (GameObject obj: objs.getObjects()) {
     		obj.update();
     	}
