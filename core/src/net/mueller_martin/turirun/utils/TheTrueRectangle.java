@@ -8,7 +8,8 @@ public class TheTrueRectangle extends Rectangle {
 		super(x,y,width,height);
 	}
 
-	public CollusionDirections.CollusionDirectionsTypes intersection(Rectangle other) {
+	public CollusionDirections.CollusionDirectionsTypes intersection(Rectangle other)
+	{
 
 		float w = 0.5f * (this.width + other.width);
 		float h = 0.5f * (this.height + other.height);

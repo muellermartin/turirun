@@ -71,7 +71,7 @@ public class WorldController {
         if(spawnCannibal)
         {
             spawnCannibal = !spawnCannibal;
-            KannibaleCharacterObject playerObj = new KannibaleCharacterObject(10, 10);
+            KannibaleCharacterObject playerObj = new KannibaleCharacterObject(500, 500);
             this.objs.addObject(playerObj);
             controller.setPlayerObj(playerObj);
         }
@@ -84,7 +84,7 @@ public class WorldController {
         }
 
         // Spawn Checkpoint
-        CheckpointGameObject checkpoint = new CheckpointGameObject(300, 800, 200, 200);
+        CheckpointGameObject checkpoint = new CheckpointGameObject(300, 800, 40, 40);
         this.objs.addObject(checkpoint);
 
         //map size

@@ -21,17 +21,17 @@ public class TouriCharacterObject extends CharacterObject
 
     public static float MAX_TIMER = 5.0f;
 
-    public  ShapeRenderer  shapeRenderer;
-
     public TouriCharacterObject (float x, float y)
     {
         super(x,y);
-        this.shapeRenderer = new ShapeRenderer();
     }
+
 
     @Override
     public void isCollusion(GameObject otherObject , CollusionDirections.CollusionDirectionsTypes type)
     {
+        System.out.println("Collusion Touri!");
+        super.isCollusion(otherObject, type);
         if(otherObject instanceof BushGameObject)
         {
             System.out.println("Busch!");
@@ -40,8 +40,11 @@ public class TouriCharacterObject extends CharacterObject
     }
 
 
+
     public void update(float deltaTime)
     {
+        this.bounds.setPosition(this.currentPosition.x, this.currentPosition.y);
+
         if(!cooldown)
         {
             // Steht der Spieler im Busch
@@ -61,14 +64,8 @@ public class TouriCharacterObject extends CharacterObject
         }
     }
 
-    public void draw(SpriteBatch batch) {
-
-        shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
-        shapeRenderer.setProjectionMatrix(CameraHelper.instance.camera.combined);
-        shapeRenderer.setColor(Color.BLUE);
-        shapeRenderer.rect(this.currentPosition.x, this.currentPosition.y, this.size.x, this.size.y);
-        shapeRenderer.end();
-
+    public void draw(SpriteBatch batch)
+    {
         if (!this.invisible)
         {
 
