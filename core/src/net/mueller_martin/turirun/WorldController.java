@@ -248,6 +248,7 @@ public class WorldController {
         }
 
         // update objects
+        checkpointCount = 0;
     	for (GameObject obj: objs.getObjects()) {
     		obj.update(deltaTime);
             resetIfOutsideOfMap(obj);
