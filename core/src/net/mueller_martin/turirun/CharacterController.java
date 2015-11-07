@@ -8,6 +8,7 @@ import com.badlogic.gdx.math.Vector2;
 import net.mueller_martin.turirun.Constants;
 import com.esotericsoftware.kryonet.Client;
 import net.mueller_martin.turirun.network.TurirunNetwork.HitCharacter;
+import net.mueller_martin.turirun.network.TurirunNetwork.DeadCharacter;
 
 public class CharacterController {
 
@@ -75,14 +76,17 @@ public class CharacterController {
     			
     			if (x1 * x1 + y1 * y1 <= Constants.BATTLE_RADIUS * Constants.BATTLE_RADIUS) {
     				// Battle
-    				HitCharacter msg = new HitCharacter();
-    				msg.attackerId = this.character.id;
-    				msg.victimId = obj.id;
-    				this.client.sendTCP(msg);
     				System.out.println("BATTLE");
+					DeadCharacter msg = new DeadCharacter();
+					msg.id = obj.id;
+					this.client.sendTCP(msg);
+					((CharacterObject)obj).isDead = true;
     			} else {
     				System.out.println("NO BATTLE");
     			}
+				HitCharacter msg = new HitCharacter();
+				msg.id = this.character.id;
+				this.client.sendTCP(msg);
 			}
 		}		
 	}

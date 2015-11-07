@@ -17,6 +17,7 @@ import net.mueller_martin.turirun.utils.TheTrueRectangle;
 public class CharacterObject extends GameObject {
 	public String username = "Gast";
 	private ShapeRenderer shapeRenderer;
+	public boolean isDead = false;
 
 	public CharacterObject (float x, float y, float width, float height)
 	{
