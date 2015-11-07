@@ -11,6 +11,7 @@ public class CharacterObject extends GameObject {
 		super(x,y,width,height);
 	}
 
+	@Override
 	public void isCollusion(GameObject otherObject) {
 		//if(otherObject instanceof WallGameObject)
 		//{

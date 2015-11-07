@@ -161,15 +161,17 @@ public class WorldController {
             cam.position.y = mapPixelHeight - cameraHalfHeight;
         }
 
+        // update objects
     	for (GameObject obj: objs.getObjects()) {
     		obj.update(deltaTime);
             resetIfOutsideOfMap(obj);
     	}
 
+        // check for collusion
         for (GameObject obj: objs.getObjects()) {
             for (GameObject collusionObj: objs.getObjects()) {
                 if (obj.bounds.contains(collusionObj.bounds)) {
-                    System.out.println("COLLUSION DETECTED");
+                    //System.out.println("COLLUSION DETECTED");
                     obj.isCollusion(collusionObj);
                 }
             }
