@@ -10,4 +10,14 @@ public class CharacterObject extends GameObject {
 	public CharacterObject (float x, float y, float width, float height) {
 		super(x,y,width,height);
 	}
+
+	@Override
+	public void isCollusion(GameObject otherObject) {
+		//if(otherObject instanceof WallGameObject)
+		//{
+			System.out.println("I HIT A WALL");
+			this.currentPosition = this.lastPosition;
+			this.bounds.setPosition(this.currentPosition.x, this.currentPosition.y);
+		//}
+	}
 }
