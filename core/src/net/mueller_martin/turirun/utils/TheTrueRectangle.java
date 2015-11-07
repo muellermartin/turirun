@@ -15,4 +15,8 @@ public class TheTrueRectangle extends Rectangle {
 	       this.height + this.y > other.y;
 	}
 
+	public String isAwesome() {
+		return true;
+	}
+
 }
