@@ -5,64 +5,139 @@ filter: Nearest,Nearest
 repeat: none
 btnPlay
   rotate: false
-  xy: 1, 859
+  xy: 1, 907
   size: 500, 100
   orig: 500, 100
   offset: 0, 0
   index: -1
 btnQuit
   rotate: false
-  xy: 1, 757
+  xy: 1, 805
   size: 500, 100
   orig: 500, 100
   offset: 0, 0
   index: -1
+cannibal_front_walk1
+  rotate: false
+  xy: 1, 553
+  size: 251, 250
+  orig: 251, 250
+  offset: 0, 0
+  index: -1
+cannibal_front_walk3
+  rotate: false
+  xy: 1, 553
+  size: 251, 250
+  orig: 251, 250
+  offset: 0, 0
+  index: -1
 cannibal
   rotate: false
-  xy: 1, 505
+  xy: 1, 301
   size: 250, 250
   orig: 250, 250
   offset: 0, 0
   index: 1
-tile_botanik
+cannibal_front_walk2
   rotate: false
-  xy: 1, 253
+  xy: 1, 49
+  size: 250, 250
+  orig: 250, 250
+  offset: 0, 0
+  index: -1
+cannibal_front_walk4
+  rotate: false
+  xy: 254, 553
+  size: 250, 250
+  orig: 250, 250
+  offset: 0, 0
+  index: -1
+char
+  rotate: false
+  xy: 253, 301
+  size: 250, 250
+  orig: 250, 250
+  offset: 0, 0
+  index: -1
+platzhalter
+  rotate: false
+  xy: 253, 49
+  size: 250, 250
+  orig: 250, 250
+  offset: 0, 0
+  index: -1
+tile_1botanik
+  rotate: false
+  xy: 506, 757
+  size: 250, 250
+  orig: 250, 250
+  offset: 0, 0
+  index: -1
+tile_2botanik
+  rotate: false
+  xy: 758, 757
+  size: 250, 250
+  orig: 250, 250
+  offset: 0, 0
+  index: -1
+tile_3botanik
+  rotate: false
+  xy: 506, 505
+  size: 250, 250
+  orig: 250, 250
+  offset: 0, 0
+  index: -1
+tile_4botanik
+  rotate: false
+  xy: 758, 505
+  size: 250, 250
+  orig: 250, 250
+  offset: 0, 0
+  index: -1
+tile_5botanik
+  rotate: false
+  xy: 505, 253
+  size: 250, 250
+  orig: 250, 250
+  offset: 0, 0
+  index: -1
+tourist
+  rotate: false
+  xy: 757, 253
   size: 250, 250
   orig: 250, 250
   offset: 0, 0
   index: 1
-tile_botanik
+tourist_front_walk1
+  rotate: false
+  xy: 505, 1
+  size: 250, 250
+  orig: 250, 250
+  offset: 0, 0
+  index: -1
+tourist_front_walk3
+  rotate: false
+  xy: 505, 1
+  size: 250, 250
+  orig: 250, 250
+  offset: 0, 0
+  index: -1
+tourist_front_walk2
+  rotate: false
+  xy: 757, 1
+  size: 250, 250
+  orig: 250, 250
+  offset: 0, 0
+  index: -1
+
+turirun2.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+tourist_front_walk4
   rotate: false
   xy: 1, 1
   size: 250, 250
   orig: 250, 250
   offset: 0, 0
-  index: 2
-tile_botanik
-  rotate: false
-  xy: 253, 505
-  size: 250, 250
-  orig: 250, 250
-  offset: 0, 0
-  index: 3
-tile_botanik
-  rotate: false
-  xy: 253, 253
-  size: 250, 250
-  orig: 250, 250
-  offset: 0, 0
-  index: 4
-tile_botanik
-  rotate: false
-  xy: 253, 1
-  size: 250, 250
-  orig: 250, 250
-  offset: 0, 0
-  index: 5
-tourist
-  rotate: false
-  xy: 505, 709
-  size: 250, 250
-  orig: 250, 250
-  offset: 0, 0
-  index: 1
+  index: -1

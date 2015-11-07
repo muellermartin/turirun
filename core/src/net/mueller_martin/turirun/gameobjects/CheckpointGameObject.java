@@ -1,13 +1,18 @@
 package net.mueller_martin.turirun.gameobjects;
 
+
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import net.mueller_martin.turirun.CameraHelper;
-import net.mueller_martin.turirun.WorldController;
 import net.mueller_martin.turirun.utils.CollusionDirections;
+
+import net.mueller_martin.turirun.AssetOrganizer;
 
 /**
  * Created by Dorothea on 07.11.2015.
@@ -16,26 +21,23 @@ public class CheckpointGameObject extends GameObject {
     public boolean active = false;
 
     public float timer = 0.0f;
-
     public boolean checked = false;
-
 
     public static float MAX_TIMER = 5.0f;
 
-    private ShapeRenderer shapeRenderer;
+    public  ShapeRenderer  shapeRenderer;
 
-    public CheckpointGameObject (float x, float y, float width, float height)
-    {
-        super(x, y, width, height);
-
-        this.shapeRenderer = new ShapeRenderer();
+    public CheckpointGameObject (float x, float y, float width, float height) {
+        super(x, y, AssetOrganizer.instance.stone.stone);
     }
+
 
     @Override
     public void isCollusion(GameObject otherObject , CollusionDirections.CollusionDirectionsTypes type)
     {
         this.active = true;
     }
+
 
     public void update(float deltaTime)
     {
@@ -58,9 +60,7 @@ public class CheckpointGameObject extends GameObject {
         }
     }
 
-    public void draw(SpriteBatch batch)
-    {
-        //super.draw(new SpriteBatch());
+    public void draw(SpriteBatch batch) {
         batch.begin();
 
         shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
@@ -71,18 +71,15 @@ public class CheckpointGameObject extends GameObject {
 
         batch.end();
 
-        if(this.active && !checked)
-        {
+        if (this.active && !checked) {
             batch.begin();
 
             shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
+            Gdx.gl.glEnable(GL20.GL_BLEND);
             shapeRenderer.setProjectionMatrix(CameraHelper.instance.camera.combined);
-            shapeRenderer.setColor(0, 250, 0, 0.5f);
-            shapeRenderer.circle(this.currentPosition.x + this.size.x/2, this.currentPosition.y + this.size.y/2, this.size.x * ((MAX_TIMER - this.timer) / MAX_TIMER));
+            shapeRenderer.setColor(new Color(0, 150, 0, 0.5f));
+            shapeRenderer.circle(this.currentPosition.x + this.size.x / 2, this.currentPosition.y + this.size.y / 2, this.size.x * ((MAX_TIMER - this.timer) / MAX_TIMER));
             shapeRenderer.end();
-
-            batch.end();
-
         }
     }
 }

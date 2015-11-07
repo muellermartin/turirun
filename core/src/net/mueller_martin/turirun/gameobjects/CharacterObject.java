@@ -1,6 +1,9 @@
 package net.mueller_martin.turirun.gameobjects;
 
-import net.mueller_martin.turirun.gameobjects.GameObject;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+
+import net.mueller_martin.turirun.AssetOrganizer;
+import net.mueller_martin.turirun.CameraHelper;
 import net.mueller_martin.turirun.utils.CollusionDirections;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
@@ -11,7 +14,7 @@ public class CharacterObject extends GameObject {
 	public String username = "Gast";
 
 	public CharacterObject (float x, float y, float width, float height) {
-		super(x,y,width,height);
+		super(x,y,AssetOrganizer.instance.player.player);
 	}
 
 	@Override
@@ -41,8 +44,16 @@ public class CharacterObject extends GameObject {
 
 	@Override
 	public void draw(SpriteBatch batch) {
-		super.draw(batch);
-
-//		System.out.println(this.currentPosition.x+":"+this.currentPosition.y);
+		batch.setProjectionMatrix(CameraHelper.instance.camera.combined);
+		batch.begin();
+		batch.draw(texture, currentPosition.x, currentPosition.y, bounds.width,bounds.height);
+		batch.end();
+		/*
+		shapeRenderer.begin(ShapeType.Filled);
+		shapeRenderer.setProjectionMatrix(CameraHelper.instance.camera.combined);
+		shapeRenderer.setColor(Color.BLUE);
+		shapeRenderer.rect(this.currentPosition.x, this.currentPosition.y, this.size.x, this.size.y);
+		shapeRenderer.end();
+		 */
 	}
 }
