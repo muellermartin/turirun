@@ -94,7 +94,7 @@ public class TurirunServer {
 
 						for (CharacterConnection other : characters) {
 							if (other.character != character)
-								other.sendTCP(update);							
+								other.sendTCP(update);
 						}
 					}
 				}
