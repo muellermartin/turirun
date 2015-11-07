@@ -24,12 +24,12 @@ public class GameScreen extends ScreenAdapter {
 	}
 
 	public void draw() {
-		world.draw();
 		Gdx.gl.glClearColor(1, 0, 0, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		game.batch.begin();
 		game.batch.draw(img, 0, 0);
 		game.batch.end();
+		world.draw(game.batch);
 	}
 
 	public void update(float deltaTime) {
