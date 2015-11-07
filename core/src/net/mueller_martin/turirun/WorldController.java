@@ -1,5 +1,6 @@
 package net.mueller_martin.turirun;
 
+import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.maps.MapProperties;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import net.mueller_martin.turirun.gameobjects.GameObject;
@@ -37,7 +38,6 @@ public class WorldController {
 
     // Start Game
     public void init() {
-        System.out.println("INIT!");
         GameObject playerObj = new GameObject(10, 10 ,5 ,5);
         this.objs.addObject(playerObj);
         controller.setPlayerObj(playerObj);
@@ -67,8 +67,46 @@ public class WorldController {
     public void update(float deltaTime) {
         // Input Update
         controller.update(deltaTime);
-        // Update Camera
+        Camera cam = CameraHelper.instance.camera;
+        // The camera dimensions, halved
+        float cameraHalfWidth = cam.viewportWidth * .5f;
+        float cameraHalfHeight = cam.viewportHeight * .5f;
+
+        // Move camera after player as normal
         CameraHelper.instance.camera.position.set(controller.character.currentPosition.x,controller.character.currentPosition.y,0);
+
+        float cameraLeft = cam.position.x - cameraHalfWidth;
+        float cameraRight = cam.position.x + cameraHalfWidth;
+        float cameraBottom = cam.position.y - cameraHalfHeight;
+        float cameraTop = cam.position.y + cameraHalfHeight;
+
+        // Horizontal axis
+        if(mapPixelWidth < cam.viewportWidth)
+        {
+            cam.position.x = mapPixelWidth / 2;
+        }
+        else if(cameraLeft <= 0)
+        {
+            cam.position.x = 0 + cameraHalfWidth;
+        }
+        else if(cameraRight >= mapPixelWidth)
+        {
+            cam.position.x = mapPixelWidth - cameraHalfWidth;
+        }
+
+        // Vertical axis
+        if(mapPixelHeight < cam.viewportHeight)
+        {
+            cam.position.y = mapPixelHeight / 2;
+        }
+        else if(cameraBottom <= 0)
+        {
+            cam.position.y = 0 + cameraHalfHeight;
+        }
+        else if(cameraTop >= mapPixelHeight)
+        {
+            cam.position.y = mapPixelHeight - cameraHalfHeight;
+        }
 
     	for (GameObject obj: objs.getObjects()) {
     		obj.update();
@@ -88,12 +126,24 @@ public class WorldController {
 
     private void resetIfOutsideOfMap(GameObject obj)
     {
-        if (obj.currentPosition.x > mapPixelWidth || obj.currentPosition.x < mapPixelWidth) {
-            obj.solveCollusion();
+        if (obj.currentPosition.x < 0) {
+            System.out.println("x: " + obj.currentPosition.x + "  " + mapPixelWidth);
+            obj.currentPosition.x = 5;  /* TODO sinnvollen Wert finden! */
         }
 
-        if (obj.currentPosition.y > mapPixelHeight || obj.currentPosition.y < mapPixelHeight) {
-            obj.solveCollusion();
+        if (obj.currentPosition.x > mapPixelWidth) {
+            System.out.println("x: " + obj.currentPosition.x + "  " + mapPixelWidth);
+            obj.currentPosition.x = mapPixelWidth - 5;  /* TODO sinnvollen Wert finden! */
+        }
+
+        if (obj.currentPosition.y < 0) {
+            System.out.println("y: " + obj.currentPosition.y + "  " + mapPixelHeight);
+            obj.currentPosition.y = 5;  /* TODO sinnvollen Wert finden! */
+        }
+
+        if (obj.currentPosition.y > mapPixelHeight) {
+            System.out.println("y: " + obj.currentPosition.y + "  " + mapPixelHeight);
+            obj.currentPosition.y = mapPixelHeight - 5;  /* TODO sinnvollen Wert finden! */
         }
     }
 }
