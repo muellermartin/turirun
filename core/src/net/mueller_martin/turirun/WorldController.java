@@ -20,6 +20,7 @@ public class WorldController {
 
     public Turirun game;
     public ObjectController objs;
+    public Level level;
 
     public CharacterController controller;
 
@@ -30,6 +31,7 @@ public class WorldController {
         // Create Character Input Controller
         controller = new CharacterController();
 
+
     	this.init();
     }
 
@@ -39,18 +41,24 @@ public class WorldController {
         GameObject playerObj = new GameObject(10, 10 ,5 ,5);
         this.objs.addObject(playerObj);
         controller.setPlayerObj(playerObj);
+        //map
+        level = new Level();
 
     }
 
     public void draw(SpriteBatch batch) {
+        level.render();
     	for (GameObject obj: objs.getObjects()) {
     		obj.draw(batch);
     	}
+
     }
 
     public void update(float deltaTime) {
         // Input Update
         controller.update(deltaTime);
+        // Update Camera
+        CameraHelper.instance.camera.position.set(controller.character.currentPosition.x,controller.character.currentPosition.y,0);
 
     	for (GameObject obj: objs.getObjects()) {
     		obj.update();
