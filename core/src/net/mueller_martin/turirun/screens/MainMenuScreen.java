@@ -14,7 +14,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
 public class MainMenuScreen extends ScreenAdapter {
 	public final static String TAG = MainMenuScreen.class.getName();
-	private final ImageButton menuPlay,menuQuit;
+	private  ImageButton menuPlay,menuQuit;
 	//Turirun game;
 	ScreenManager screenManager;
 	private ImageButton.ImageButtonStyle playBtnStyle,quitBtnStyle;
@@ -25,13 +25,19 @@ public class MainMenuScreen extends ScreenAdapter {
 	Stage stage;
 	Table table;
 
+
+
 	public MainMenuScreen (ScreenManager s) {
 		this.screenManager = s;
+
+
 
 		if(AssetOrganizer.instance.btnQuit.btnQuit==null)
 		{
 			Gdx.app.log(TAG,"ist NULL");
 		}
+		MusicBox.instance.loopTheme(Constants.AUDIO_LOOP1);
+
 		patchQuit = new NinePatch(new TextureRegion(AssetOrganizer.instance.btnQuit.btnQuit));
 		patchPlay = new NinePatch(new TextureRegion(AssetOrganizer.instance.btnPlay.btnPlay));
 
@@ -69,9 +75,11 @@ public class MainMenuScreen extends ScreenAdapter {
 		stage.addActor(table);
 
 
+
 		menuPlay.addListener(new ClickListener() {
 			@Override
 			public void clicked(InputEvent event, float x, float y) {
+				MusicBox.instance.playSound(Constants.AUDIO_MENUSWITCH);
 				screenManager.setScreenState(Constants.JOINMENUSCREEN);
 			}
 		});
@@ -80,11 +88,16 @@ public class MainMenuScreen extends ScreenAdapter {
 		menuQuit.addListener(new ClickListener() {
 			@Override
 			public void clicked(InputEvent event, float x, float y) {
+				MusicBox.instance.playSound(Constants.AUDIO_MENUSWITCH);
 				Gdx.app.exit();
 			}
 		});
 
 		Gdx.input.setInputProcessor(stage);
+
+
+
+
 
 	}
 

@@ -19,6 +19,7 @@ public class Turirun extends Game
 		// Load Settings
 		// Load Assets
 		AssetOrganizer.instance.init(new AssetManager());
+		MusicBox.instance.init(new MusicBox());
 		screenManager = new ScreenManager(this);
 		screenManager.setScreenState(Constants.MENUSCREEN);
 	}
