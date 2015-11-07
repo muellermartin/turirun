@@ -70,17 +70,6 @@ public class WorldController {
         CheckpointGameObject checkpoint = new CheckpointGameObject(300, 300, 200, 200);
         this.objs.addObject(checkpoint);
 
-
-        // Spawn Walls
-        WallGameObject wall = new WallGameObject(100, 300, 80, 80);
-        this.objs.addObject(wall);
-
-        WallGameObject wall2 = new WallGameObject(100, 380, 80, 80);
-        this.objs.addObject(wall2);
-
-        WallGameObject wall3 = new WallGameObject(120, 340, 80, 80);
-        this.objs.addObject(wall3);
-
         //map size
         level = new Level();
 
@@ -100,7 +89,7 @@ public class WorldController {
         System.out.println("mapPixelWidth: " + mapPixelWidth + ", " + "mapPixelHeight: " + mapPixelHeight);
 
         // set bounding boxes for tilemap sprites
-        TiledMapTileLayer layer = (TiledMapTileLayer) level.map.getLayers().get(0);
+        TiledMapTileLayer layer = (TiledMapTileLayer) level.map.getLayers().get("stones");
         System.out.println("Layer: " + layer);
         MapObjects objects = layer.getObjects();
 
@@ -109,7 +98,13 @@ public class WorldController {
             for(int y = 0; y < layer.getHeight(); y++)
             {
                 System.out.println("Cell: " + x + ", " + y);
-               // System.out.println("" + layer.getCell(x, y).getClass().toString());
+                if(layer.getCell(x, y) != null)
+                {
+                    // Spawn Walls
+                    WallGameObject wall = new WallGameObject(x * tilePixelWidth + 16, y*tilePixelWidth + 64, 218, 97);
+                    this.objs.addObject(wall);
+                    System.out.println("Wall Created!");
+                }
             }
         }
 
