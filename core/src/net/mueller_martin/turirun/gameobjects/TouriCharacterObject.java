@@ -30,11 +30,9 @@ public class TouriCharacterObject extends CharacterObject
     @Override
     public void isCollusion(GameObject otherObject , CollusionDirections.CollusionDirectionsTypes type)
     {
-        System.out.println("Collusion Touri!");
         super.isCollusion(otherObject, type);
         if(otherObject instanceof BushGameObject)
         {
-            System.out.println("Busch!");
             this.invisible = true;
         }
     }
@@ -45,30 +43,12 @@ public class TouriCharacterObject extends CharacterObject
     {
         this.bounds.setPosition(this.currentPosition.x, this.currentPosition.y);
 
-        if(!cooldown)
-        {
-            // Steht der Spieler im Busch
-            if (this.invisible)
-                this.timer += deltaTime;
-            else
-                this.timer = 0.0f;
-
-            if (this.timer > MAX_TIMER) {
-                this.timer = 0.0f;
-                cooldown = true;
-                System.out.println("Wieder sichtbar!");
-            }
-
-            // Reset für nächsten Test
-            this.invisible = false;
-        }
     }
 
     public void draw(SpriteBatch batch)
     {
         if (!this.invisible)
         {
-
             batch.begin();
             batch.setProjectionMatrix(CameraHelper.instance.camera.combined);
             batch.draw(texture, currentPosition.x + super.xOffsetTexture, currentPosition.y + super.yOffsetTexture, texture.getRegionWidth(), texture.getRegionHeight());
