@@ -82,6 +82,9 @@ public class WorldController {
         //map
         level = new Level();
 
+        // TiledMapTileLayer layer = (TiledMapTileLayer) map.getLayers().get(1);
+        // layer.getCell(tileX,tileY)
+
         MapProperties prop = level.map.getProperties();
 
         int mapWidth = prop.get("width", Integer.class);
