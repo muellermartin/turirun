@@ -266,8 +266,14 @@ public class WorldController {
                 CollusionDirections.CollusionDirectionsTypes col = obj.bounds.intersection(collusionObj.bounds);
                 if (col != CollusionDirections.CollusionDirectionsTypes.NONE)
                 {
-                    System.out.println("Collusion!");
                     obj.isCollusion(collusionObj, col);
+                }
+                else
+                {
+                    if(obj instanceof TouriCharacterObject)
+                    {
+                        ((TouriCharacterObject) obj).invisible = false;
+                    }
                 }
             }
         }

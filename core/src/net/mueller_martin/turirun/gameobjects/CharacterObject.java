@@ -44,7 +44,6 @@ public class CharacterObject extends GameObject {
 	@Override
 	public void isCollusion(GameObject otherObject, CollusionDirections.CollusionDirectionsTypes type)
 	{
-		System.out.println("CharacterObject!");
 		if(otherObject instanceof WallGameObject)
 		{
 			switch(type)
