@@ -47,7 +47,9 @@ public class AssetOrganizer implements Disposable, AssetErrorListener
 
     public AssetOrganizer()
     {
+
     }
+
 
 
     public void init (AssetManager assetManager) {
