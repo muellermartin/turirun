@@ -44,6 +44,15 @@ project(":desktop") {
     }
 }
 
+project(":server") {
+    apply plugin: "java"
+
+
+    dependencies {
+        compile "com.esotericsoftware:kryonet:2.22.0-RC1"
+    }
+}
+
 project(":core") {
     apply plugin: "java"
 
