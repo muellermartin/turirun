@@ -72,6 +72,10 @@ public class TouriCharacterObject extends CharacterObject
             batch.begin();
             batch.setProjectionMatrix(CameraHelper.instance.camera.combined);
             batch.draw(texture, currentPosition.x + super.xOffsetTexture, currentPosition.y + super.yOffsetTexture, texture.getRegionWidth(), texture.getRegionHeight());
+
+            String nameText = this.username;
+            this.layout.setText(this.font, nameText);
+            font.draw(batch, nameText, this.currentPosition.x + this.size.x / 2 - this.layout.width / 2, this.currentPosition.y + this.size.y + this.layout.height + 10);
             batch.end();
         }
     }
