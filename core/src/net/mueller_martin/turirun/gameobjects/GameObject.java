@@ -25,7 +25,7 @@ public class GameObject {
 		this.currentPosition = new Vector2(x, y);
 		this.lastPosition = new Vector2(x,y);
 		this.size = new Vector2(width, height);
-		this.bounds = new Rectangle(x - width / 2, y - height / 2, width, height);
+		this.bounds = new Rectangle(x, y, width, height);
 
 		this.shapeRenderer = new ShapeRenderer();
 

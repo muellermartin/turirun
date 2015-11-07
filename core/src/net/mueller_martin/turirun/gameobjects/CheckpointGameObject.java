@@ -12,7 +12,7 @@ public class CheckpointGameObject extends GameObject {
 
     public float timer = 0.0f;
 
-    public static float MAX_TIMER = 20.0f;
+    public static float MAX_TIMER = 5.0f;
 
     public CheckpointGameObject (float x, float y, float width, float height) {
         super(x, y, width, height);

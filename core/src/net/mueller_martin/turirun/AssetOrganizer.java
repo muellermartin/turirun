@@ -22,6 +22,9 @@ public class AssetOrganizer implements Disposable, AssetErrorListener
     private AssetOrganizer assetOrganizer;
 
 
+    // Menu
+    public BtnPlay btnPlay;
+    public BtnQuit btnQuit;
     public MenuBtnBg menuBtnBg;
 
 
@@ -52,10 +55,13 @@ public class AssetOrganizer implements Disposable, AssetErrorListener
             Gdx.app.debug(TAG, "asset: " + a);
 
         TextureAtlas atlas = assetManager.get(Constants.TEXTURE_ATLAS_OBJECTS);
-        Sound mine = assetManager.get("sfx/mine.wav");
+//        Sound mine = assetManager.get("sfx/mine.wav");
         for (Texture t : atlas.getTextures())
             t.setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
 
+        // MENU
+        btnPlay = new BtnPlay(atlas);
+        btnQuit = new BtnQuit(atlas);
         menuBtnBg = new MenuBtnBg(atlas);
     }
 
@@ -65,6 +71,24 @@ public class AssetOrganizer implements Disposable, AssetErrorListener
         public MenuBtnBg(TextureAtlas atlas)
         {
             menuBtnBg = atlas.findRegion("menuBtnBg");
+        }
+    }
+
+    public class BtnQuit
+    {
+        public final TextureRegion btnQuit;
+        public BtnQuit(TextureAtlas atlas)
+        {
+            btnQuit = atlas.findRegion("btnQuit");
+        }
+    }
+
+    public class BtnPlay
+    {
+        public final TextureRegion btnPlay;
+        public BtnPlay(TextureAtlas atlas)
+        {
+            btnPlay = atlas.findRegion("btnPlay");
         }
     }
 
