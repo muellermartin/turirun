@@ -23,6 +23,8 @@ import net.mueller_martin.turirun.network.TurirunNetwork.AddCharacter;
 import net.mueller_martin.turirun.network.TurirunNetwork.UpdateCharacter;
 import net.mueller_martin.turirun.network.TurirunNetwork.MoveCharacter;
 import net.mueller_martin.turirun.network.TurirunNetwork.RemoveCharacter;
+import net.mueller_martin.turirun.network.TurirunNetwork.HitCharacter;
+import net.mueller_martin.turirun.network.TurirunNetwork.DeadCharacter;
 import net.mueller_martin.turirun.utils.CollusionDirections;
 
 import java.util.ArrayList;
@@ -97,13 +99,11 @@ public class WorldController {
         {
             for(int y = 0; y < layer.getHeight(); y++)
             {
-                System.out.println("Cell: " + x + ", " + y);
                 if(layer.getCell(x, y) != null)
                 {
                     // Spawn Walls
                     WallGameObject wall = new WallGameObject(x * tilePixelWidth + 16, y*tilePixelWidth + 64, 218, 97);
                     this.objs.addObject(wall);
-                    System.out.println("Wall Created!");
                 }
             }
         }
@@ -295,6 +295,8 @@ public class WorldController {
                         player.lastPosition = new Vector2(msg.x, msg.y);
                         player.currentPosition = new Vector2(msg.x, msg.y);
                     }
+                    del.add(event);
+                    continue;
                 }
                 // Remove Player
                 if (event instanceof RemoveCharacter) {
@@ -303,11 +305,30 @@ public class WorldController {
                     if (player != null) {
                         objs.removeObject(player);
                     }
+                    del.add(event);
+                    continue;
                 }
                 // HitCharacter
-                /*if (event instanceof HitCharacter) {
+                if (event instanceof HitCharacter) {
                     HitCharacter msg = (HitCharacter)event;
-                }*/
+                    CharacterObject player = (CharacterObject)objs.getObject(msg.id);
+                    if (player != null) {
+                        System.out.println("Player HIT "+msg.id);                        
+                    }
+                    del.add(event);
+                    continue;
+                }
+                // Dead Character
+                if (event instanceof DeadCharacter) {
+                    DeadCharacter msg = (DeadCharacter)event;
+                    CharacterObject player = (CharacterObject)objs.getObject(msg.id);
+                    if (player != null && !player.isDead) {
+                        player.isDead = true;
+                        System.out.println("Dead "+msg.id);
+                    }
+                    del.add(event);
+                    continue;
+                }
             }
         }
 

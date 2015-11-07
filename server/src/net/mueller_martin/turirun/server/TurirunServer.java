@@ -15,6 +15,7 @@ import net.mueller_martin.turirun.network.TurirunNetwork.RemoveCharacter;
 import net.mueller_martin.turirun.network.TurirunNetwork.UpdateCharacter;
 import net.mueller_martin.turirun.network.TurirunNetwork.MoveCharacter;
 import net.mueller_martin.turirun.network.TurirunNetwork.HitCharacter;
+import net.mueller_martin.turirun.network.TurirunNetwork.DeadCharacter;
 
 public class TurirunServer {
 	static Server server;
@@ -106,6 +107,17 @@ public class TurirunServer {
 							return;
 
 						HitCharacter hit = (HitCharacter)obj;
+						for (CharacterConnection other : characters) {
+							if (other.character != character)
+								other.sendTCP(hit);
+						}
+					}
+					if (obj instanceof DeadCharacter) {
+						// Ignore if not registered
+						if (character == null)
+							return;
+
+						DeadCharacter hit = (DeadCharacter)obj;
 						server.sendToAllTCP(hit);
 					}
 				}
