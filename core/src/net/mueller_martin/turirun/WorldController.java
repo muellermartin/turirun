@@ -268,13 +268,6 @@ public class WorldController {
                 {
                     obj.isCollusion(collusionObj, col);
                 }
-                else
-                {
-                    if(obj instanceof TouriCharacterObject)
-                    {
-                        ((TouriCharacterObject) obj).invisible = false;
-                    }
-                }
             }
         }
     }

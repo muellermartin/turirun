@@ -37,12 +37,12 @@ public class TouriCharacterObject extends CharacterObject
         }
     }
 
-
-
     public void update(float deltaTime)
     {
         this.bounds.setPosition(this.currentPosition.x, this.currentPosition.y);
 
+        // Reset für nächsten Test
+        this.invisible = false;
     }
 
     public void draw(SpriteBatch batch)
