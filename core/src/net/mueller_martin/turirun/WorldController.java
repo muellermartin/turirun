@@ -13,14 +13,10 @@ import com.esotericsoftware.kryonet.Connection;
 import com.esotericsoftware.kryonet.Listener;
 import com.esotericsoftware.kryonet.Listener.ThreadedListener;
 
-import net.mueller_martin.turirun.gameobjects.GameObject;
-import net.mueller_martin.turirun.gameobjects.CharacterObject;
-import net.mueller_martin.turirun.gameobjects.DynamicGameObject;
+import net.mueller_martin.turirun.gameobjects.*;
 import net.mueller_martin.turirun.CharacterController;
 import net.mueller_martin.turirun.network.TurirunNetwork;
 import net.mueller_martin.turirun.network.TurirunNetwork.Register;
-
-import net.mueller_martin.turirun.gameobjects.CheckpointGameObject;
 
 public class WorldController {
     public final static String TAG = WorldController.class.getName();
@@ -48,14 +44,20 @@ public class WorldController {
     // Start Game
     public void init() {
 
-        GameObject playerObj = new GameObject(10, 10 ,50 ,50);
+        CharacterObject playerObj = new CharacterObject(10, 10 ,50 ,50);
 
         this.objs.addObject(playerObj);
         controller.setPlayerObj(playerObj);
 
+        /*
         // Spawn Checkpoint
         CheckpointGameObject checkpoint = new CheckpointGameObject(300, 300, 200, 200);
         this.objs.addObject(checkpoint);
+        */
+
+        // Spawn Wall
+        WallGameObject wall = new WallGameObject(100, 300, 80, 80);
+        this.objs.addObject(wall);
 
         //map
         level = new Level();
@@ -168,6 +170,7 @@ public class WorldController {
         for (GameObject obj: objs.getObjects()) {
             for (GameObject collusionObj: objs.getObjects()) {
                 if (obj.bounds.contains(collusionObj.bounds)) {
+                    System.out.println("COLLUSION DETECTED");
                     obj.isCollusion(collusionObj);
                 }
             }
