@@ -18,16 +18,17 @@ public class CharacterController {
 			return;
 		}
 
+		this.character.lastPosition = this.character.currentPosition;
 		if (Gdx.input.isKeyPressed(Input.Keys.LEFT))
 		{
-			this.character.position.add(-1,0);
+			this.character.currentPosition.add(-1,0);
 		} else if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
-			this.character.position.add(+1,0);
+			this.character.currentPosition.add(+1,0);
 		}
 		if (Gdx.input.isKeyPressed(Input.Keys.UP)) {
-			this.character.position.add(0,1);
+			this.character.currentPosition.add(0,1);
 		} else if (Gdx.input.isKeyPressed(Input.Keys.DOWN)) {
-			this.character.position.add(0,-1);
+			this.character.currentPosition.add(0,-1);
 		}
 	}
 

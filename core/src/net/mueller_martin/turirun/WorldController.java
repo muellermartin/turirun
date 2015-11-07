@@ -1,5 +1,6 @@
 package net.mueller_martin.turirun;
 
+import com.badlogic.gdx.maps.tiled.TiledMap;
 import net.mueller_martin.turirun.gameobjects.GameObject;
 import net.mueller_martin.turirun.gameobjects.DynamicGameObject;
 import net.mueller_martin.turirun.CharacterController;
@@ -14,6 +15,8 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
  */
 public class WorldController {
     public final static String TAG = WorldController.class.getName();
+    // public final mapWidth = get from tile map;
+    // public final mapHeight = get from tile map;
 
     public Turirun game;
     public ObjectController objs;
