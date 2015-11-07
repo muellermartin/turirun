@@ -7,6 +7,7 @@ import com.badlogic.gdx.maps.MapProperties;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.math.Vector2;
 
 import com.esotericsoftware.kryonet.Client;
@@ -82,11 +83,7 @@ public class WorldController {
         //map size
         level = new Level();
 
-        // TiledMapTileLayer layer = (TiledMapTileLayer) map.getLayers().get(1);
-        // layer.getCell(tileX,tileY)
-
         MapProperties prop = level.map.getProperties();
-
         int mapWidth = prop.get("width", Integer.class);
         int mapHeight = prop.get("height", Integer.class);
         System.out.println("mapWidth: " + mapWidth + ", " + "mapHeight: " + mapHeight);
@@ -102,6 +99,17 @@ public class WorldController {
         System.out.println("mapPixelWidth: " + mapPixelWidth + ", " + "mapPixelHeight: " + mapPixelHeight);
 
         // set bounding boxes for tilemap sprites
+        TiledMapTileLayer layer = (TiledMapTileLayer) level.map.getLayers().get(0);
+
+        int cellCount = mapWidth * mapHeight;
+
+        for(int x = 0; x < mapWidth; x++)
+        {
+            for(int y = 0; y < mapHeight; y++)
+            {
+               System.out.println("Cell: " + x + ", " + y + " " + layer.getCell(x, y).getClass().toString());
+            }
+        }
 
 		this.client.start();
 
