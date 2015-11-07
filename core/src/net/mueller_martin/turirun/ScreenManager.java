@@ -42,8 +42,8 @@ public class ScreenManager {
                     gameScreen = new GameScreen(this, game);
                     MusicBox.instance.playSound(Constants.AUDIO_MENUSWITCH);
                     game.setScreen(gameScreen);
-                    menuScreen.dispose();
-                    menuScreen = null;
+                    joinMenuScreen.dispose();
+                    joinMenuScreen = null;
                     break;
 
                 case Constants.MENUSCREEN:
@@ -57,6 +57,7 @@ public class ScreenManager {
                     joinMenuScreen = new JoinMenuScreen(this);
                     MusicBox.instance.playSound(Constants.AUDIO_MENUSWITCH);
                     game.setScreen(joinMenuScreen);
+                    menuScreen.dispose();
                     break;
             }
         }
