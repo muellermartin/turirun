@@ -14,6 +14,7 @@ import net.mueller_martin.turirun.network.TurirunNetwork.AddCharacter;
 import net.mueller_martin.turirun.network.TurirunNetwork.RemoveCharacter;
 import net.mueller_martin.turirun.network.TurirunNetwork.UpdateCharacter;
 import net.mueller_martin.turirun.network.TurirunNetwork.MoveCharacter;
+import net.mueller_martin.turirun.network.TurirunNetwork.HitCharacter;
 
 public class TurirunServer {
 	static Server server;
@@ -25,6 +26,7 @@ public class TurirunServer {
 			server = new Server() {
 				protected Connection newConnection() {
 					// By providing our own connection implementation, we can store per connection state without a connection ID to state look up
+
 					return new CharacterConnection();
 				}
 			};
@@ -96,6 +98,15 @@ public class TurirunServer {
 							if (other.character != character)
 								other.sendTCP(update);
 						}
+					}
+
+					if (obj instanceof HitCharacter) {
+						// Ignore if not registered
+						if (character == null)
+							return;
+
+						HitCharacter hit = (HitCharacter)obj;
+						server.sendToAllTCP(hit);
 					}
 				}
 

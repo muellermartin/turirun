@@ -3,16 +3,22 @@ package net.mueller_martin.turirun;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import net.mueller_martin.turirun.gameobjects.GameObject;
+import net.mueller_martin.turirun.gameobjects.CharacterObject;
 import com.badlogic.gdx.math.Vector2;
+import net.mueller_martin.turirun.Constants;
+import com.esotericsoftware.kryonet.Client;
+import net.mueller_martin.turirun.network.TurirunNetwork.HitCharacter;
 
 public class CharacterController {
 
 	public GameObject character;
 	private int speed = 7;
+	private ObjectController objs;
+	private Client client;
 
-	public CharacterController()
-	{
-
+	public CharacterController(ObjectController objs, Client client) {
+		this.objs = objs;
+		this.client = client;
 	}
 
 	public void update(float deltaTime) {
@@ -35,9 +41,49 @@ public class CharacterController {
 		} else if (Gdx.input.isKeyPressed(Input.Keys.DOWN)) {
 			this.character.currentPosition.add(0,-speed);
 		}
+		if (Gdx.input.isKeyPressed(Input.Keys.SPACE)) {
+			this.tryBattle();
+		}
 	}
 
 	public void setPlayerObj(GameObject character) {
 		this.character = character;
+	}
+
+	public void tryBattle() {
+		// No GameObject?
+		if (this.character == null) {
+			System.out.println("Character: null");
+			return;
+		}
+
+		// Search near by
+		for (GameObject obj: objs.getObjects()) {
+			if (obj == this.character)
+				continue;
+
+			if (obj instanceof CharacterObject) {
+				// Center
+				int x1 = (int)this.character.currentPosition.x - (int)(this.character.bounds.width/2);
+				int y1 = (int)this.character.currentPosition.y - (int)(this.character.bounds.height/2);
+				
+				int x2 = (int)obj.currentPosition.x - (int)(obj.bounds.width/2);
+				int y2 = (int)obj.currentPosition.y - (int)(obj.bounds.height/2);
+
+				x1 -= x2;
+				y1 -= y2;
+    			
+    			if (x1 * x1 + y1 * y1 <= Constants.BATTLE_RADIUS * Constants.BATTLE_RADIUS) {
+    				// Battle
+    				HitCharacter msg = new HitCharacter();
+    				msg.attackerId = this.character.id;
+    				msg.victimId = obj.id;
+    				this.client.sendTCP(msg);
+    				System.out.println("BATTLE");
+    			} else {
+    				System.out.println("NO BATTLE");
+    			}
+			}
+		}		
 	}
 }

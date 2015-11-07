@@ -52,7 +52,7 @@ public class WorldController {
     	this.client = new Client();
 
         // Create Character Input Controller
-        controller = new CharacterController();
+        controller = new CharacterController(this.objs, this.client);
 
         // Events
         WorldController.events = Collections.synchronizedList(new ArrayList<Object>());
@@ -127,7 +127,7 @@ public class WorldController {
 
 		try {
 			// Block for max. 3000ms // 172.18.12.25
-			client.connect(3000, this.game.host, this.game.port);
+			client.connect(3000, this.game.host, this.game.port, TurirunNetwork.udpPort);
 			// Server communication after connection can go here, or in Listener#connected()
 		}
 		catch (IOException e) {
@@ -304,6 +304,10 @@ public class WorldController {
                         objs.removeObject(player);
                     }
                 }
+                // HitCharacter
+                /*if (event instanceof HitCharacter) {
+                    HitCharacter msg = (HitCharacter)event;
+                }*/
             }
         }
 
