@@ -26,6 +26,7 @@ public class TouriCharacterObject extends CharacterObject
     public TouriCharacterObject (float x, float y)
     {
         super(x,y);
+        this.shapeRenderer = new ShapeRenderer();
     }
 
     @Override
