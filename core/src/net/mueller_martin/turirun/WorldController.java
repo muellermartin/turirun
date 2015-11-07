@@ -256,7 +256,10 @@ public class WorldController {
                 if (event instanceof UpdateCharacter) {
                     UpdateCharacter msg = (UpdateCharacter)event;
                     CharacterObject player = (CharacterObject)objs.getObject(msg.id);
-                    player.currentPosition = new Vector2(msg.x, msg.y);
+                    if (player != null) {
+                        player.lastPosition = new Vector2(msg.x, msg.y);
+                        player.currentPosition = new Vector2(msg.x, msg.y);
+                    }
                 }
             }
         }
