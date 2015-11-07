@@ -14,7 +14,6 @@ import com.esotericsoftware.kryonet.Listener;
 import com.esotericsoftware.kryonet.Listener.ThreadedListener;
 
 import net.mueller_martin.turirun.gameobjects.*;
-import net.mueller_martin.turirun.CharacterController;
 import net.mueller_martin.turirun.network.TurirunNetwork;
 import net.mueller_martin.turirun.network.TurirunNetwork.Register;
 
@@ -127,7 +126,7 @@ public class WorldController {
         float cameraHalfHeight = cam.viewportHeight * .5f;
 
         // Move camera after player as normal
-        CameraHelper.instance.camera.position.set(controller.character.currentPosition.x,controller.character.currentPosition.y,0);
+        CameraHelper.instance.camera.position.set((int)controller.character.currentPosition.x,(int)controller.character.currentPosition.y,0);
 
         float cameraLeft = cam.position.x - cameraHalfWidth;
         float cameraRight = cam.position.x + cameraHalfWidth;
