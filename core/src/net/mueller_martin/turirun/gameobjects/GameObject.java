@@ -50,11 +50,4 @@ public class GameObject {
 	public void isCollusion(GameObject otherObject) {
 
 	}
-
-	public void solveCollusion()
-	{
-		this.currentPosition = this.lastPosition;
-		this.bounds.setPosition(this.currentPosition.x, this.currentPosition.y);
-	}
-
 }
