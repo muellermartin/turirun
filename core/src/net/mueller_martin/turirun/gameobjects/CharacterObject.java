@@ -19,8 +19,8 @@ public class CharacterObject extends GameObject {
 	public String username = "Gast";
 	private ShapeRenderer shapeRenderer;
 	public boolean isDead = false;
-	private BitmapFont font;
-	private GlyphLayout layout;
+	protected BitmapFont font;
+	protected GlyphLayout layout;
 
 	public int xOffsetTexture = 0;
 	public int yOffsetTexture = 0;
@@ -77,10 +77,6 @@ public class CharacterObject extends GameObject {
 		batch.begin();
 		batch.setProjectionMatrix(CameraHelper.instance.camera.combined);
 		batch.draw(texture, currentPosition.x + xOffsetTexture, currentPosition.y + yOffsetTexture, texture.getRegionWidth(), texture.getRegionHeight());
-		String nameText = this.username;
-		this.layout.setText(this.font, nameText);
-
-		font.draw(batch, nameText, this.currentPosition.x + this.size.x / 2 - this.layout.width / 2, this.currentPosition.y + this.size.y + this.layout.height + 10);
 		batch.end();
 	}
 
