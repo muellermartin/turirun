@@ -40,18 +40,22 @@ public class ScreenManager {
             switch (state) {
                 case Constants.GAMESCREEN:
                     gameScreen = new GameScreen(this, game);
+                    MusicBox.instance.playSound(Constants.AUDIO_MENUSWITCH);
                     game.setScreen(gameScreen);
                     menuScreen.dispose();
                     menuScreen = null;
                     break;
 
                 case Constants.MENUSCREEN:
+                    MusicBox.instance.playSound(Constants.AUDIO_MENUSWITCH);
                     menuScreen = new MainMenuScreen(this);
+
                     game.setScreen(menuScreen);
                     break;
 
                 case Constants.JOINMENUSCREEN:
                     joinMenuScreen = new JoinMenuScreen(this);
+                    MusicBox.instance.playSound(Constants.AUDIO_MENUSWITCH);
                     game.setScreen(joinMenuScreen);
                     break;
             }

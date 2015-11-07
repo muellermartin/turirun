@@ -23,7 +23,6 @@ public class GameObject {
 	public TheTrueRectangle bounds;
 	public int id = 0;
 	public TextureRegion texture;
-	public SpriteBatch batch;
 
 
 	private ShapeRenderer shapeRenderer;
@@ -34,8 +33,7 @@ public class GameObject {
 		this.lastPosition = new Vector2(x,y);
 		this.size = new Vector2(texture.getRegionWidth(), texture.getRegionHeight());
 		this.bounds = new TheTrueRectangle(x, y,size.x ,size.y );
-		batch = new SpriteBatch();
-		//this.shapeRenderer = new ShapeRenderer()
+		//this.shapeRenderer = new ShapeRenderer();
 
 	}
 
@@ -45,8 +43,8 @@ public class GameObject {
 	}
 
 	public void draw(SpriteBatch batch) {
-		batch.setProjectionMatrix(CameraHelper.instance.camera.combined);
 		batch.begin();
+		batch.setProjectionMatrix(CameraHelper.instance.camera.combined);
 		batch.draw(texture, currentPosition.x, currentPosition.y, bounds.width,bounds.height);
 		batch.end();
 
