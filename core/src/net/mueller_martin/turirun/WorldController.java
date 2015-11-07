@@ -42,7 +42,7 @@ public class WorldController {
     public ObjectController objs;
     public Level level;
     public int checkpointCount = 0;
-    private int checkpointsNeeded = 1;
+    public int checkpointsNeeded = 1;
 
     public CharacterController controller;
 
