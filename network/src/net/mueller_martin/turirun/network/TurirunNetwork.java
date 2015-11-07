@@ -18,6 +18,7 @@ public class TurirunNetwork {
 		kryo.register(UpdateCharacter.class);
 		kryo.register(MoveCharacter.class);
 		kryo.register(HitCharacter.class);
+		kryo.register(DeadCharacter.class);
 	}
 
 	public static class Register {
@@ -49,7 +50,9 @@ public class TurirunNetwork {
 	}
 
 	public static class HitCharacter {
-		public int attackerId;
-		public int victimId;
+		public int id;
+	}
+	public static class DeadCharacter {
+		public int id;
 	}
 }

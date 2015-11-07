@@ -12,6 +12,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
  */
 public class CharacterObject extends GameObject {
 	public String username = "Gast";
+	public boolean isDead = false;
 
 	public CharacterObject (float x, float y, float width, float height) {
 		super(x,y,AssetOrganizer.instance.player.player);
