@@ -17,8 +17,6 @@ public class CharacterObject extends GameObject {
 	public void isCollusion(GameObject otherObject, CollusionDirections.CollusionDirectionsTypes type) {
 		if(otherObject instanceof WallGameObject)
 		{
-			System.out.println("I HIT A WALL");
-
 			switch(type)
 			{
 				case TOP: this.currentPosition.y = otherObject.currentPosition.y + otherObject.size.y + 1;

@@ -36,6 +36,8 @@ public class WorldController {
     public Turirun game;
     public ObjectController objs;
     public Level level;
+    public int checkpointCount = 0;
+    private int checkpointsNeeded = 1;
 
     public CharacterController controller;
 
@@ -72,6 +74,9 @@ public class WorldController {
 
         WallGameObject wall2 = new WallGameObject(100, 380, 80, 80);
         this.objs.addObject(wall2);
+
+        WallGameObject wall3 = new WallGameObject(120, 340, 80, 80);
+        this.objs.addObject(wall3);
 
         //map
         level = new Level();
@@ -198,6 +203,7 @@ public class WorldController {
     	for (GameObject obj: objs.getObjects()) {
     		obj.update(deltaTime);
             resetIfOutsideOfMap(obj);
+            checkCheckpoints(obj);
     	}
 
         // check for collusion
@@ -237,6 +243,18 @@ public class WorldController {
         }
     }
 
+
+    private void checkCheckpoints(GameObject obj) {
+        if (obj instanceof CheckpointGameObject && ((CheckpointGameObject) obj).checked) {
+            checkpointCount++;
+
+            if (checkpointCount == checkpointsNeeded) {
+                // TODO Tourist won!
+                System.out.println("Tourist won!");
+            }
+        }
+    }
+
     private void updateEvents() {
         ArrayList<Object> del = new ArrayList<Object>();
 
@@ -267,5 +285,6 @@ public class WorldController {
         for (Object event : del) {
             WorldController.events.remove(event);
         }
+
     }
 }
