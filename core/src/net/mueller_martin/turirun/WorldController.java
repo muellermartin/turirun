@@ -44,7 +44,6 @@ public class WorldController {
     public void init() {
 
         CharacterObject playerObj = new CharacterObject(10, 10 ,50 ,50);
-
         this.objs.addObject(playerObj);
         controller.setPlayerObj(playerObj);
 
@@ -169,8 +168,10 @@ public class WorldController {
         // check for collusion
         for (GameObject obj: objs.getObjects()) {
             for (GameObject collusionObj: objs.getObjects()) {
-                if (obj.bounds.contains(collusionObj.bounds)) {
-                    //System.out.println("COLLUSION DETECTED");
+                if (obj == collusionObj)
+                    continue;
+
+                if (obj.bounds.intersection(collusionObj.bounds)) {
                     obj.isCollusion(collusionObj);
                 }
             }
