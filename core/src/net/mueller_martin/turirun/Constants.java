@@ -23,6 +23,16 @@ public class Constants
 	public final static int GAMESCREEN = 10;
 	public final static int MENUSCREEN = 20;
 
+	// AUDIO
+
+	public final static int AUDIO_CANNIBALEAT = 10;
+	public final static int AUDIO_CANNIBALWIN = 20;
+	public final static int AUDIO_RUNNING1 = 30;
+	public final static int AUDIO_WALKING1 = 40;
+	public final static int AUDIO_WALKING2 = 50;
+	public final static int AUDIO_SOUNDTRACK = 60;
+
+
 
 
 }
