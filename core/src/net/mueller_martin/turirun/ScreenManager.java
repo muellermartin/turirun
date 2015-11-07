@@ -5,16 +5,15 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 
 import net.mueller_martin.turirun.screens.GameScreen;
+import net.mueller_martin.turirun.MainMenuScreen;
+import net.mueller_martin.turirun.JoinMenuScreen;
 
-/**
- *
- */
 public class ScreenManager {
-
     public final static String TAG = ScreenManager.class.getName();
     GameScreen gameScreen;
-    net.mueller_martin.turirun.MainMenuScreen menuScreen;
-    Turirun game;
+    MainMenuScreen menuScreen;
+    JoinMenuScreen joinMenuScreen;
+    public Turirun game;
     boolean switchScreen;
     int state = 0;
     Screen currentScreen;
@@ -28,7 +27,7 @@ public class ScreenManager {
     }
     public void init()
     {
-        if(state==0)
+        if (state == 0)
         {
             setScreenState(Constants.MENUSCREEN);
         }
@@ -40,15 +39,21 @@ public class ScreenManager {
             this.state = s;
             switch (state) {
                 case Constants.GAMESCREEN:
-                    gameScreen = new GameScreen(this,game);
+                    gameScreen = new GameScreen(this, game);
                     game.setScreen(gameScreen);
                     menuScreen.dispose();
                     menuScreen = null;
                     break;
 
                 case Constants.MENUSCREEN:
-                    menuScreen = new net.mueller_martin.turirun.MainMenuScreen(this);
+                    menuScreen = new MainMenuScreen(this);
                     game.setScreen(menuScreen);
+                    break;
+
+                case Constants.JOINMENUSCREEN:
+                    joinMenuScreen = new JoinMenuScreen(this);
+                    game.setScreen(joinMenuScreen);
+                    break;
             }
         }
     }
@@ -68,13 +73,14 @@ public class ScreenManager {
                 case Constants.MENUSCREEN:
                     menuScreen.render(delta);
                     break;
+
+                case Constants.JOINMENUSCREEN:
+                    joinMenuScreen.render(delta);
+
               //  case Constants.SCREEN_MENU_AFTER_GAMEOVER:
               //      menuScreen.render(delta);
               //      break;
             }
-
         }
-
     }
-
 }
