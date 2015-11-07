@@ -2,13 +2,14 @@ package net.mueller_martin.turirun.gameobjects;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.GlyphLayout;
+
 import net.mueller_martin.turirun.AssetOrganizer;
 import net.mueller_martin.turirun.CameraHelper;
 import net.mueller_martin.turirun.utils.CollusionDirections;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import net.mueller_martin.turirun.utils.TheTrueRectangle;
 
 /**
@@ -18,6 +19,8 @@ public class CharacterObject extends GameObject {
 	public String username = "Gast";
 	private ShapeRenderer shapeRenderer;
 	public boolean isDead = false;
+	private BitmapFont font;
+	private GlyphLayout layout;
 
 	public int xOffsetTexture = 0;
 	public int yOffsetTexture = 0;
@@ -28,6 +31,8 @@ public class CharacterObject extends GameObject {
 		this.size = new Vector2(texture.getRegionWidth(), texture.getRegionHeight()); // texture.getRegionHeight()
 		this.bounds = new TheTrueRectangle(x, y, size.x , size.y);
 		this.shapeRenderer = new ShapeRenderer();
+		this.font = new BitmapFont();
+		this.layout = new GlyphLayout();
 	}
 
 	@Override
@@ -75,6 +80,14 @@ public class CharacterObject extends GameObject {
 		batch.begin();
 		batch.setProjectionMatrix(CameraHelper.instance.camera.combined);
 		batch.draw(texture, currentPosition.x + xOffsetTexture, currentPosition.y + yOffsetTexture, texture.getRegionWidth(), texture.getRegionHeight());
+		String nameText = this.username;
+		this.layout.setText(this.font, nameText);
+
+		font.draw(batch, nameText, this.currentPosition.x + this.size.x / 2 - this.layout.width / 2, this.currentPosition.y + this.size.y + this.layout.height + 10);
 		batch.end();
+	}
+
+	public void setNick(String nick) {
+		this.username = nick;
 	}
 }

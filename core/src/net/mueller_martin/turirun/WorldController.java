@@ -66,6 +66,7 @@ public class WorldController {
     public void init() {
         //TODO ask server for CharacterObject type
         CharacterObject playerObj = new CharacterObject(10, 10);
+        playerObj.setNick(this.game.nickname);
         this.objs.addObject(playerObj);
         controller.setPlayerObj(playerObj);
 
@@ -301,6 +302,8 @@ public class WorldController {
                     AddCharacter msg = (AddCharacter)event;
 
                     CharacterObject newPlayer = new CharacterObject(msg.character.x, msg.character.y);
+
+                    newPlayer.setNick(msg.character.nick);
                     objs.addObject(msg.character.id, newPlayer);
 
                     del.add(event);
