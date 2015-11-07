@@ -46,12 +46,14 @@ public class WorldController {
 
     // Start Game
     public void init() {
-        CharacterObject playerObj = new CharacterObject(10, 10 ,5 ,5);
+
+        GameObject playerObj = new GameObject(10, 10 ,50 ,50);
+
         this.objs.addObject(playerObj);
         controller.setPlayerObj(playerObj);
 
         // Spawn Checkpoint
-        CheckpointGameObject checkpoint = new CheckpointGameObject(40, 40, 20, 20);
+        CheckpointGameObject checkpoint = new CheckpointGameObject(300, 300, 200, 200);
         this.objs.addObject(checkpoint);
 
         //map
@@ -61,11 +63,17 @@ public class WorldController {
 
         int mapWidth = prop.get("width", Integer.class);
         int mapHeight = prop.get("height", Integer.class);
+        System.out.println("mapWidth: " + mapWidth + ", " + "mapHeight: " + mapHeight);
+
         int tilePixelWidth = prop.get("tilewidth", Integer.class);
         int tilePixelHeight = prop.get("tileheight", Integer.class);
 
+        System.out.println("tilePixelWidth: " + tilePixelWidth + ", " + "tilePixelHeight: " + tilePixelHeight);
+
         mapPixelWidth = mapWidth * tilePixelWidth;
         mapPixelHeight = mapHeight * tilePixelHeight;
+
+        System.out.println("mapPixelWidth: " + mapPixelWidth + ", " + "mapPixelHeight: " + mapPixelHeight);
 
 		this.client.start();
 
@@ -169,22 +177,22 @@ public class WorldController {
     {
         if (obj.currentPosition.x < 0) {
             System.out.println("x: " + obj.currentPosition.x + "  " + mapPixelWidth);
-            obj.currentPosition.x = 5;  /* TODO sinnvollen Wert finden! */
+            obj.currentPosition.x = 1;
         }
 
-        if (obj.currentPosition.x > mapPixelWidth) {
+        if (obj.currentPosition.x + obj.size.x > mapPixelWidth) {
             System.out.println("x: " + obj.currentPosition.x + "  " + mapPixelWidth);
-            obj.currentPosition.x = mapPixelWidth - 5;  /* TODO sinnvollen Wert finden! */
+            obj.currentPosition.x = mapPixelWidth - obj.size.x + 1;
         }
 
         if (obj.currentPosition.y < 0) {
             System.out.println("y: " + obj.currentPosition.y + "  " + mapPixelHeight);
-            obj.currentPosition.y = 5;  /* TODO sinnvollen Wert finden! */
+            obj.currentPosition.y = 1;
         }
 
-        if (obj.currentPosition.y > mapPixelHeight) {
+        if (obj.currentPosition.y + obj.size.y> mapPixelHeight) {
             System.out.println("y: " + obj.currentPosition.y + "  " + mapPixelHeight);
-            obj.currentPosition.y = mapPixelHeight - 5;  /* TODO sinnvollen Wert finden! */
+            obj.currentPosition.y = mapPixelHeight - obj.size.y;
         }
     }
 }

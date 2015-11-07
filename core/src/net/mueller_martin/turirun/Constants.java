@@ -10,8 +10,8 @@ public class Constants
 	public final static String TEXTURE_ATLAS_OBJECTS = "gfx/turirun.pack";
 
 	// KAMERA
-	public final static int VIEWPORTWIDTH = 1280;
-	public final static int VIEWPORTHEIGHT = 720;
+	public final static int VIEWPORTWIDTH = 640;
+	public final static int VIEWPORTHEIGHT = 420;
 
 	// MAP
 	public final static int MAPWIDTH = 100;
