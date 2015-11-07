@@ -1,5 +1,6 @@
 package net.mueller_martin.turirun;
 
+import com.badlogic.gdx.maps.MapProperties;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import net.mueller_martin.turirun.gameobjects.GameObject;
 import net.mueller_martin.turirun.gameobjects.DynamicGameObject;
@@ -17,8 +18,8 @@ import net.mueller_martin.turirun.gameobjects.CheckpointGameObject;
  */
 public class WorldController {
     public final static String TAG = WorldController.class.getName();
-    public final int mapWidth =  300; //get from tile map;
-    public final int mapHeight = 300; //get from tile map;
+    public int mapPixelWidth =  300;
+    public int mapPixelHeight = 300;
 
     public Turirun game;
     public ObjectController objs;
@@ -32,7 +33,6 @@ public class WorldController {
 
         // Create Character Input Controller
         controller = new CharacterController();
-
 
     	this.init();
     }
@@ -50,6 +50,16 @@ public class WorldController {
 
         //map
         level = new Level();
+
+        MapProperties prop = level.map.getProperties();
+
+        int mapWidth = prop.get("width", Integer.class);
+        int mapHeight = prop.get("height", Integer.class);
+        int tilePixelWidth = prop.get("tilewidth", Integer.class);
+        int tilePixelHeight = prop.get("tileheight", Integer.class);
+
+        mapPixelWidth = mapWidth * tilePixelWidth;
+        mapPixelHeight = mapHeight * tilePixelHeight;
 
     }
 
@@ -88,11 +98,11 @@ public class WorldController {
 
     private void resetIfOutsideOfMap(GameObject obj)
     {
-        if (obj.currentPosition.x > mapWidth || obj.currentPosition.x < mapWidth) {
+        if (obj.currentPosition.x > mapPixelWidth || obj.currentPosition.x < mapPixelWidth) {
             obj.solveCollusion();
         }
 
-        if (obj.currentPosition.y > mapHeight || obj.currentPosition.y < mapHeight) {
+        if (obj.currentPosition.y > mapPixelHeight || obj.currentPosition.y < mapPixelHeight) {
             obj.solveCollusion();
         }
     }
