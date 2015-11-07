@@ -1,20 +1,29 @@
 package net.mueller_martin.turirun.gameobjects;
 
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.badlogic.gdx.math.Vector2;
 import net.mueller_martin.turirun.AssetOrganizer;
 import net.mueller_martin.turirun.CameraHelper;
 import net.mueller_martin.turirun.utils.CollusionDirections;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import net.mueller_martin.turirun.utils.TheTrueRectangle;
 
 /**
  * Created by DM on 06.11.15.
  */
 public class CharacterObject extends GameObject {
 	public String username = "Gast";
+	private ShapeRenderer shapeRenderer;
 
-	public CharacterObject (float x, float y, float width, float height) {
+	public CharacterObject (float x, float y, float width, float height)
+	{
 		super(x,y,AssetOrganizer.instance.player.player);
+		this.size = new Vector2(125, 205); // texture.getRegionHeight()
+		this.bounds = new TheTrueRectangle(x + 200, y + 200, size.x , size.y);
+		this.shapeRenderer = new ShapeRenderer();
 	}
 
 	@Override
@@ -44,16 +53,15 @@ public class CharacterObject extends GameObject {
 
 	@Override
 	public void draw(SpriteBatch batch) {
-		batch.setProjectionMatrix(CameraHelper.instance.camera.combined);
-		batch.begin();
-		batch.draw(texture, currentPosition.x, currentPosition.y, bounds.width,bounds.height);
-		batch.end();
-		/*
-		shapeRenderer.begin(ShapeType.Filled);
+		shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
 		shapeRenderer.setProjectionMatrix(CameraHelper.instance.camera.combined);
 		shapeRenderer.setColor(Color.BLUE);
-		shapeRenderer.rect(this.currentPosition.x, this.currentPosition.y, this.size.x, this.size.y);
+		shapeRenderer.rect(this.bounds.x, this.bounds.y, this.bounds.getWidth(), this.bounds.getHeight());
 		shapeRenderer.end();
-		 */
+
+		batch.begin();
+		batch.setProjectionMatrix(CameraHelper.instance.camera.combined);
+		batch.draw(texture, currentPosition.x, currentPosition.y, texture.getRegionWidth(), texture.getRegionHeight());
+		batch.end();
 	}
 }

@@ -97,13 +97,11 @@ public class WorldController {
         {
             for(int y = 0; y < layer.getHeight(); y++)
             {
-                System.out.println("Cell: " + x + ", " + y);
                 if(layer.getCell(x, y) != null)
                 {
                     // Spawn Walls
                     WallGameObject wall = new WallGameObject(x * tilePixelWidth + 16, y*tilePixelWidth + 64, 218, 97);
                     this.objs.addObject(wall);
-                    System.out.println("Wall Created!");
                 }
             }
         }
