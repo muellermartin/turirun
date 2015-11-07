@@ -7,6 +7,8 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.Color;
 
+import net.mueller_martin.turirun.CameraHelper;
+
 /**
  * Created by DM on 06.11.15.
  */
@@ -25,6 +27,7 @@ public class GameObject {
 		this.bounds = new Rectangle(x - width / 2, y - height / 2, width, height);
 
 		this.shapeRenderer = new ShapeRenderer();
+
 	}
 
 	public void update()
@@ -34,7 +37,9 @@ public class GameObject {
 
 	public void draw(SpriteBatch batch) {
 		batch.begin();
+
 		shapeRenderer.begin(ShapeType.Filled);
+		shapeRenderer.setProjectionMatrix(CameraHelper.instance.camera.combined);
 		shapeRenderer.setColor(Color.BLUE);
 		shapeRenderer.rect(this.currentPosition.x, this.currentPosition.y, this.size.x, this.size.y);
 		shapeRenderer.end();
