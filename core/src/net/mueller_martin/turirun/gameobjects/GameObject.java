@@ -23,6 +23,7 @@ public class GameObject {
 
 	public GameObject (float x, float y, float width, float height) {
 		this.currentPosition = new Vector2(x, y);
+		this.lastPosition = new Vector2(x,y);
 		this.size = new Vector2(width, height);
 		this.bounds = new Rectangle(x - width / 2, y - height / 2, width, height);
 
@@ -30,7 +31,7 @@ public class GameObject {
 
 	}
 
-	public void update()
+	public void update(float deltaTime)
 	{
 		this.bounds.setPosition(this.currentPosition.x, this.currentPosition.y);
 	}
@@ -44,6 +45,10 @@ public class GameObject {
 		shapeRenderer.rect(this.currentPosition.x, this.currentPosition.y, this.size.x, this.size.y);
 		shapeRenderer.end();
 		batch.end();
+	}
+
+	public void isCollusion(GameObject otherObject) {
+
 	}
 
 	public void solveCollusion()
