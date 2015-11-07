@@ -171,6 +171,8 @@ public class WorldController {
         for (GameObject obj: objs.getObjects()) {
             for (GameObject collusionObj: objs.getObjects()) {
                 if (obj.bounds.contains(collusionObj.bounds)) {
+                    if (obj == collusionObj)
+                        continue;
                     //System.out.println("COLLUSION DETECTED");
                     obj.isCollusion(collusionObj);
                 }
