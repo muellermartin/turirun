@@ -86,7 +86,7 @@ public class WorldController {
         }
 
         // Spawn Checkpoint
-        CheckpointGameObject checkpoint = new CheckpointGameObject(300, 800, 200, 200);
+        CheckpointGameObject checkpoint = new CheckpointGameObject(300, 800, 40, 40);
         this.objs.addObject(checkpoint);
 
         //map size

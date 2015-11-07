@@ -38,7 +38,7 @@ public class CheckpointGameObject extends GameObject {
     @Override
     public void isCollusion(GameObject otherObject , CollusionDirections.CollusionDirectionsTypes type)
     {
-        if(otherObject instanceof CharacterObject) {
+        if(otherObject instanceof TouriCharacterObject) {
                 this.active = true;
         }
     }

@@ -42,7 +42,9 @@ public class CharacterObject extends GameObject {
 	}
 
 	@Override
-	public void isCollusion(GameObject otherObject, CollusionDirections.CollusionDirectionsTypes type) {
+	public void isCollusion(GameObject otherObject, CollusionDirections.CollusionDirectionsTypes type)
+	{
+		System.out.println("CharacterObject!");
 		if(otherObject instanceof WallGameObject)
 		{
 			switch(type)
@@ -60,10 +62,6 @@ public class CharacterObject extends GameObject {
 			}
 		}
 
-		if(otherObject instanceof CharacterObject)
-		{
-			//TODO Wenn verschedene Spielertpen (Kannibale und Touri) töte Touri
-		}
 	}
 
 	@Override
