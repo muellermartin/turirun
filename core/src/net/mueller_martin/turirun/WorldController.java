@@ -32,7 +32,7 @@ public class WorldController {
 
     // Start Game
     public void init() {
-        System.out.print("INIT!");
+        System.out.println("INIT!");
         GameObject playerObj = new GameObject(10, 10 ,5 ,5);
         this.objs.addObject(playerObj);
         controller.setPlayerObj(playerObj);
@@ -50,7 +50,6 @@ public class WorldController {
         controller.update(deltaTime);
 
     	for (GameObject obj: objs.getObjects()) {
-            System.out.print("LOOP!");
     		obj.update();
     	}
     }
