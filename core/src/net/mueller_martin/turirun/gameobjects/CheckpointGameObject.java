@@ -19,8 +19,10 @@ public class CheckpointGameObject extends GameObject {
     }
 
     @Override
-    public void isCollusion(GameObject otherObject) {
-    	this.active = true;
+    public void isCollusion(GameObject otherObject)
+    {
+        System.out.println("I HIT A CHECKPOINT");
+        this.active = true;
     }
 
     public void update(float deltaTime) {
