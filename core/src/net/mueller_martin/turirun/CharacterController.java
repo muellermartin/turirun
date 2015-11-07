@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import net.mueller_martin.turirun.gameobjects.GameObject;
 import net.mueller_martin.turirun.gameobjects.CharacterObject;
+import net.mueller_martin.turirun.gameobjects.TouriCharacterObject;
 import com.badlogic.gdx.math.Vector2;
 import net.mueller_martin.turirun.Constants;
 import com.esotericsoftware.kryonet.Client;
@@ -55,6 +56,12 @@ public class CharacterController {
 		// No GameObject?
 		if (this.character == null) {
 			System.out.println("Character: null");
+			return;
+		}
+
+		// Touri?
+		if (this.character instanceof TouriCharacterObject) {
+			System.out.println("Nur Kannibalen können batteln.");
 			return;
 		}
 

@@ -44,6 +44,8 @@ public class WorldController {
     public int checkpointCount = 0;
     public int checkpointsNeeded = 1;
 
+    public boolean spawnCannibal = false;
+
     public CharacterController controller;
 
     public static List<Object> events;
@@ -65,10 +67,23 @@ public class WorldController {
     // Start Game
     public void init() {
         //TODO ask server for CharacterObject type
-        CharacterObject playerObj = new CharacterObject(10, 10);
-        playerObj.setNick(this.game.nickname);
-        this.objs.addObject(playerObj);
-        controller.setPlayerObj(playerObj);
+
+        if(spawnCannibal)
+        {
+            spawnCannibal = !spawnCannibal;
+            KannibaleCharacterObject playerObj = new KannibaleCharacterObject(10, 10);
+            playerObj.setNick(this.game.nickname);
+            this.objs.addObject(playerObj);
+            controller.setPlayerObj(playerObj);
+        }
+        else
+        {
+            spawnCannibal = !spawnCannibal;
+            TouriCharacterObject playerObj = new TouriCharacterObject(10, 10);
+            playerObj.setNick(this.game.nickname);
+            this.objs.addObject(playerObj);
+            controller.setPlayerObj(playerObj);
+        }
 
         // Spawn Checkpoint
         CheckpointGameObject checkpoint = new CheckpointGameObject(300, 800, 200, 200);
@@ -235,6 +250,7 @@ public class WorldController {
         }
 
         // update objects
+        checkpointCount = 0;
     	for (GameObject obj: objs.getObjects()) {
     		obj.update(deltaTime);
             resetIfOutsideOfMap(obj);
