@@ -53,6 +53,14 @@ project(":server") {
     }
 }
 
+project(":network") {
+    apply plugin: "java"
+
+
+    dependencies {
+    }
+}
+
 project(":core") {
     apply plugin: "java"
 
