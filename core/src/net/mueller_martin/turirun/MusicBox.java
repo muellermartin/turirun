@@ -1,7 +1,9 @@
 package net.mueller_martin.turirun;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
+import com.badlogic.gdx.math.MathUtils;
 
 public class MusicBox
 {
@@ -9,14 +11,17 @@ public class MusicBox
 	public final static String TAG = MusicBox.class.getName();
 	private boolean audio;
 	Sound sound;
-	Sound bgSound;
+	Music music;
+	boolean jukeBoxPlay;
 	public static final MusicBox instance = new MusicBox();
+	int[] musicArray = {Constants.AUDIO_LOOP1,Constants.AUDIO_LOOP2,Constants.AUDIO_LOOP3,Constants.AUDIO_LOOP4,Constants.AUDIO_LOOP5,Constants.AUDIO_LOOP6};
 	private MusicBox assetOrganizer;
 
 
 	public MusicBox()
 	{
 		audio = true;
+		jukeBoxPlay = false;
 
 		Gdx.app.log(TAG,"audio: "+audio);
 
@@ -55,9 +60,6 @@ public class MusicBox
 				case Constants.AUDIO_MENUSWITCH:
 					AssetOrganizer.instance.audio_MenuSwitch.audio_MenuSwitch.play(0.9f);
 					break;
-
-
-
 				case Constants.AUDIO_CHEERING:
 					AssetOrganizer.instance.audio_Cheering.audio_Cheering.play(0.9f);
 					break;
@@ -71,28 +73,28 @@ public class MusicBox
 					break;
 
 				case Constants.AUDIO_LOOP1:
-					AssetOrganizer.instance.audio_loop1.audio_loop1.play(0.9f);
+					AssetOrganizer.instance.music_loop1.music_loop1.play();
 					break;
 				case Constants.AUDIO_LOOP2:
-					AssetOrganizer.instance.audio_loop2.audio_loop2.play(0.9f);
+					AssetOrganizer.instance.music_loop2.music_loop2.play();
 					break;
 
 				case Constants.AUDIO_LOOP3:
-					AssetOrganizer.instance.audio_loop3.audio_loop3.play(0.9f);
+					AssetOrganizer.instance.music_loop3.music_loop3.play();
 					break;
 
 				case Constants.AUDIO_LOOP4:
-					AssetOrganizer.instance.audio_loop4.audio_loop4.play(0.9f);
+					AssetOrganizer.instance.music_loop4.music_loop4.play();
 					break;
 
 
 				case Constants.AUDIO_LOOP5:
-					AssetOrganizer.instance.audio_loop5.audio_loop5.play(0.9f);
+					AssetOrganizer.instance.music_loop5.music_loop5.play();
 					break;
 
 
 				case Constants.AUDIO_LOOP6:
-					AssetOrganizer.instance.audio_loop6.audio_loop6.play(0.9f);
+					AssetOrganizer.instance.music_loop6.music_loop6.play();
 					break;
 
 
@@ -104,93 +106,139 @@ public class MusicBox
 
 	public long loopTheme(int x)
 	{
-		sound = null;
+		music  = null;
 		long id = 0;
 		switch(x)
 		{
-			case Constants.AUDIO_CANNIBALEAT:
-				sound = AssetOrganizer.instance.audio_soundTrack.audio_soundTrack;
-				break;
-			case Constants.AUDIO_CANNIBALWIN:
-				sound = AssetOrganizer.instance.audio_cannibalsWin.audio_cannibalsWin;
-				break;
-			case Constants.AUDIO_RUNNING1:
-				sound = AssetOrganizer.instance.audio_running1.audio_running1;
-				break;
-			case Constants.AUDIO_WALKING1:
-				sound = AssetOrganizer.instance.audio_walking1.audio_walking1;
-				break;
-			case Constants.AUDIO_WALKING2:
-				sound = AssetOrganizer.instance.audio_walking2.audio_walking2;
-				break;
-			case Constants.AUDIO_SOUNDTRACK:
-				sound = AssetOrganizer.instance.audio_soundTrack.audio_soundTrack;
-				break;
-			case Constants.AUDIO_MENUSELECT:
-				sound = AssetOrganizer.instance.audio_MenuSelect.audio_MenuSelect;
-				break;
-			case Constants.AUDIO_MENUSWITCH:
-				sound = AssetOrganizer.instance.audio_MenuSwitch.audio_MenuSwitch;
-				break;
-
-			case Constants.AUDIO_CHEERING:
-				sound = AssetOrganizer.instance.audio_Cheering.audio_Cheering;
-				break;
-
-			case Constants.AUDIO_HELICOPTER:
-				sound = AssetOrganizer.instance.audio_Helicopter.audio_Helicopter;
-				break;
-
-			case Constants.AUDIO_CAMERASOUND:
-				sound = AssetOrganizer.instance.audio_CameraSound.audio_CameraSound;
-				break;
 
 			case Constants.AUDIO_LOOP1:
-				sound = AssetOrganizer.instance.audio_loop1.audio_loop1;
+				music = AssetOrganizer.instance.music_loop1.music_loop1;
 				break;
 
 			case Constants.AUDIO_LOOP2:
-				sound = AssetOrganizer.instance.audio_loop2.audio_loop2;
+				music = AssetOrganizer.instance.music_loop2.music_loop2;
 				break;
 
 			case Constants.AUDIO_LOOP3:
-				sound = AssetOrganizer.instance.audio_loop3.audio_loop3;
+				music = AssetOrganizer.instance.music_loop3.music_loop3;
 				break;
 
 			case Constants.AUDIO_LOOP4:
-				sound = AssetOrganizer.instance.audio_loop4.audio_loop4;
+				music = AssetOrganizer.instance.music_loop4.music_loop4;
 				break;
 
 
 			case Constants.AUDIO_LOOP5:
-				sound = AssetOrganizer.instance.audio_loop5.audio_loop5;
+				music = AssetOrganizer.instance.music_loop5.music_loop5;
 				break;
 
 
 			case Constants.AUDIO_LOOP6:
-				sound = AssetOrganizer.instance.audio_loop6.audio_loop6;
+				music = AssetOrganizer.instance.music_loop6.music_loop6;
 				break;
+
 
 
 		}
 
 
-		id = sound.play(0.9f);
+		music.play();
 		Gdx.app.log(TAG,"id: "+id);
-		sound.setLooping(id, true); // keeps the sound looping
+		music.setLooping(true);
+
+
 
 		return id;
 	}
 	public void stopId(long x)
 	{
-		Gdx.app.log(TAG,"X: "+x);
+		Gdx.app.log(TAG, "X: " + x);
 		if(sound == null)
 		{
 			Gdx.app.log(TAG,"sound null ");
 		}
-		sound.stop(x);
-		sound.dispose();
+		else
+		{
+			sound.stop(x);
+		}
+	}
 
+	public void stopMusic(int y)
+	{
+		switch(y)
+		{
+
+
+		case Constants.AUDIO_LOOP1:
+		AssetOrganizer.instance.music_loop1.music_loop1.stop();;
+		break;
+
+		case Constants.AUDIO_LOOP2:
+		AssetOrganizer.instance.music_loop2.music_loop2.stop();;
+		break;
+
+		case Constants.AUDIO_LOOP3:
+		AssetOrganizer.instance.music_loop3.music_loop3.stop();;
+		break;
+
+		case Constants.AUDIO_LOOP4:
+		AssetOrganizer.instance.music_loop4.music_loop4.stop();;
+		break;
+
+
+		case Constants.AUDIO_LOOP5:
+		AssetOrganizer.instance.music_loop5.music_loop5.stop();
+		break;
+
+
+		case Constants.AUDIO_LOOP6:
+		AssetOrganizer.instance.music_loop6.music_loop6.stop();
+		break;
+		}
+	}
+	public void jukebox()
+	{
+		if(!checkIfMusicPlays())
+		{
+			Gdx.app.log(TAG,"new Loop");
+			this.playSound(musicArray[MathUtils.random(0,5)]);
+		}
+	}
+
+	public boolean checkIfMusicPlays()
+	{
+		boolean ret = false;
+
+		if(AssetOrganizer.instance.music_loop1.music_loop1.isPlaying())
+		{
+			ret = true;
+		}
+		if(AssetOrganizer.instance.music_loop2.music_loop2.isPlaying())
+		{
+			ret = true;
+		}
+		if(AssetOrganizer.instance.music_loop3.music_loop3.isPlaying())
+		{
+			ret = true;
+		}
+		if(AssetOrganizer.instance.music_loop4.music_loop4.isPlaying())
+		{
+			ret = true;
+		}
+		if(AssetOrganizer.instance.music_loop5.music_loop5.isPlaying())
+		{
+			ret = true;
+		}
+		if(AssetOrganizer.instance.music_loop6.music_loop6.isPlaying())
+		{
+			ret = true;
+		}
+	return ret;
+
+	}
+	public void stopJukeBox()
+	{
+		this.jukeBoxPlay = false;
 	}
 
 
