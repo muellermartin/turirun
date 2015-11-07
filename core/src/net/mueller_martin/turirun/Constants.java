@@ -22,6 +22,7 @@ public class Constants
 	// Screens
 	public final static int GAMESCREEN = 10;
 	public final static int MENUSCREEN = 20;
+	public final static int JOINMENUSCREEN = 30;
 
 	// AUDIO
 
