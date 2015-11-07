@@ -11,7 +11,8 @@ import com.badlogic.gdx.graphics.Color;
  * Created by DM on 06.11.15.
  */
 public class GameObject {
-	public Vector2 position;
+	public Vector2 lastPosition;
+	public Vector2 currentPosition;
 	public Vector2 size;
 	public Rectangle bounds;
 	public int id = 0;
@@ -19,7 +20,7 @@ public class GameObject {
 	private ShapeRenderer shapeRenderer;
 
 	public GameObject (float x, float y, float width, float height) {
-		this.position = new Vector2(x, y);
+		this.currentPosition = new Vector2(x, y);
 		this.size = new Vector2(width, height);
 		this.bounds = new Rectangle(x - width / 2, y - height / 2, width, height);
 
@@ -28,14 +29,14 @@ public class GameObject {
 
 	public void update()
 	{
-		System.out.print("Player Position: " + position.x + ", " + position.y);
+		this.bounds.setPosition(this.currentPosition.x, this.currentPosition.y);
 	}
 
 	public void draw(SpriteBatch batch) {
 		batch.begin();
 		shapeRenderer.begin(ShapeType.Filled);
 		shapeRenderer.setColor(Color.BLUE);
-		shapeRenderer.rect(this.position.x, this.position.y, this.size.x, this.size.y);
+		shapeRenderer.rect(this.currentPosition.x, this.currentPosition.y, this.size.x, this.size.y);
 		shapeRenderer.end();
 		batch.end();
 	}

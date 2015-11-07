@@ -1,5 +1,6 @@
 package net.mueller_martin.turirun;
 
+import com.badlogic.gdx.maps.tiled.TiledMap;
 import net.mueller_martin.turirun.gameobjects.GameObject;
 import net.mueller_martin.turirun.gameobjects.DynamicGameObject;
 import net.mueller_martin.turirun.CharacterController;
@@ -14,6 +15,8 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
  */
 public class WorldController {
     public final static String TAG = WorldController.class.getName();
+    // public final mapWidth = get from tile map;
+    // public final mapHeight = get from tile map;
 
     public Turirun game;
     public ObjectController objs;
@@ -32,7 +35,7 @@ public class WorldController {
 
     // Start Game
     public void init() {
-        System.out.print("INIT!");
+        System.out.println("INIT!");
         GameObject playerObj = new GameObject(10, 10 ,5 ,5);
         this.objs.addObject(playerObj);
         controller.setPlayerObj(playerObj);
@@ -50,7 +53,6 @@ public class WorldController {
         controller.update(deltaTime);
 
     	for (GameObject obj: objs.getObjects()) {
-            System.out.print("LOOP!");
     		obj.update();
     	}
     }
