@@ -20,6 +20,7 @@ import net.mueller_martin.turirun.network.TurirunNetwork.Register;
 import net.mueller_martin.turirun.network.TurirunNetwork.AddCharacter;
 import net.mueller_martin.turirun.network.TurirunNetwork.UpdateCharacter;
 import net.mueller_martin.turirun.network.TurirunNetwork.MoveCharacter;
+import net.mueller_martin.turirun.network.TurirunNetwork.RemoveCharacter;
 import net.mueller_martin.turirun.utils.CollusionDirections;
 
 import java.util.ArrayList;
@@ -277,6 +278,14 @@ public class WorldController {
                     if (player != null) {
                         player.lastPosition = new Vector2(msg.x, msg.y);
                         player.currentPosition = new Vector2(msg.x, msg.y);
+                    }
+                }
+                // Remove Player
+                if (event instanceof RemoveCharacter) {
+                    RemoveCharacter msg = (RemoveCharacter)event;
+                    CharacterObject player = (CharacterObject)objs.getObject(msg.id);
+                    if (player != null) {
+                        objs.removeObject(player);
                     }
                 }
             }
