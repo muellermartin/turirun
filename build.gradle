@@ -49,6 +49,7 @@ project(":server") {
 
 
     dependencies {
+        compile project(":network")
         compile "com.esotericsoftware:kryonet:2.22.0-RC1"
     }
 }
@@ -58,6 +59,7 @@ project(":network") {
 
 
     dependencies {
+        compile "com.esotericsoftware:kryonet:2.22.0-RC1"
     }
 }
 
