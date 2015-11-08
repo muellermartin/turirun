@@ -42,6 +42,7 @@ public class Constants
 	public final static int AUDIO_LOOP4 = 150;
 	public final static int AUDIO_LOOP5 = 160;
 	public final static int AUDIO_LOOP6 = 170;
+	public final static int AUDIO_REMIX = 180;
 
 	// Battle Radius
 	public final static int BATTLE_RADIUS = 64;
