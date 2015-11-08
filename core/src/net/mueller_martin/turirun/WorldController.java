@@ -200,7 +200,6 @@ public class WorldController {
 			// FIXME: last and current postition are always equal
 			//if (controller.character.currentPosition.x != controller.character.lastPosition.x || controller.character.currentPosition.y != controller.character.lastPosition.y)
 			deltaTimeUpdate += deltaTime;
-            System.out.println(deltaTimeUpdate);
 
             if (deltaTimeUpdate > 1){
 				MoveCharacter move = new MoveCharacter();
