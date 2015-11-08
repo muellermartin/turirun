@@ -15,6 +15,7 @@ import com.esotericsoftware.kryonet.Listener;
 import com.esotericsoftware.kryonet.Listener.ThreadedListener;
 
 import net.mueller_martin.turirun.gameobjects.*;
+import net.mueller_martin.turirun.gameobjects.CharacterObject.Direction;
 import net.mueller_martin.turirun.network.TurirunNetwork;
 import net.mueller_martin.turirun.network.TurirunNetwork.Register;
 import net.mueller_martin.turirun.network.TurirunNetwork.AddCharacter;
@@ -69,8 +70,6 @@ public class WorldController {
         WorldController.events = Collections.synchronizedList(new ArrayList<Object>());
 
     	this.init();
-
-
     }
 
     // Start Game
@@ -210,11 +209,12 @@ public class WorldController {
 			//if (controller.character.currentPosition.x != controller.character.lastPosition.x || controller.character.currentPosition.y != controller.character.lastPosition.y)
 			deltaTimeUpdate += deltaTime;
 
-            if (deltaTimeUpdate > 1){
+            if (deltaTimeUpdate > 0.0005f){
 				MoveCharacter move = new MoveCharacter();
 
 				move.x = controller.character.currentPosition.x;
 				move.y = controller.character.currentPosition.y;
+				move.direction = controller.character.direction.getValue();
 
 				client.sendTCP(move);
 
@@ -378,6 +378,8 @@ public class WorldController {
                     newPlayer.setNick(msg.character.nick);
                     objs.addObject(msg.character.id, newPlayer);
 
+                    //System.out.println("New Character #"+msg.character.id);
+
                     del.add(event);
                     continue;
                 }
@@ -401,6 +403,8 @@ public class WorldController {
                     objs.addObject(playerObj);
                     controller.setPlayerObj(playerObj);
 
+                    //System.out.println("Set owen Character");
+
                     del.add(event);
                     continue;
                 }
@@ -409,8 +413,9 @@ public class WorldController {
                     UpdateCharacter msg = (UpdateCharacter)event;
                     CharacterObject player = (CharacterObject)objs.getObject(msg.id);
                     if (player != null) {
-                        player.lastPosition = new Vector2(msg.x, msg.y);
                         player.currentPosition = new Vector2(msg.x, msg.y);
+                        player.direction = Direction.values()[msg.direction];
+                        player.idle = false; // FIXME: This is an *ugly* hack ;D
                     }
                     del.add(event);
                     continue;
@@ -421,6 +426,7 @@ public class WorldController {
                     CharacterObject player = (CharacterObject)objs.getObject(msg.id);
                     if (player != null) {
                         objs.removeObject(player);
+                        //System.out.println("Remove Player #"+msg.id);
                     }
                     del.add(event);
                     continue;
@@ -430,7 +436,7 @@ public class WorldController {
                     HitCharacter msg = (HitCharacter)event;
                     CharacterObject player = (CharacterObject)objs.getObject(msg.id);
                     if (player != null) {
-                        System.out.println("Player HIT "+msg.id);
+                        //System.out.println("Player HIT "+msg.id);
                     }
                     del.add(event);
                     continue;
@@ -441,7 +447,7 @@ public class WorldController {
                     CharacterObject player = (CharacterObject)objs.getObject(msg.id);
                     if (player != null && !player.isDead) {
                         player.isDead = true;
-                        System.out.println("Dead "+msg.id);
+                        //System.out.println("Dead "+msg.id);
                     }
                     del.add(event);
                     continue;

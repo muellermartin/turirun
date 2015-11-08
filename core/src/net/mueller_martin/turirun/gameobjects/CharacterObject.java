@@ -29,10 +29,20 @@ public class CharacterObject extends GameObject {
 	protected GlyphLayout layout;
 	public Animation ani;
 	public enum Direction {
-		LEFT,
-		RIGHT,
-		TOP,
-		DOWN
+		LEFT(0),
+		RIGHT(1),
+		TOP(2),
+		DOWN(3);
+
+		private final int value;
+
+		private Direction(int value) {
+			this.value = value;
+		}
+
+		public int getValue() {
+			return value;
+		}
 	};
 	public Direction direction = Direction.DOWN;
 	public boolean idle = true;
