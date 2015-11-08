@@ -70,6 +70,8 @@ public class AssetOrganizer implements Disposable, AssetErrorListener
     public CannibalRunRight cannibalRunRight;
     public CannibalIdle cannibalIdle;
 
+    public SterbeAnimation sterbeAnimation;
+
     public AssetOrganizer()
     {
 
@@ -147,6 +149,7 @@ public class AssetOrganizer implements Disposable, AssetErrorListener
         cannibalRunRight = new CannibalRunRight(atlas);
         cannibalIdle = new CannibalIdle(atlas);
 
+        sterbeAnimation = new SterbeAnimation(atlas);
     }
 
         public class MenuBtnBg
@@ -301,6 +304,15 @@ public class AssetOrganizer implements Disposable, AssetErrorListener
 
         public CannibalIdle (TextureAtlas atlas) {
             cannibalIdle = new Animation(1, new TextureRegion(atlas.findRegion("cannibal_front_walk1")));
+        }
+    }
+
+    public class SterbeAnimation
+    {
+        public final Animation sterbeanimation;
+
+        public SterbeAnimation (TextureAtlas atlas) {
+            sterbeanimation = new Animation(1/6f, new TextureRegion(atlas.findRegion("tourist_death1")),new TextureRegion(atlas.findRegion("tourist_death2")),new TextureRegion(atlas.findRegion("tourist_death3")),new TextureRegion(atlas.findRegion("tourist_death4")),new TextureRegion(atlas.findRegion("tourist_death5")),new TextureRegion(atlas.findRegion("tourist_death6")));
         }
     }
 
