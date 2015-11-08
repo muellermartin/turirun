@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import net.mueller_martin.turirun.AssetOrganizer;
 import net.mueller_martin.turirun.CameraHelper;
 import net.mueller_martin.turirun.utils.CollusionDirections;
 
@@ -23,7 +24,7 @@ public class TouriCharacterObject extends CharacterObject
 
     public TouriCharacterObject (float x, float y)
     {
-        super(x,y);
+        super(x,y, AssetOrganizer.instance.player.player);
     }
 
 
