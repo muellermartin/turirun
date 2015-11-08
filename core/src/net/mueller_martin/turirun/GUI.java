@@ -28,10 +28,10 @@ public class GUI {
 	public void render() {
 		batch.begin();
 
-		String checkpointText = "Checkpoints: " + this.world.checkpointCount + " / " + this.world.checkpointsNeeded;
-		this.layout.setText(this.font, checkpointText);
+		String checkpointAndDeadTouristText = "Checkpoints: " + this.world.checkpointCount + " / " + this.world.checkpointsNeeded + "    eaten Tourists: " + this.world.deadTouries + " / " + this.world.playingTouries;
+		this.layout.setText(this.font, checkpointAndDeadTouristText);
 
-		font.draw(batch, checkpointText, 10, this.layout.height + 10);
+		font.draw(batch, checkpointAndDeadTouristText, 10, this.layout.height + 10);
 
 		batch.end();
 	}

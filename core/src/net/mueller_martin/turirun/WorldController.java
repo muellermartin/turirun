@@ -338,7 +338,7 @@ public class WorldController {
 
     private void checkDeadTouries()
     {
-        if (deadTouries == playingTouries)
+        if (deadTouries == playingTouries && deadTouries > 0)
         {
             // TODO Kannibalen won!
             System.out.println("Cannibals won!");
