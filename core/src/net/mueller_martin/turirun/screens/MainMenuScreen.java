@@ -18,26 +18,22 @@ public class MainMenuScreen extends ScreenAdapter {
 	//Turirun game;
 	ScreenManager screenManager;
 	private ImageButton.ImageButtonStyle playBtnStyle,quitBtnStyle;
-	 NinePatch patchQuit;
-	 NinePatch patchPlay;
+	NinePatch patchQuit;
+	NinePatch patchPlay;
 
 	Skin skin;
 	Stage stage;
 	Table table;
 
-
-
 	public MainMenuScreen (ScreenManager s) {
 		this.screenManager = s;
-
-
 
 		if(AssetOrganizer.instance.btnQuit.btnQuit==null)
 		{
 			Gdx.app.log(TAG,"ist NULL");
 		}
 		Gdx.app.log(TAG,"sound loopTheme");
-		MusicBox.instance.loopTheme(Constants.AUDIO_LOOP1);
+		MusicBox.instance.loopTheme(Constants.AUDIO_REMIX);
 
 		patchQuit = new NinePatch(new TextureRegion(AssetOrganizer.instance.btnQuit.btnQuit));
 		patchPlay = new NinePatch(new TextureRegion(AssetOrganizer.instance.btnPlay.btnPlay));
@@ -75,33 +71,25 @@ public class MainMenuScreen extends ScreenAdapter {
 		table.add(menuQuit);
 		stage.addActor(table);
 
-
-
 		menuPlay.addListener(new ClickListener() {
 			@Override
 			public void clicked(InputEvent event, float x, float y) {
 				MusicBox.instance.playSound(Constants.AUDIO_MENUSWITCH);
-				MusicBox.instance.stopMusic(Constants.AUDIO_LOOP1);
+				MusicBox.instance.stopMusic(Constants.AUDIO_REMIX);
 				screenManager.setScreenState(Constants.JOINMENUSCREEN);
 			}
 		});
-
 
 		menuQuit.addListener(new ClickListener() {
 			@Override
 			public void clicked(InputEvent event, float x, float y) {
 				MusicBox.instance.playSound(Constants.AUDIO_MENUSWITCH);
-				MusicBox.instance.stopMusic(Constants.AUDIO_LOOP1);
+				MusicBox.instance.stopMusic(Constants.AUDIO_REMIX);
 				Gdx.app.exit();
 			}
 		});
 
 		Gdx.input.setInputProcessor(stage);
-
-
-
-
-
 	}
 
 	public void draw() {
@@ -122,6 +110,5 @@ public class MainMenuScreen extends ScreenAdapter {
 
 	public void dispose()
 	{
-
 	}
 }

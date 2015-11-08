@@ -25,6 +25,7 @@ import net.mueller_martin.turirun.network.TurirunNetwork.RemoveCharacter;
 import net.mueller_martin.turirun.network.TurirunNetwork.HitCharacter;
 import net.mueller_martin.turirun.network.TurirunNetwork.DeadCharacter;
 import net.mueller_martin.turirun.network.TurirunNetwork.AssignCharacter;
+import net.mueller_martin.turirun.network.TurirunNetwork.CheckpointCheck;
 import net.mueller_martin.turirun.utils.CollusionDirections;
 
 import java.util.ArrayList;
@@ -47,6 +48,8 @@ public class WorldController {
 
     public int playingTouries = 0;
     public int deadTouries = 0;
+    public float timer = 0.0f;
+    public float MAX_TIMER = 0;
 
     public float deltaTimeUpdate = 0;
 
@@ -136,6 +139,7 @@ public class WorldController {
         // checkpoints
         layer = (TiledMapTileLayer) level.map.getLayers().get("checkpoint");
 
+        int ci = 0;
         for(int x = 0; x < layer.getWidth(); x++)
         {
             for(int y = 0; y < layer.getHeight(); y++)
@@ -144,8 +148,11 @@ public class WorldController {
                 {
                     // Spawn Checkpoint
                     CheckpointGameObject checkpoint = new CheckpointGameObject(x * tilePixelWidth, y*tilePixelWidth, 168, 119);
+                    checkpoint.client = this.client;
+                    checkpoint.checkpointID = ci;
                     this.objs.addObject(checkpoint);
                     checkpointsNeeded++;
+                    ci++;
                 }
             }
         }
@@ -197,7 +204,9 @@ public class WorldController {
     	}
     }
 
-    public void update(float deltaTime) {
+    public void update(float deltaTime)
+    {
+        this.timer += deltaTime; // timer for endscreen
         // Input Update
         controller.update(deltaTime);
 
@@ -273,12 +282,19 @@ public class WorldController {
 
         // update objects
         checkpointCount = 0;
-    	for (GameObject obj: objs.getObjects()) {
+        deadTouries = 0;
+        playingTouries = 0;
+    	for (GameObject obj: objs.getObjects())
+        {
     		obj.update(deltaTime);
             resetIfOutsideOfMap(obj);
             checkCheckpoints(obj);
-            checkDeadTouries();
 
+            // check for playing Tourist
+            if (obj instanceof TouriCharacterObject)
+            {
+                playingTouries++;
+            }
             // check for dead players
             if (obj instanceof CharacterObject)
             {
@@ -288,6 +304,9 @@ public class WorldController {
                 }
             }
     	}
+        System.out.println(" timer: " +  timer);
+        checkDeadTouries(this.timer > MAX_TIMER && MAX_TIMER != 0);
+        System.out.println(" MAX_TIMER: " +  MAX_TIMER);
 
         // check for collusion
         for (GameObject obj: objs.getObjects()) {
@@ -328,11 +347,14 @@ public class WorldController {
     }
 
 
-    private void checkCheckpoints(GameObject obj) {
-        if (obj instanceof CheckpointGameObject && ((CheckpointGameObject) obj).checked) {
+    private void checkCheckpoints(GameObject obj)
+    {
+        if (obj instanceof CheckpointGameObject && ((CheckpointGameObject) obj).checked)
+        {
             checkpointCount++;
 
-            if (checkpointCount == checkpointsNeeded) {
+            if (checkpointCount == checkpointsNeeded)
+            {
                 // TODO Tourists won!
                 System.out.println("Tourists won!");
 
@@ -343,16 +365,22 @@ public class WorldController {
         }
     }
 
-    private void checkDeadTouries()
+    private void checkDeadTouries(boolean switchScreen)
     {
+        System.out.println("switchScreen: " + switchScreen);
         if (deadTouries == playingTouries && deadTouries > 0)
         {
-            // TODO Kannibalen won!
             System.out.println("Cannibals won!");
-
-            // Set string for game over screen
-            this.game.winner = "Cannibals";
-            this.game.screenManager.setScreenState(Constants.GAMEOVERSCREEN);
+            if(MAX_TIMER == 0)
+            {
+                MAX_TIMER = 15.0f;
+            }
+            if(switchScreen)
+            {
+                // Set string for game over screen
+                this.game.winner = "Cannibals";
+                this.game.screenManager.setScreenState(Constants.GAMEOVERSCREEN);
+            }
         }
     }
 
@@ -369,7 +397,6 @@ public class WorldController {
                     if (msg.character.type == 1)
                     {
                         newPlayer = new TouriCharacterObject(msg.character.x, msg.character.y);
-                        playingTouries++;
                     }
                     else {
                         newPlayer = new KannibaleCharacterObject(msg.character.x, msg.character.y);
@@ -391,16 +418,16 @@ public class WorldController {
                     if(msg.type == 1)
                     {
                         Vector2 vec = getRandomPosition();
-                        playerObj = new TouriCharacterObject(vec.x, vec.y);
+                        playerObj = new TouriCharacterObject(10, 10);// new TouriCharacterObject(vec.x, vec.y);
                     }
                     else
                     {
                         Vector2 vec = getRandomPosition();
-                        playerObj = new KannibaleCharacterObject(vec.x, vec.y);
+                        playerObj = new KannibaleCharacterObject(10, 10);// new KannibaleCharacterObject(vec.x, vec.y);
                     }
 
                     playerObj.setNick(game.nickname);
-                    objs.addObject(playerObj);
+                    objs.addObject(msg.id, playerObj);
                     controller.setPlayerObj(playerObj);
 
                     //System.out.println("Set owen Character");
@@ -445,12 +472,24 @@ public class WorldController {
                 if (event instanceof DeadCharacter) {
                     DeadCharacter msg = (DeadCharacter)event;
                     CharacterObject player = (CharacterObject)objs.getObject(msg.id);
-                    if (player != null && !player.isDead) {
+                    if (player != null) {
                         player.isDead = true;
-                        //System.out.println("Dead "+msg.id);
                     }
                     del.add(event);
                     continue;
+                }
+                // Checkpoint Checked
+                if (event instanceof CheckpointCheck) {
+                    CheckpointCheck msg = (CheckpointCheck)event;
+
+                    for(GameObject obj : objs.getObjects()) {
+                        if (obj instanceof CheckpointGameObject) {
+                            CheckpointGameObject cObj = (CheckpointGameObject)obj;
+                            if (cObj.checkpointID == obj.id) {
+                                cObj.checked = true;
+                            }
+                        }
+                    }
                 }
             }
         }

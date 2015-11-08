@@ -20,6 +20,7 @@ public class TurirunNetwork {
 		kryo.register(HitCharacter.class);
 		kryo.register(DeadCharacter.class);
 		kryo.register(AssignCharacter.class);
+		kryo.register(CheckpointCheck.class);
 	}
 
 	public static class Register {
@@ -61,5 +62,10 @@ public class TurirunNetwork {
 
 	public static class AssignCharacter {
 		public int type;
+		public int id;
+	}
+
+	public static class CheckpointCheck {
+		public int id;
 	}
 }

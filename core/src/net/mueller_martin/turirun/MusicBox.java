@@ -136,8 +136,9 @@ public class MusicBox
 				music = AssetOrganizer.instance.music_loop6.music_loop6;
 				break;
 
-
-
+			case Constants.AUDIO_REMIX:
+				music = AssetOrganizer.instance.music_remix.music_remix;
+				break;
 		}
 
 
@@ -192,6 +193,10 @@ public class MusicBox
 
 		case Constants.AUDIO_LOOP6:
 		AssetOrganizer.instance.music_loop6.music_loop6.stop();
+		break;
+
+		case Constants.AUDIO_REMIX:
+		AssetOrganizer.instance.music_remix.music_remix.stop();
 		break;
 		}
 	}

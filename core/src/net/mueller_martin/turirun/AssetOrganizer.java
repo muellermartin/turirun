@@ -52,6 +52,7 @@ public class AssetOrganizer implements Disposable, AssetErrorListener
     public Music_Loop4 music_loop4;
     public Music_Loop5 music_loop5;
     public Music_Loop6 music_loop6;
+    public Music_Remix music_remix;
 
     // Gfx
     public Stone stone;
@@ -71,6 +72,8 @@ public class AssetOrganizer implements Disposable, AssetErrorListener
     public CannibalIdle cannibalIdle;
 
     public SterbeAnimation sterbeAnimation;
+
+    public DeadBody deadBody;
 
     public AssetOrganizer()
     {
@@ -130,7 +133,7 @@ public class AssetOrganizer implements Disposable, AssetErrorListener
         music_loop4 = new Music_Loop4();
         music_loop5 = new Music_Loop5();
         music_loop6 = new Music_Loop6();
-
+		music_remix = new Music_Remix();
 
         // Gfx
         stone = new Stone(atlas);
@@ -150,6 +153,7 @@ public class AssetOrganizer implements Disposable, AssetErrorListener
         cannibalIdle = new CannibalIdle(atlas);
 
         sterbeAnimation = new SterbeAnimation(atlas);
+        deadBody = new DeadBody(atlas);
     }
 
         public class MenuBtnBg
@@ -187,11 +191,15 @@ public class AssetOrganizer implements Disposable, AssetErrorListener
             stone = atlas.findRegion("tile_5botanik");
         }
     }
-    public class Player
-    {
+    public class Player {
         public final TextureAtlas.AtlasRegion player;
-        public Player(TextureAtlas atlas){ player = atlas.findRegion("tourist_front_walk1");}
+
+        public Player(TextureAtlas atlas) {
+            player = atlas.findRegion("tourist_front_walk1");
+        }
     }
+
+
 
 
 
@@ -316,6 +324,16 @@ public class AssetOrganizer implements Disposable, AssetErrorListener
         }
     }
 
+    public class DeadBody
+    {
+        public final Animation deadBody;
+
+        public DeadBody (TextureAtlas atlas) {
+            deadBody = new Animation(1, new TextureRegion(atlas.findRegion("tourist_death6")));
+        }
+    }
+
+
 
     // AUDIO
 
@@ -324,7 +342,7 @@ public class AssetOrganizer implements Disposable, AssetErrorListener
         public final Sound audio_cannibalsEat;
         public Audio_CannibalsEat()
         {
-            audio_cannibalsEat = audio.newSound(Gdx.files.internal("audio/audio_CannibalsEat.ogg"));
+            audio_cannibalsEat = audio.newSound(Gdx.files.internal("audio/audio_cannibalsEat.ogg"));
         }
     }
 
@@ -470,6 +488,15 @@ public class AssetOrganizer implements Disposable, AssetErrorListener
             music_loop6 = audio.newMusic(Gdx.files.internal("audio/audio_themeLoop6.ogg"));
         }
     }
+
+	public class Music_Remix
+	{
+		public final Music music_remix;
+		public Music_Remix()
+		{
+			music_remix = audio.newMusic(Gdx.files.internal("audio/Remix.ogg"));
+		}
+	}
 
 
 

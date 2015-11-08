@@ -14,7 +14,6 @@ public class ObjectController {
 
 	public void addObject(GameObject obj) {
 		objs.add(obj);
-		System.out.println(objs.size());
 	}
 
 	public void addObject(int id, GameObject obj) {
@@ -22,8 +21,6 @@ public class ObjectController {
 
 		objs_map.put(id, obj);
 		objs.add(obj);
-
-		System.out.println(objs.size());
 	}
 
 	public void removeObject(GameObject obj) {
