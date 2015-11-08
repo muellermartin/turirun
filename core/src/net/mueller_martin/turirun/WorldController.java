@@ -206,16 +206,14 @@ public class WorldController {
         float cameraHalfWidth = cam.viewportWidth * .5f;
         float cameraHalfHeight = cam.viewportHeight * .5f;
 
-		if (controller.character != null) {
-			// Move camera after player as normal
-			int pos_x = (int)controller.character.currentPosition.x;
-			if (pos_x % 2 == 0)
-				pos_x++;
-			int pos_y = (int)controller.character.currentPosition.y;
-			if (pos_y % 2 == 0)
-				pos_y++;
-			CameraHelper.instance.camera.position.set(pos_x,pos_y,0);
-        }
+		// Move camera after player as normal
+		int pos_x = (int)controller.character.currentPosition.x;
+		if (pos_x % 2 == 0)
+			pos_x++;
+		int pos_y = (int)controller.character.currentPosition.y;
+		if (pos_y % 2 == 0)
+			pos_y++;
+		CameraHelper.instance.camera.position.set(pos_x,pos_y,0);
 
         float cameraLeft = cam.position.x - cameraHalfWidth;
         float cameraRight = cam.position.x + cameraHalfWidth;
@@ -330,14 +328,14 @@ public class WorldController {
 
                     if(msg.type == 1)
                     {
-                        KannibaleCharacterObject playerObj = new KannibaleCharacterObject(10, 10);
+                        TouriCharacterObject playerObj = new TouriCharacterObject(10, 10);
                         playerObj.setNick(game.nickname);
                         objs.addObject(playerObj);
                         controller.setPlayerObj(playerObj);
                     }
                     else
                     {
-                        TouriCharacterObject playerObj = new TouriCharacterObject(10, 10);
+                        KannibaleCharacterObject playerObj = new KannibaleCharacterObject(10, 10);
                         playerObj.setNick(game.nickname);
                         objs.addObject(playerObj);
                         controller.setPlayerObj(playerObj);
