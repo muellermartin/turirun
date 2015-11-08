@@ -25,6 +25,7 @@ import net.mueller_martin.turirun.network.TurirunNetwork.RemoveCharacter;
 import net.mueller_martin.turirun.network.TurirunNetwork.HitCharacter;
 import net.mueller_martin.turirun.network.TurirunNetwork.DeadCharacter;
 import net.mueller_martin.turirun.network.TurirunNetwork.AssignCharacter;
+import net.mueller_martin.turirun.network.TurirunNetwork.CheckpointCheck;
 import net.mueller_martin.turirun.utils.CollusionDirections;
 
 import java.util.ArrayList;
@@ -47,8 +48,8 @@ public class WorldController {
 
     public int playingTouries = 0;
     public int deadTouries = 0;
-    int timer = 0;
-    float MAX_TIMER = 0;
+    public float timer = 0.0f;
+    public float MAX_TIMER = 0;
 
     public float deltaTimeUpdate = 0;
 
@@ -138,6 +139,7 @@ public class WorldController {
         // checkpoints
         layer = (TiledMapTileLayer) level.map.getLayers().get("checkpoint");
 
+        int ci = 0;
         for(int x = 0; x < layer.getWidth(); x++)
         {
             for(int y = 0; y < layer.getHeight(); y++)
@@ -146,8 +148,11 @@ public class WorldController {
                 {
                     // Spawn Checkpoint
                     CheckpointGameObject checkpoint = new CheckpointGameObject(x * tilePixelWidth, y*tilePixelWidth, 168, 119);
+                    checkpoint.client = this.client;
+                    checkpoint.checkpointID = ci;
                     this.objs.addObject(checkpoint);
                     checkpointsNeeded++;
+                    ci++;
                 }
             }
         }
@@ -342,11 +347,14 @@ public class WorldController {
     }
 
 
-    private void checkCheckpoints(GameObject obj) {
-        if (obj instanceof CheckpointGameObject && ((CheckpointGameObject) obj).checked) {
+    private void checkCheckpoints(GameObject obj)
+    {
+        if (obj instanceof CheckpointGameObject && ((CheckpointGameObject) obj).checked)
+        {
             checkpointCount++;
 
-            if (checkpointCount == checkpointsNeeded) {
+            if (checkpointCount == checkpointsNeeded)
+            {
                 // TODO Tourists won!
                 System.out.println("Tourists won!");
 
@@ -365,9 +373,9 @@ public class WorldController {
             System.out.println("Cannibals won!");
             if(MAX_TIMER == 0)
             {
-                MAX_TIMER = 5.0f;
+                MAX_TIMER = 15.0f;
             }
-            if(true) // switchScreen
+            if(switchScreen)
             {
                 // Set string for game over screen
                 this.game.winner = "Cannibals";
@@ -469,6 +477,19 @@ public class WorldController {
                     }
                     del.add(event);
                     continue;
+                }
+                // Checkpoint Checked
+                if (event instanceof CheckpointCheck) {
+                    CheckpointCheck msg = (CheckpointCheck)event;
+
+                    for(GameObject obj : objs.getObjects()) {
+                        if (obj instanceof CheckpointGameObject) {
+                            CheckpointGameObject cObj = (CheckpointGameObject)obj;
+                            if (cObj.checkpointID == obj.id) {
+                                cObj.checked = true;
+                            }
+                        }
+                    }
                 }
             }
         }
