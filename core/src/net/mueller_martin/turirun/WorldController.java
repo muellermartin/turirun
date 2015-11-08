@@ -317,7 +317,7 @@ public class WorldController {
                 if (event instanceof AddCharacter) {
                     AddCharacter msg = (AddCharacter)event;
 
-                    CharacterObject newPlayer = new CharacterObject(msg.character.x, msg.character.y, AssetOrganizer.instance.player.player);
+                    CharacterObject newPlayer = new CharacterObject(msg.character.x, msg.character.y);
 
                     newPlayer.setNick(msg.character.nick);
                     objs.addObject(msg.character.id, newPlayer);

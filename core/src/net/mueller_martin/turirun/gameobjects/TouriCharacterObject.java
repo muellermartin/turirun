@@ -24,7 +24,7 @@ public class TouriCharacterObject extends CharacterObject
 
     public TouriCharacterObject (float x, float y)
     {
-        super(x,y, AssetOrganizer.instance.player.player);
+        super(x,y);
     }
 
 
