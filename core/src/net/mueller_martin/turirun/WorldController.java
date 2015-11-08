@@ -210,13 +210,15 @@ public class WorldController {
         float cameraHalfHeight = cam.viewportHeight * .5f;
 
 		// Move camera after player as normal
-		int pos_x = (int)controller.character.currentPosition.x;
-		if (pos_x % 2 == 0)
-			pos_x++;
-		int pos_y = (int)controller.character.currentPosition.y;
-		if (pos_y % 2 == 0)
-			pos_y++;
-		CameraHelper.instance.camera.position.set(pos_x,pos_y,0);
+        if (controller.character != null) {
+    		int pos_x = (int)controller.character.currentPosition.x;
+    		if (pos_x % 2 == 0)
+    			pos_x++;
+    		int pos_y = (int)controller.character.currentPosition.y;
+    		if (pos_y % 2 == 0)
+    			pos_y++;
+    		CameraHelper.instance.camera.position.set(pos_x,pos_y,0);
+        }
 
         float cameraLeft = cam.position.x - cameraHalfWidth;
         float cameraRight = cam.position.x + cameraHalfWidth;
