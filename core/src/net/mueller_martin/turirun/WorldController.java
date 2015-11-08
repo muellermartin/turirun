@@ -400,7 +400,7 @@ public class WorldController {
                     }
 
                     playerObj.setNick(game.nickname);
-                    objs.addObject(playerObj);
+                    objs.addObject(msg.id, playerObj);
                     controller.setPlayerObj(playerObj);
 
                     //System.out.println("Set owen Character");
@@ -445,9 +445,8 @@ public class WorldController {
                 if (event instanceof DeadCharacter) {
                     DeadCharacter msg = (DeadCharacter)event;
                     CharacterObject player = (CharacterObject)objs.getObject(msg.id);
-                    if (player != null && !player.isDead) {
+                    if (player != null) {
                         player.isDead = true;
-                        //System.out.println("Dead "+msg.id);
                     }
                     del.add(event);
                     continue;

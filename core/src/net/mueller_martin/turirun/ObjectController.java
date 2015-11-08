@@ -23,7 +23,7 @@ public class ObjectController {
 		objs_map.put(id, obj);
 		objs.add(obj);
 
-		System.out.println(objs.size());
+	//	System.out.println(objs.size());
 	}
 
 	public void removeObject(GameObject obj) {
