@@ -47,7 +47,8 @@ public class TurirunNetwork {
 	}
 
 	public static class MoveCharacter {
-		public float x, y, direction;
+		public float x, y;
+		public int direction;
 	}
 
 	public static class HitCharacter {

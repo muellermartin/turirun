@@ -18,6 +18,7 @@ import com.esotericsoftware.kryonet.Listener;
 import com.esotericsoftware.kryonet.Listener.ThreadedListener;
 
 import net.mueller_martin.turirun.gameobjects.*;
+import net.mueller_martin.turirun.gameobjects.CharacterObject.Direction;
 import net.mueller_martin.turirun.network.TurirunNetwork;
 import net.mueller_martin.turirun.network.TurirunNetwork.Register;
 import net.mueller_martin.turirun.network.TurirunNetwork.AddCharacter;
@@ -67,8 +68,6 @@ public class WorldController {
         WorldController.events = Collections.synchronizedList(new ArrayList<Object>());
 
     	this.init();
-
-
     }
 
     // Start Game
@@ -206,6 +205,7 @@ public class WorldController {
 
 				move.x = controller.character.currentPosition.x;
 				move.y = controller.character.currentPosition.y;
+				move.direction = controller.character.direction.getValue();
 
 				client.sendTCP(move);
 
@@ -396,6 +396,9 @@ public class WorldController {
                     if (player != null) {
                         player.lastPosition = new Vector2(msg.x, msg.y);
                         player.currentPosition = new Vector2(msg.x, msg.y);
+                        player.direction = Direction.values()[msg.direction];
+                        System.out.println(msg.direction);
+                        player.idle = false; // FIXME: This is an *ugly* hack ;D
                     }
                     del.add(event);
                     continue;

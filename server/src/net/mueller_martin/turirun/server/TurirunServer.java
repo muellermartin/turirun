@@ -93,6 +93,7 @@ public class TurirunServer {
 
 						character.x = move.x;
 						character.y = move.y;
+						character.direction = move.direction;
 
 						//System.out.println("Receiving position of character " + character.id + ": " + character.x + " / " + character.y);
 
@@ -101,6 +102,7 @@ public class TurirunServer {
 						update.id = character.id;
 						update.x = character.x;
 						update.y = character.y;
+						update.direction = character.direction;
 
 						for (CharacterConnection other : characters) {
 							if (other.character != character)
