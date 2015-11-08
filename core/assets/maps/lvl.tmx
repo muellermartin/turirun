@@ -1,34 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="25" height="25" tilewidth="250" tileheight="250" nextobjectid="3">
- <tileset firstgid="1" name="tileset2" tilewidth="250" tileheight="250" tilecount="7">
-  <image source="tileset2.png" width="1750" height="250"/>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="20" height="20" tilewidth="125" tileheight="125" nextobjectid="1">
+ <tileset firstgid="1" name="tiles" tilewidth="125" tileheight="125" tilecount="8">
+  <image source="../../../../../tileset.png" width="1000" height="125"/>
  </tileset>
- <tileset firstgid="8" name="animated" tilewidth="250" tileheight="250" tilecount="3">
-  <image source="animated.png" width="750" height="250"/>
- </tileset>
- <layer name="ground" width="25" height="25">
+ <layer name="ground" width="20" height="20">
   <data encoding="base64" compression="zlib">
-   eJytlEsOgDAIBVvvf2g3mhjzPoNxQWJbgfIGutda+7Ljsuf6uX+UvS183ffbR8VXvu/86p4qpjKSX9WkNEhrqmXKQTk4vVKdLRbhnHg1tkSTVkuqIbElTFNcx69pnWaM8m93SXPj+oQySD3naqOz42In3aYxCYvJDJEaUt+1nm595jRyrEmepmWrhbwRlOEfb0qLR3gn39QbjlXjOGHQ2E75Nl/qR//5wtGd07u2nIoRsclsqx4gOt12AkpdA/s=
+   eJx9lEkOwzAMA7Ug/v+T24MFjKdOD4ECrTRF+4mIZ39r2/p+vW0hlvub+No2UcscxmdGw5eYly+2UJeqb8xsxXimwWJ/Kn+pH2uYR4zTn1jon14Vv/x0nFwNNp7ZuFs9Zhbnl3KIgzsgX4OBNpVff3KpF/JhDVBjt3jHyU3Gyd1Nb+TKfmIiV9bn1HI31h2xTI51YWv9vu3Q/zdtLOWYS+6J87hL9u44OfIObhzesJhv38mM84zkj+elj7riPSDmyTFvvuOO++3yG+S9sg85KNXy3aC2n7jryfyZC2qUeIef2/1kvnVA3N65tcY7TT58pg/mIgS7
   </data>
  </layer>
- <layer name="stengel" width="25" height="25">
+ <layer name="bushs" width="20" height="20">
   <data encoding="base64" compression="zlib">
-   eJy1VUcOgDAMi9Qe+P+LEYdKlmVngPCFkjR7NCJih8ai/y3ofMfRHlxGx9HNfiz6Ih/v85nRjU/B+buE3hXeV6eDz1lul6BlcHFPgTYn+UUe39mhY3E9cHgqr5ndCtW9KvYJOrXr5KSif5HPdGLPZ3Of9fmpu9stSg5tqrljTOqkbLyps5tN1ffKboa3fVf1m+NP6Yr3R2+irUyOa1HlPHs7Kl/YXuU3nqc5Q/7k7erIVDmodGfozoaTxa+S68bpYnR7y8HVgffUg4v41X5x+5GBPt84AgIO
+   eJxjYKAccBDg0wuQYi8HDjatADXsGCgziNVDaTrApn6g0hK5gBj3Dtb8MdTCnxrpayAALfMgrQG6OwBy/gC5
   </data>
  </layer>
- <layer name="bushs" width="25" height="25">
+ <layer name="stones" width="20" height="20">
   <data encoding="base64" compression="zlib">
-   eJxjYIAAVgbKATXMGAp2DldAalhiUz9c4oOa/iDWrOESdrjAQPlvuIfrSAWj8Tr0AKVxNtzinBp1LgC4wwBR
+   eJxjYCAesJOglhyAy3x2OthNjDtoZRY9/TbYAb6wwCY3UGE30HHGjkYTUkcPQI5dAx2OpIKh6EdS8xQxcjAAAM+3AJQ=
   </data>
  </layer>
- <layer name="stones" width="25" height="25">
+ <layer name="checkpoint" width="20" height="20">
   <data encoding="base64" compression="zlib">
-   eJxjYCAfsJEgh08tNe2lpp6BNJcUMBBuoLWd1DJ/MMQPNoDLXZTkG2xqibVnJAJSwosaZhMjT0s3DXZAC38OhrAbjOXzQIc1vcOE3m0GSv1HSjkAAOQZAM0=
-  </data>
- </layer>
- <layer name="checkpoint" width="25" height="25">
-  <data encoding="base64" compression="zlib">
-   eJxjYBgFo2BkAPaBdsAoGAWjYEiDkVqGDFd/Dwd/AQBcWAAd
+   eJxjYBgF2ADLQDtgFIwCOoDRdI4KRsODNAAAKKAADQ==
   </data>
  </layer>
 </map>

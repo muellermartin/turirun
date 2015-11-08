@@ -120,6 +120,7 @@ public class TurirunServer {
 						update.x = character.x;
 						update.y = character.y;
 						update.direction = character.direction;
+						update.idle = move.idle;
 
 						for (CharacterConnection other : characters) {
 							if (other.character != character)

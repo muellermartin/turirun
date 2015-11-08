@@ -45,11 +45,13 @@ public class TurirunNetwork {
 	public static class UpdateCharacter {
 		public int id, direction;
 		public float x, y;
+		public boolean idle;
 	}
 
 	public static class MoveCharacter {
 		public float x, y;
 		public int direction;
+		public boolean idle;
 	}
 
 	public static class HitCharacter {
