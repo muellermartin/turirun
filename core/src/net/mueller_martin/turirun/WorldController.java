@@ -160,7 +160,6 @@ public class WorldController {
             }
         }
 
-        checkpointsNeeded = 1;
 		this.client.start();
 
 		// For consistency, the classes to be sent over the network are registered by the same method for both the client and server
