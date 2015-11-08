@@ -48,7 +48,7 @@ public class WorldController {
     public int playingTouries = 0;
     public int deadTouries = 0;
     int timer = 0;
-    int MAX_TIMER = 0;
+    float MAX_TIMER = 0;
 
     public float deltaTimeUpdate = 0;
 
@@ -278,12 +278,18 @@ public class WorldController {
         // update objects
         checkpointCount = 0;
         deadTouries = 0;
-    	for (GameObject obj: objs.getObjects()) {
+        playingTouries = 0;
+    	for (GameObject obj: objs.getObjects())
+        {
     		obj.update(deltaTime);
             resetIfOutsideOfMap(obj);
             checkCheckpoints(obj);
-            checkDeadTouries(this.timer > MAX_TIMER && MAX_TIMER != 0);
 
+            // check for playing Tourist
+            if (obj instanceof TouriCharacterObject)
+            {
+                playingTouries++;
+            }
             // check for dead players
             if (obj instanceof CharacterObject)
             {
@@ -293,6 +299,9 @@ public class WorldController {
                 }
             }
     	}
+        System.out.println(" timer: " +  timer);
+        checkDeadTouries(this.timer > MAX_TIMER && MAX_TIMER != 0);
+        System.out.println(" MAX_TIMER: " +  MAX_TIMER);
 
         // check for collusion
         for (GameObject obj: objs.getObjects()) {
@@ -350,12 +359,15 @@ public class WorldController {
 
     private void checkDeadTouries(boolean switchScreen)
     {
+        System.out.println("switchScreen: " + switchScreen);
         if (deadTouries == playingTouries && deadTouries > 0)
         {
-            // TODO Kannibalen won!
             System.out.println("Cannibals won!");
-            MAX_TIMER = 10;
-            if(switchScreen)
+            if(MAX_TIMER == 0)
+            {
+                MAX_TIMER = 5.0f;
+            }
+            if(true) // switchScreen
             {
                 // Set string for game over screen
                 this.game.winner = "Cannibals";
@@ -377,7 +389,6 @@ public class WorldController {
                     if (msg.character.type == 1)
                     {
                         newPlayer = new TouriCharacterObject(msg.character.x, msg.character.y);
-                        playingTouries++;
                     }
                     else {
                         newPlayer = new KannibaleCharacterObject(msg.character.x, msg.character.y);
@@ -399,12 +410,12 @@ public class WorldController {
                     if(msg.type == 1)
                     {
                         Vector2 vec = getRandomPosition();
-                        playerObj = new TouriCharacterObject(vec.x, vec.y);
+                        playerObj = new TouriCharacterObject(10, 10);// new TouriCharacterObject(vec.x, vec.y);
                     }
                     else
                     {
                         Vector2 vec = getRandomPosition();
-                        playerObj = new KannibaleCharacterObject(vec.x, vec.y);
+                        playerObj = new KannibaleCharacterObject(10, 10);// new KannibaleCharacterObject(vec.x, vec.y);
                     }
 
                     playerObj.setNick(game.nickname);
