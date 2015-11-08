@@ -114,7 +114,7 @@ public class WorldController {
                 if(layer.getCell(x, y) != null)
                 {
                     // Spawn Walls
-                    WallGameObject wall = new WallGameObject(x * tilePixelWidth + 16, y*tilePixelWidth + 64, 218, 97);
+                    WallGameObject wall = new WallGameObject(x * tilePixelWidth + 25, y * tilePixelWidth  + 25, 100, 100);
                     this.objs.addObject(wall);
 
                     //safe blocked cell coordinates for random player position
@@ -133,7 +133,7 @@ public class WorldController {
                 if(layer.getCell(x, y) != null)
                 {
                     // Spawn Bush
-                    BushGameObject bush = new BushGameObject(x * tilePixelWidth + 16, y*tilePixelWidth + 64, 218, 110);
+                    BushGameObject bush = new BushGameObject(x * tilePixelWidth + 25, y*tilePixelWidth + 25, 100, 100);
                     this.objs.addObject(bush);
                 }
             }
@@ -150,7 +150,7 @@ public class WorldController {
                 if(layer.getCell(x, y) != null)
                 {
                     // Spawn Checkpoint
-                    CheckpointGameObject checkpoint = new CheckpointGameObject(x * tilePixelWidth, y*tilePixelWidth, 168, 119);
+                    CheckpointGameObject checkpoint = new CheckpointGameObject(x * tilePixelWidth, y * tilePixelWidth, 125, 125);
                     checkpoint.client = this.client;
                     checkpoint.checkpointID = ci;
                     this.objs.addObject(checkpoint);

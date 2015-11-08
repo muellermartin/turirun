@@ -44,7 +44,9 @@ public class WallGameObject extends GameObject
         shapeRenderer.setColor(Color.BLUE);
         shapeRenderer.rect(this.currentPosition.x, this.currentPosition.y, this.size.x, this.size.y);
         shapeRenderer.end();
+
         */
+
 
     }
 }

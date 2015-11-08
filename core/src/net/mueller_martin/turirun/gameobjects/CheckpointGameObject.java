@@ -20,6 +20,7 @@ import net.mueller_martin.turirun.AssetOrganizer;
 import net.mueller_martin.turirun.gameobjects.CharacterObject;
 
 import com.esotericsoftware.kryonet.Client;
+import net.mueller_martin.turirun.utils.TheTrueRectangle;
 
 /**
  * Created by Dorothea on 07.11.2015.
@@ -40,6 +41,8 @@ public class CheckpointGameObject extends GameObject {
 
     public CheckpointGameObject (float x, float y, float width, float height) {
         super(x, y, AssetOrganizer.instance.stone.stone);
+        this.size = new Vector2(width, height);
+        this.bounds = new TheTrueRectangle(x, y,size.x ,size.y );
         this.shapeRenderer = new ShapeRenderer();
     }
 
@@ -92,14 +95,13 @@ public class CheckpointGameObject extends GameObject {
 
     public void draw(SpriteBatch batch)
     {
-        /*
+/*
         shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
         shapeRenderer.setProjectionMatrix(CameraHelper.instance.camera.combined);
         shapeRenderer.setColor(Color.RED);
         shapeRenderer.rect(this.currentPosition.x, this.currentPosition.y, this.size.x, this.size.y);
         shapeRenderer.end();
-        */
-
+*/
         if (this.active && !checked)
         {
             shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
