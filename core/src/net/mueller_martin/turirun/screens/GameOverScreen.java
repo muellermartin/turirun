@@ -41,33 +41,22 @@ public class GameOverScreen extends ScreenAdapter {
 
 		TextButtonStyle textButtonStyle = new TextButtonStyle(dummy, dummy, dummy, font);
 		TextButton quitButton = new TextButton("Quit", textButtonStyle);
-		TextButton menuButton = new TextButton("Menu", textButtonStyle);
 
 		table.setFillParent(true);
 		stage.addActor(table);
 
 		table.row();
-		table.add(gameOverLabel).expand().colspan(2);
+		table.add(gameOverLabel).expand();
 		table.row();
-		table.add(winnerLabel).expand().top().colspan(2);
+		table.add(winnerLabel).expand().top();
 		table.row();
 		table.add(quitButton).minHeight(100);
-		table.add(menuButton);
 
 		quitButton.addListener(new ClickListener() {
 			@Override
 			public void clicked(InputEvent event, float x, float y) {
 				MusicBox.instance.stopMusic(Constants.AUDIO_LOOP1);
 				Gdx.app.exit();
-			}
-		});
-
-		menuButton.addListener(new ClickListener() {
-			@Override
-			public void clicked(InputEvent event, float x, float y) {
-				//screenManager.game.reset();
-				MusicBox.instance.stopMusic(Constants.AUDIO_LOOP1);
-				screenManager.setScreenState(Constants.MENUSCREEN);
 			}
 		});
 
