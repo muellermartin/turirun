@@ -12,7 +12,7 @@ public class KannibaleCharacterObject extends CharacterObject
 {
     public KannibaleCharacterObject (float x, float y)
     {
-        super(x,y, AssetOrganizer.instance.player.player);
+        super(x,y);
     }
 
     public void draw(SpriteBatch batch) {
