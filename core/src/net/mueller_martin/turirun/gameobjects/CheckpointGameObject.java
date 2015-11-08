@@ -14,9 +14,12 @@ import net.mueller_martin.turirun.Constants;
 import net.mueller_martin.turirun.MusicBox;
 import net.mueller_martin.turirun.network.TurirunNetwork;
 import net.mueller_martin.turirun.utils.CollusionDirections;
+import net.mueller_martin.turirun.network.TurirunNetwork.CheckpointCheck;
 
 import net.mueller_martin.turirun.AssetOrganizer;
 import net.mueller_martin.turirun.gameobjects.CharacterObject;
+
+import com.esotericsoftware.kryonet.Client;
 
 /**
  * Created by Dorothea on 07.11.2015.
@@ -27,6 +30,9 @@ public class CheckpointGameObject extends GameObject {
 
     public float timer = 0.0f;
     public boolean checked = false;
+
+    public Client client;
+    public int checkpointID = 0;
 
     public static float MAX_TIMER = 5.0f;
 
@@ -71,6 +77,9 @@ public class CheckpointGameObject extends GameObject {
                 this.timer = 0.0f;
                 checked = true;
                 System.out.println("TIMER BAAAAAAM");
+                CheckpointCheck msg = new CheckpointCheck();
+                msg.id = this.checkpointID;
+                client.sendTCP(msg);
 
                 playCameraSound = true;
             }
