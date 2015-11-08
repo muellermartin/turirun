@@ -15,7 +15,7 @@ import net.mueller_martin.turirun.network.TurirunNetwork.DeadCharacter;
 public class CharacterController {
 	public final static String TAG = CharacterController.class.getName();
 	public CharacterObject character;
-	private int speed = 7;
+	private int speed = 200; //from 7 to 200 (now multiplying: speed * deltatime in update())
 	private ObjectController objs;
 	private Client client;
 	private boolean isTouri;
@@ -42,7 +42,7 @@ public class CharacterController {
 		this.character.lastPosition = new Vector2(this.character.currentPosition.x, this.character.currentPosition.y);
 		if (Gdx.input.isKeyPressed(Input.Keys.LEFT))
 		{
-			this.character.currentPosition.add(-speed,0);
+			this.character.currentPosition.add(-speed*Gdx.graphics.getDeltaTime(),0);
 			if(isTouri)
 			{
 				character.ani = AssetOrganizer.instance.turiRunLeft.turiRunLeft;
@@ -53,7 +53,7 @@ public class CharacterController {
 			}
 
 		} else if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
-			this.character.currentPosition.add(+speed, 0);
+			this.character.currentPosition.add(+speed*Gdx.graphics.getDeltaTime(), 0);
 			if(isTouri)
 			{
 				character.ani = AssetOrganizer.instance.turiRunRight.turiRunRight;
@@ -72,10 +72,10 @@ public class CharacterController {
 			{
 				character.ani = AssetOrganizer.instance.cannibalRunTop.cannibalRunTop;
 			}
-			this.character.currentPosition.add(0, speed);
+			this.character.currentPosition.add(0, speed*Gdx.graphics.getDeltaTime());
 		} else if (Gdx.input.isKeyPressed(Input.Keys.DOWN)) {
 			//Gdx.app.log(TAG,"DOWN");
-			this.character.currentPosition.add(0,-speed);
+			this.character.currentPosition.add(0,-speed*Gdx.graphics.getDeltaTime());
 			if(isTouri)
 			{
 				character.ani = AssetOrganizer.instance.turiRunDown.turiRunDown;

@@ -55,7 +55,7 @@ public class TouriCharacterObject extends CharacterObject
             currentFrame = ani.getKeyFrame(stateTime, true);
             batch.begin();
             batch.setProjectionMatrix(CameraHelper.instance.camera.combined);
-            batch.draw(currentFrame, currentPosition.x + super.xOffsetTexture, currentPosition.y + super.yOffsetTexture, texture.getRegionWidth(), texture.getRegionHeight());
+            batch.draw(currentFrame, currentPosition.x + super.xOffsetTexture, currentPosition.y + super.yOffsetTexture, currentFrame.getRegionWidth(), currentFrame.getRegionHeight());
 
             String nameText = this.username;
             this.layout.setText(this.font, nameText);
