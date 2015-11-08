@@ -133,7 +133,7 @@ public class WorldController {
                 if(layer.getCell(x, y) != null)
                 {
                     // Spawn Bush
-                    BushGameObject bush = new BushGameObject(x * tilePixelWidth + 25, y*tilePixelWidth + 25, 100, 100);
+                    BushGameObject bush = new BushGameObject(x * tilePixelWidth + 25, y*tilePixelWidth + 25, 90, 90);
                     this.objs.addObject(bush);
                 }
             }
