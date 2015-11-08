@@ -46,6 +46,10 @@ public class WorldController {
     public int checkpointCount = 0;
     public int checkpointsNeeded = 0;
 
+    public int playingTouries = 0;
+    public int deadTouries = 0;
+
+
     public CharacterController controller;
 
     public static List<Object> events;
@@ -259,6 +263,16 @@ public class WorldController {
     		obj.update(deltaTime);
             resetIfOutsideOfMap(obj);
             checkCheckpoints(obj);
+            checkDeadTouries();
+
+            // check for dead players
+            if (obj instanceof CharacterObject)
+            {
+                if(((CharacterObject) obj).isDead)
+                {
+                    deadTouries++;
+                }
+            }
     	}
 
         // check for collusion
@@ -315,6 +329,19 @@ public class WorldController {
         }
     }
 
+    private void checkDeadTouries()
+    {
+        if (deadTouries == playingTouries)
+        {
+            // TODO Kannibalen won!
+            System.out.println("Cannibals won!");
+
+            // Set string for game over screen
+            this.game.winner = "Cannibals";
+            this.game.screenManager.setScreenState(Constants.GAMEOVERSCREEN);
+        }
+    }
+
     private void updateEvents() {
         ArrayList<Object> del = new ArrayList<Object>();
 
@@ -326,9 +353,13 @@ public class WorldController {
                     CharacterObject newPlayer;
 
                     if (msg.character.type == 1)
+                    {
                         newPlayer = new TouriCharacterObject(msg.character.x, msg.character.y);
-                    else
+                        playingTouries++;
+                    }
+                    else {
                         newPlayer = new KannibaleCharacterObject(msg.character.x, msg.character.y);
+                    }
 
                     newPlayer.setNick(msg.character.nick);
                     objs.addObject(msg.character.id, newPlayer);
