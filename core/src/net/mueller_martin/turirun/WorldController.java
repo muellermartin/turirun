@@ -400,7 +400,6 @@ public class WorldController {
                     if (player != null) {
                         player.currentPosition = new Vector2(msg.x, msg.y);
                         player.direction = Direction.values()[msg.direction];
-                        System.out.println(msg.direction);
                         player.idle = false; // FIXME: This is an *ugly* hack ;D
                     }
                     del.add(event);
