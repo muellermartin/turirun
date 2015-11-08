@@ -47,8 +47,8 @@ public class WorldController {
 
     public int playingTouries = 0;
     public int deadTouries = 0;
-    int timer = 0;
-    float MAX_TIMER = 0;
+    public float timer = 0.0f;
+    public float MAX_TIMER = 0;
 
     public float deltaTimeUpdate = 0;
 
@@ -342,11 +342,14 @@ public class WorldController {
     }
 
 
-    private void checkCheckpoints(GameObject obj) {
-        if (obj instanceof CheckpointGameObject && ((CheckpointGameObject) obj).checked) {
+    private void checkCheckpoints(GameObject obj)
+    {
+        if (obj instanceof CheckpointGameObject && ((CheckpointGameObject) obj).checked)
+        {
             checkpointCount++;
 
-            if (checkpointCount == checkpointsNeeded) {
+            if (checkpointCount == checkpointsNeeded)
+            {
                 // TODO Tourists won!
                 System.out.println("Tourists won!");
 
@@ -365,9 +368,9 @@ public class WorldController {
             System.out.println("Cannibals won!");
             if(MAX_TIMER == 0)
             {
-                MAX_TIMER = 5.0f;
+                MAX_TIMER = 15.0f;
             }
-            if(true) // switchScreen
+            if(switchScreen)
             {
                 // Set string for game over screen
                 this.game.winner = "Cannibals";
