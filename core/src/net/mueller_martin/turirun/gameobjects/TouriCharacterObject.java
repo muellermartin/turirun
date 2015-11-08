@@ -1,11 +1,12 @@
 package net.mueller_martin.turirun.gameobjects;
 
-
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.badlogic.gdx.graphics.g2d.Animation;
+
 import net.mueller_martin.turirun.AssetOrganizer;
 import net.mueller_martin.turirun.CameraHelper;
 import net.mueller_martin.turirun.utils.CollusionDirections;
@@ -16,23 +17,25 @@ import net.mueller_martin.turirun.utils.CollusionDirections;
 public class TouriCharacterObject extends CharacterObject
 {
     public boolean invisible = false;
-
     public float timer = 0.0f;
     public boolean cooldown = false;
 
     public static float MAX_TIMER = 5.0f;
+	Animation moveLeft = AssetOrganizer.instance.turiRunLeft.turiRunLeft;
+	Animation moveRight = AssetOrganizer.instance.turiRunRight.turiRunRight;
+	Animation moveTop = AssetOrganizer.instance.turiRunTop.turiRunTop;
+	Animation moveDown = AssetOrganizer.instance.turiRunDown.turiRunDown;
+	Animation idleGfx = AssetOrganizer.instance.turiIdle.turiIdle;
 
     public TouriCharacterObject (float x, float y)
     {
         super(x,y);
-        System.out.println("Touri");
     }
 
     @Override
     public void isCollusion(GameObject otherObject, CollusionDirections.CollusionDirectionsTypes type)
     {
         super.isCollusion(otherObject, type);
-       // System.out.println("Hallo from Parent: " + otherObject.getClass().toString());
 
         if(otherObject instanceof BushGameObject)
         {
@@ -53,6 +56,30 @@ public class TouriCharacterObject extends CharacterObject
         if (!this.invisible)
         {
             stateTime += Gdx.graphics.getDeltaTime();
+
+            if (!idle) {
+                switch (this.direction) {
+                    case LEFT:
+                        ani = moveLeft;
+                        break;
+
+                    case RIGHT:
+                        ani = moveRight;
+                        break;
+
+                    case TOP:
+                        ani = moveTop;
+                        break;
+
+                    case DOWN:
+                        ani = moveDown;
+                        break;
+                }
+            }
+            else {
+                ani = idleGfx;
+            }
+
             currentFrame = ani.getKeyFrame(stateTime, true);
             batch.begin();
             batch.setProjectionMatrix(CameraHelper.instance.camera.combined);
