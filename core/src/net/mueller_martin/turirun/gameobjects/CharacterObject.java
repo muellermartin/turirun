@@ -2,6 +2,7 @@ package net.mueller_martin.turirun.gameobjects;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -25,9 +26,9 @@ public class CharacterObject extends GameObject {
 	public int xOffsetTexture = 0;
 	public int yOffsetTexture = 0;
 
-	public CharacterObject (float x, float y)
+	public CharacterObject (float x, float y, TextureRegion t)
 	{
-		super(x,y,AssetOrganizer.instance.player.player);
+		super(x,y,t);
 		this.size = new Vector2(texture.getRegionWidth(), texture.getRegionHeight()); // texture.getRegionHeight()
 		this.bounds = new TheTrueRectangle(x, y, size.x , size.y);
 		this.shapeRenderer = new ShapeRenderer();

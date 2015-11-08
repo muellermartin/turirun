@@ -2,6 +2,7 @@ package net.mueller_martin.turirun;
 
 import java.io.IOException;
 
+import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.maps.MapObjects;
 import com.badlogic.gdx.maps.MapProperties;
@@ -316,7 +317,7 @@ public class WorldController {
                 if (event instanceof AddCharacter) {
                     AddCharacter msg = (AddCharacter)event;
 
-                    CharacterObject newPlayer = new CharacterObject(msg.character.x, msg.character.y);
+                    CharacterObject newPlayer = new CharacterObject(msg.character.x, msg.character.y, AssetOrganizer.instance.player.player);
 
                     newPlayer.setNick(msg.character.nick);
                     objs.addObject(msg.character.id, newPlayer);
