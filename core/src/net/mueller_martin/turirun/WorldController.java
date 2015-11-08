@@ -51,6 +51,9 @@ public class WorldController {
     public float timer = 0.0f;
     public float MAX_TIMER = 0;
 
+    public float timerCheckpoint = 0.0f;
+    public float MAX_TIMER_CHECKPOINT = 0.0f;
+
     public float deltaTimeUpdate = 0;
 
     private boolean[][] freeCells;
@@ -157,6 +160,7 @@ public class WorldController {
             }
         }
 
+        checkpointsNeeded = 1;
 		this.client.start();
 
 		// For consistency, the classes to be sent over the network are registered by the same method for both the client and server
@@ -207,6 +211,7 @@ public class WorldController {
     public void update(float deltaTime)
     {
         this.timer += deltaTime; // timer for endscreen
+        this.timerCheckpoint += deltaTime; // timer for endscreen
         // Input Update
         controller.update(deltaTime);
 
@@ -288,7 +293,11 @@ public class WorldController {
         {
     		obj.update(deltaTime);
             resetIfOutsideOfMap(obj);
-            checkCheckpoints(obj);
+
+            if (obj instanceof CheckpointGameObject && ((CheckpointGameObject) obj).checked)
+            {
+                checkpointCount++;
+            }
 
             // check for playing Tourist
             if (obj instanceof TouriCharacterObject)
@@ -304,9 +313,13 @@ public class WorldController {
                 }
             }
     	}
-        System.out.println(" timer: " +  timer);
+        //System.out.println(" timer: " +  timer);
         checkDeadTouries(this.timer > MAX_TIMER && MAX_TIMER != 0);
-        System.out.println(" MAX_TIMER: " +  MAX_TIMER);
+        //System.out.println(" MAX_TIMER: " +  MAX_TIMER);
+
+        System.out.println(" timerCheckpoint: " +  timerCheckpoint);
+        checkCheckpoints(this.timerCheckpoint > MAX_TIMER_CHECKPOINT && MAX_TIMER_CHECKPOINT != 0);
+        System.out.println(" MAX_TIMER_CHECKPOINT: " +  MAX_TIMER_CHECKPOINT);
 
         // check for collusion
         for (GameObject obj: objs.getObjects()) {
@@ -346,18 +359,18 @@ public class WorldController {
         }
     }
 
-
-    private void checkCheckpoints(GameObject obj)
+    private void checkCheckpoints(boolean switchScreen)
     {
-        if (obj instanceof CheckpointGameObject && ((CheckpointGameObject) obj).checked)
+        System.out.println("switchScreen: " + switchScreen);
+        if (checkpointCount == checkpointsNeeded)
         {
-            checkpointCount++;
-
-            if (checkpointCount == checkpointsNeeded)
+            System.out.println("Tourists won!");
+            if(MAX_TIMER_CHECKPOINT == 0)
             {
-                // TODO Tourists won!
-                System.out.println("Tourists won!");
-
+                MAX_TIMER_CHECKPOINT = 15.0f;
+            }
+            if(switchScreen)
+            {
                 // Set string for game over screen
                 this.game.winner = "Tourists";
                 this.game.screenManager.setScreenState(Constants.GAMEOVERSCREEN);
