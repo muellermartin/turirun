@@ -58,6 +58,7 @@ public class TurirunServer {
 						character.id = TurirunServer.next_uuid;
 						character.nick = register.nick;
 						character.type = type.type;
+						type.id = character.id;
 						// TO DO: Set random position for each player within world bounds (not in items etc.)
 						character.x = 0;
 						character.y = 0;

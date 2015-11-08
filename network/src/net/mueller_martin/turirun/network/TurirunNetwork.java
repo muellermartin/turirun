@@ -61,5 +61,6 @@ public class TurirunNetwork {
 
 	public static class AssignCharacter {
 		public int type;
+		public int id;
 	}
 }
