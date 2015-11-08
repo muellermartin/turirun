@@ -433,12 +433,12 @@ public class WorldController {
                     if(msg.type == 1)
                     {
                         Vector2 vec = getRandomPosition();
-                        playerObj = new TouriCharacterObject(10, 10);// new TouriCharacterObject(vec.x, vec.y);
+                        playerObj = new TouriCharacterObject(vec.x, vec.y);
                     }
                     else
                     {
                         Vector2 vec = getRandomPosition();
-                        playerObj = new KannibaleCharacterObject(10, 10);// new KannibaleCharacterObject(vec.x, vec.y);
+                        playerObj = new KannibaleCharacterObject(vec.x, vec.y);
                     }
 
                     playerObj.setNick(game.nickname);
