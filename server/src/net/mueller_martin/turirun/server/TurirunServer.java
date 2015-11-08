@@ -23,6 +23,8 @@ public class TurirunServer {
 	// Will hold all the players
 	static HashSet<CharacterConnection> characters = new HashSet<CharacterConnection>();
 
+	public static int next_uuid = 0;
+
 	public static void main(String[] args) {
 		try {
 			server = new Server() {
@@ -53,11 +55,14 @@ public class TurirunServer {
 						type.type = assignCharacterType();
 
 						character = new Character();
+						character.id = TurirunServer.next_uuid;
 						character.nick = register.nick;
 						character.type = type.type;
 						// TO DO: Set random position for each player within world bounds (not in items etc.)
 						character.x = 0;
 						character.y = 0;
+
+						TurirunServer.next_uuid++;
 
 						connection.sendTCP(type);
 
