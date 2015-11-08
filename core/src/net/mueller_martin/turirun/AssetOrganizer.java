@@ -52,6 +52,7 @@ public class AssetOrganizer implements Disposable, AssetErrorListener
     public Music_Loop4 music_loop4;
     public Music_Loop5 music_loop5;
     public Music_Loop6 music_loop6;
+    public Music_Remix music_remix;
 
     // Gfx
     public Stone stone;
@@ -130,7 +131,7 @@ public class AssetOrganizer implements Disposable, AssetErrorListener
         music_loop4 = new Music_Loop4();
         music_loop5 = new Music_Loop5();
         music_loop6 = new Music_Loop6();
-
+		music_remix = new Music_Remix();
 
         // Gfx
         stone = new Stone(atlas);
@@ -471,8 +472,14 @@ public class AssetOrganizer implements Disposable, AssetErrorListener
         }
     }
 
-
-
+	public class Music_Remix
+	{
+		public final Music music_remix;
+		public Music_Remix()
+		{
+			music_remix = audio.newMusic(Gdx.files.internal("audio/Remix.ogg"));
+		}
+	}
 
     @Override
     public void error(AssetDescriptor asset, Throwable throwable) {

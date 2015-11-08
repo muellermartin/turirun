@@ -88,16 +88,19 @@ public class MusicBox
 					AssetOrganizer.instance.music_loop4.music_loop4.play();
 					break;
 
-
 				case Constants.AUDIO_LOOP5:
 					AssetOrganizer.instance.music_loop5.music_loop5.setLooping(false);
 					AssetOrganizer.instance.music_loop5.music_loop5.play();
 					break;
 
-
 				case Constants.AUDIO_LOOP6:
 					AssetOrganizer.instance.music_loop6.music_loop6.setLooping(false);
 					AssetOrganizer.instance.music_loop6.music_loop6.play();
+					break;
+
+				case Constants.AUDIO_REMIX:
+					AssetOrganizer.instance.music_remix.music_remix.setLooping(false);
+					AssetOrganizer.instance.music_remix.music_remix.play();
 					break;
 			}
 		}
@@ -126,18 +129,17 @@ public class MusicBox
 				music = AssetOrganizer.instance.music_loop4.music_loop4;
 				break;
 
-
 			case Constants.AUDIO_LOOP5:
 				music = AssetOrganizer.instance.music_loop5.music_loop5;
 				break;
-
 
 			case Constants.AUDIO_LOOP6:
 				music = AssetOrganizer.instance.music_loop6.music_loop6;
 				break;
 
-
-
+			case Constants.AUDIO_REMIX:
+				music = AssetOrganizer.instance.music_remix.music_remix;
+				break;
 		}
 
 
@@ -184,14 +186,16 @@ public class MusicBox
 		AssetOrganizer.instance.music_loop4.music_loop4.stop();;
 		break;
 
-
 		case Constants.AUDIO_LOOP5:
 		AssetOrganizer.instance.music_loop5.music_loop5.stop();
 		break;
 
-
 		case Constants.AUDIO_LOOP6:
 		AssetOrganizer.instance.music_loop6.music_loop6.stop();
+		break;
+
+		case Constants.AUDIO_REMIX:
+		AssetOrganizer.instance.music_remix.music_remix.stop();
 		break;
 		}
 	}
@@ -231,6 +235,10 @@ public class MusicBox
 			ret = true;
 		}
 		if(AssetOrganizer.instance.music_loop6.music_loop6.isPlaying())
+		{
+			ret = true;
+		}
+		if(AssetOrganizer.instance.music_remix.music_remix.isPlaying())
 		{
 			ret = true;
 		}
