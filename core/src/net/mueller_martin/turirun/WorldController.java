@@ -62,6 +62,8 @@ public class WorldController {
         WorldController.events = Collections.synchronizedList(new ArrayList<Object>());
 
     	this.init();
+
+
     }
 
     // Start Game

@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import net.mueller_martin.turirun.gameobjects.GameObject;
 import net.mueller_martin.turirun.gameobjects.CharacterObject;
+import net.mueller_martin.turirun.gameobjects.KannibaleCharacterObject;
 import net.mueller_martin.turirun.gameobjects.TouriCharacterObject;
 import com.badlogic.gdx.math.Vector2;
 import net.mueller_martin.turirun.Constants;
@@ -24,16 +25,9 @@ public class CharacterController {
 		this.client = client;
 		this.isTouri = false;
 
-		// NO WORK!! :-0
-		if(this.character instanceof TouriCharacterObject)
-		{
-			isTouri = true;
-			character.ani = AssetOrganizer.instance.turiRunRight.turiRunRight;
-			Gdx.app.log(TAG,"right did Work");
-		}else
-		{
-			Gdx.app.log(TAG,"CRAP IT DIDN'T WORK ");
-		}
+		//prevent null animation
+
+		//character.ani = AssetOrganizer.instance.turiRunTop.turiRunTop;
 	}
 
 	public void update(float deltaTime) {
@@ -48,7 +42,6 @@ public class CharacterController {
 		this.character.lastPosition = new Vector2(this.character.currentPosition.x, this.character.currentPosition.y);
 		if (Gdx.input.isKeyPressed(Input.Keys.LEFT))
 		{
-			Gdx.app.log(TAG,"LEFT");
 			this.character.currentPosition.add(-speed,0);
 			if(isTouri)
 			{
@@ -60,11 +53,9 @@ public class CharacterController {
 			}
 
 		} else if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
-			this.character.currentPosition.add(+speed,0);
-			Gdx.app.log(TAG, "RIGHT");
+			this.character.currentPosition.add(+speed, 0);
 			if(isTouri)
 			{
-
 				character.ani = AssetOrganizer.instance.turiRunRight.turiRunRight;
 			}
 			else
@@ -73,8 +64,6 @@ public class CharacterController {
 			}
 		}
 		if (Gdx.input.isKeyPressed(Input.Keys.UP)) {
-			Gdx.app.log(TAG, "UP");
-
 			if(isTouri)
 			{
 				character.ani = AssetOrganizer.instance.turiRunTop.turiRunTop;
@@ -85,7 +74,7 @@ public class CharacterController {
 			}
 			this.character.currentPosition.add(0,speed);
 		} else if (Gdx.input.isKeyPressed(Input.Keys.DOWN)) {
-			Gdx.app.log(TAG,"DOWN");
+			//Gdx.app.log(TAG,"DOWN");
 			this.character.currentPosition.add(0,-speed);
 			if(isTouri)
 			{
@@ -137,6 +126,7 @@ public class CharacterController {
     			if (x1 * x1 + y1 * y1 <= Constants.BATTLE_RADIUS * Constants.BATTLE_RADIUS) {
     				// Battle
     				System.out.println("BATTLE");
+					MusicBox.instance.playSound(Constants.AUDIO_CANNIBALEAT);
 					DeadCharacter msg = new DeadCharacter();
 					msg.id = obj.id;
 					this.client.sendTCP(msg);
@@ -149,5 +139,18 @@ public class CharacterController {
 				this.client.sendTCP(msg);
 			}
 		}		
+	}
+
+	public void checkCharacter() {
+			if(this.character instanceof TouriCharacterObject)
+			{
+				isTouri = true;
+
+			//	Gdx.app.log(TAG,"right did Work");
+			}else
+			{
+			//	Gdx.app.log(TAG,"CRAP IT DIDN'T WORK OR I'M A CANNIBAL");
+			}
+
 	}
 }

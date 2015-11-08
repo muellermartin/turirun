@@ -51,18 +51,6 @@ public class TouriCharacterObject extends CharacterObject
     {
         if (!this.invisible)
         {
-          //  Gdx.app.log(TAG,"TuriRender");
-            if(ani.equals(AssetOrganizer.instance.turiRunDown.turiRunDown))
-            {
-                Gdx.app.log(TAG,"Turi Run Down ani");
-            }
-            else
-            {
-                if(ani.equals(AssetOrganizer.instance.turiRunRight.turiRunRight))
-                {
-                    Gdx.app.log(TAG,"Turi Right ani");
-                }
-            }
             stateTime += Gdx.graphics.getDeltaTime();
             currentFrame = ani.getKeyFrame(stateTime, true);
             batch.begin();

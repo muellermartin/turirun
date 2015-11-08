@@ -86,22 +86,11 @@ public class CharacterObject extends GameObject {
 		shapeRenderer.rect(this.bounds.x, this.bounds.y, this.bounds.getWidth(), this.bounds.getHeight());
 		shapeRenderer.end();
 		*/
-
-		if(ani == null)
-		{
-			Gdx.app.log(TAG,"ANI null");
-		}
-		if(currentFrame == null)
-		{
-			Gdx.app.log(TAG,"current Frame null");
-		}
-		Gdx.app.log(TAG,"char obj");
 		stateTime += Gdx.graphics.getDeltaTime();
 		currentFrame = ani.getKeyFrame(stateTime, true);
 		batch.begin();
 		batch.setProjectionMatrix(CameraHelper.instance.camera.combined);
-		batch.draw(currentFrame, currentPosition.x + xOffsetTexture, currentPosition.y + yOffsetTexture, texture.getRegionWidth(), texture.getRegionHeight());
-
+		batch.draw(currentFrame, currentPosition.x + xOffsetTexture, currentPosition.y + yOffsetTexture, currentFrame.getRegionWidth(), currentFrame.getRegionHeight());
 		batch.end();
 	}
 

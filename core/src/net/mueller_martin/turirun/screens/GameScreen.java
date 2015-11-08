@@ -38,6 +38,9 @@ public class GameScreen extends ScreenAdapter {
 		gui.update(deltaTime);
 		MusicBox.instance.jukebox();
 
+		//Char ab hier checken funktioniert - le fuck de what?
+		world.controller.checkCharacter();
+
 		// Back To Menu
 		/*
 		if(Gdx.input.isButtonPressed(Input.Keys.ESCAPE))
