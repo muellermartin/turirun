@@ -209,7 +209,6 @@ public class WorldController {
 				move.y = controller.character.currentPosition.y;
 
 				client.sendTCP(move);
-                controller.isMove = false;
 
                 deltaTimeUpdate = 0;
 			}

@@ -38,12 +38,10 @@ public class CharacterController {
 
 		if (Gdx.input.isKeyPressed(Input.Keys.LEFT))
 		{
-			this.isMove = true;
 			this.character.currentPosition.add(-speed*Gdx.graphics.getDeltaTime(),0);
 			this.character.direction = Direction.LEFT;
 			this.character.idle = false;
 		} else if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
-			this.isMove = true;
 			this.character.currentPosition.add(+speed*Gdx.graphics.getDeltaTime(), 0);
 			this.character.direction = Direction.RIGHT;
 			this.character.idle = false;
