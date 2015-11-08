@@ -6,6 +6,7 @@ import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
@@ -22,6 +23,7 @@ public class GameOverScreen extends ScreenAdapter {
 	Stage stage;
 	Table table;
 	String winner;
+	SpriteBatch batch;
 
 	public GameOverScreen(ScreenManager s) {
 		this.screenManager = s;
@@ -42,6 +44,8 @@ public class GameOverScreen extends ScreenAdapter {
 		TextButtonStyle textButtonStyle = new TextButtonStyle(dummy, dummy, dummy, font);
 		TextButton quitButton = new TextButton("Quit", textButtonStyle);
 		TextButton menuButton = new TextButton("Menu", textButtonStyle);
+
+		batch = new SpriteBatch();
 
 		table.setFillParent(true);
 		stage.addActor(table);
@@ -82,6 +86,10 @@ public class GameOverScreen extends ScreenAdapter {
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		stage.act(Gdx.graphics.getDeltaTime());
 		stage.draw();
+		batch.setProjectionMatrix(CameraHelper.instance.camera.combined);
+		batch.begin();
+		batch.draw(AssetOrganizer.instance.touristWin.touristWin, (Gdx.graphics.getWidth() / 2) - (AssetOrganizer.instance.touristWin.touristWin.getWidth() / 2),( Gdx.graphics.getHeight() / 2)-300);
+		batch.end();
 	}
 
 	public void dispose() {
