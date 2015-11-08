@@ -36,32 +36,34 @@ public class CharacterController {
 
 		this.character.lastPosition = new Vector2(this.character.currentPosition.x, this.character.currentPosition.y);
 
-		if (Gdx.input.isKeyPressed(Input.Keys.LEFT))
-		{
-			this.character.currentPosition.add(-speed*Gdx.graphics.getDeltaTime(),0);
-			this.character.direction = Direction.LEFT;
-			this.character.idle = false;
-		} else if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
-			this.character.currentPosition.add(+speed*Gdx.graphics.getDeltaTime(), 0);
-			this.character.direction = Direction.RIGHT;
-			this.character.idle = false;
-		}
-		if (Gdx.input.isKeyPressed(Input.Keys.UP)) {
-			this.character.currentPosition.add(0, speed*Gdx.graphics.getDeltaTime());
-			this.character.direction = Direction.TOP;
-			this.character.idle = false;
-		} else if (Gdx.input.isKeyPressed(Input.Keys.DOWN)) {
-			this.character.currentPosition.add(0,-speed*Gdx.graphics.getDeltaTime());
-			this.character.direction = Direction.DOWN;
-			this.character.idle = false;
-		}
-		else if(!Gdx.input.isKeyPressed(Input.Keys.ANY_KEY))
-		{
-			this.character.idle = true;
-		}
+		if (!this.character.isDead) {
+			if (Gdx.input.isKeyPressed(Input.Keys.LEFT))
+			{
+				this.character.currentPosition.add(-speed*Gdx.graphics.getDeltaTime(),0);
+				this.character.direction = Direction.LEFT;
+				this.character.idle = false;
+			} else if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
+				this.character.currentPosition.add(+speed*Gdx.graphics.getDeltaTime(), 0);
+				this.character.direction = Direction.RIGHT;
+				this.character.idle = false;
+			}
+			if (Gdx.input.isKeyPressed(Input.Keys.UP)) {
+				this.character.currentPosition.add(0, speed*Gdx.graphics.getDeltaTime());
+				this.character.direction = Direction.TOP;
+				this.character.idle = false;
+			} else if (Gdx.input.isKeyPressed(Input.Keys.DOWN)) {
+				this.character.currentPosition.add(0,-speed*Gdx.graphics.getDeltaTime());
+				this.character.direction = Direction.DOWN;
+				this.character.idle = false;
+			}
+			else if(!Gdx.input.isKeyPressed(Input.Keys.ANY_KEY))
+			{
+				this.character.idle = true;
+			}
 
-		if (Gdx.input.isKeyPressed(Input.Keys.SPACE)) {
-			this.tryBattle();
+			if (Gdx.input.isKeyPressed(Input.Keys.SPACE)) {
+				this.tryBattle();
+			}
 		}
 	}
 

@@ -70,27 +70,33 @@ public class MusicBox
 					break;
 
 				case Constants.AUDIO_LOOP1:
+					AssetOrganizer.instance.music_loop1.music_loop1.setLooping(false);
 					AssetOrganizer.instance.music_loop1.music_loop1.play();
 					break;
 				case Constants.AUDIO_LOOP2:
+					AssetOrganizer.instance.music_loop2.music_loop2.setLooping(false);
 					AssetOrganizer.instance.music_loop2.music_loop2.play();
 					break;
 
 				case Constants.AUDIO_LOOP3:
+					AssetOrganizer.instance.music_loop3.music_loop3.setLooping(false);
 					AssetOrganizer.instance.music_loop3.music_loop3.play();
 					break;
 
 				case Constants.AUDIO_LOOP4:
+					AssetOrganizer.instance.music_loop4.music_loop4.setLooping(false);
 					AssetOrganizer.instance.music_loop4.music_loop4.play();
 					break;
 
 
 				case Constants.AUDIO_LOOP5:
+					AssetOrganizer.instance.music_loop5.music_loop5.setLooping(false);
 					AssetOrganizer.instance.music_loop5.music_loop5.play();
 					break;
 
 
 				case Constants.AUDIO_LOOP6:
+					AssetOrganizer.instance.music_loop6.music_loop6.setLooping(false);
 					AssetOrganizer.instance.music_loop6.music_loop6.play();
 					break;
 			}
