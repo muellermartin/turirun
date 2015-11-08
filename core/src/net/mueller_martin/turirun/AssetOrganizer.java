@@ -11,6 +11,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 import com.badlogic.gdx.utils.Disposable;
 
 /**
@@ -74,6 +75,8 @@ public class AssetOrganizer implements Disposable, AssetErrorListener
     public SterbeAnimation sterbeAnimation;
 
     public DeadBody deadBody;
+
+    public TouristWin touristWin;
 
     public AssetOrganizer()
     {
@@ -154,6 +157,7 @@ public class AssetOrganizer implements Disposable, AssetErrorListener
 
         sterbeAnimation = new SterbeAnimation(atlas);
         deadBody = new DeadBody(atlas);
+        touristWin = new TouristWin(atlas);
     }
 
         public class MenuBtnBg
@@ -196,6 +200,13 @@ public class AssetOrganizer implements Disposable, AssetErrorListener
 
         public Player(TextureAtlas atlas) {
             player = atlas.findRegion("tourist_front_walk1");
+        }
+    }
+
+    public class TouristWin{
+        public final Texture touristWin;
+        public TouristWin(TextureAtlas atlas){
+            touristWin = new Texture(Gdx.files.internal("workfolder/touristwin.png"));
         }
     }
 
