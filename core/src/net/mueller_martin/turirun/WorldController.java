@@ -314,8 +314,12 @@ public class WorldController {
                 // Add Player
                 if (event instanceof AddCharacter) {
                     AddCharacter msg = (AddCharacter)event;
+                    CharacterObject newPlayer;
 
-                    CharacterObject newPlayer = new CharacterObject(msg.character.x, msg.character.y);
+                    if (msg.character.type == 1)
+                        newPlayer = new TouriCharacterObject(msg.character.x, msg.character.y);
+                    else
+                        newPlayer = new KannibaleCharacterObject(msg.character.x, msg.character.y);
 
                     newPlayer.setNick(msg.character.nick);
                     objs.addObject(msg.character.id, newPlayer);
