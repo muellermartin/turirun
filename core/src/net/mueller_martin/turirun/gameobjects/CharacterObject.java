@@ -2,7 +2,6 @@ package net.mueller_martin.turirun.gameobjects;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -26,9 +25,11 @@ public class CharacterObject extends GameObject {
 	public int xOffsetTexture = 0;
 	public int yOffsetTexture = 0;
 
-	public CharacterObject (float x, float y, TextureRegion t)
+	Direction direction = Direction.UP;
+
+	public CharacterObject (float x, float y)
 	{
-		super(x,y,t);
+		super(x,y,AssetOrganizer.instance.player.player);
 		this.size = new Vector2(texture.getRegionWidth(), texture.getRegionHeight()); // texture.getRegionHeight()
 		this.bounds = new TheTrueRectangle(x, y, size.x , size.y);
 		this.shapeRenderer = new ShapeRenderer();
@@ -41,7 +42,12 @@ public class CharacterObject extends GameObject {
 	{
 		this.bounds.setPosition(this.currentPosition.x, this.currentPosition.y);
 	}
-
+	public static enum Direction {
+		UP, // passierbar
+		DOWN, // unpassierbar
+		LEFT, // Start (Pfadanfang)
+		RIGHT // Ende (Pfadende)
+	}
 	@Override
 	public void isCollusion(GameObject otherObject, CollusionDirections.CollusionDirectionsTypes type)
 	{

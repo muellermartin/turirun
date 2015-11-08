@@ -188,7 +188,7 @@ public class WorldController {
         // Netzwerk Update
         this.updateEvents();
 
-		if (client != null && controller.character != null) {
+		if (controller.character != null) {
 			// FIXME: last and current postition are always equal
 			//if (controller.character.currentPosition.x != controller.character.lastPosition.x || controller.character.currentPosition.y != controller.character.lastPosition.y)
 			{
@@ -342,6 +342,7 @@ public class WorldController {
                         objs.addObject(playerObj);
                         controller.setPlayerObj(playerObj);
                     }
+
                     del.add(event);
                     continue;
                 }
