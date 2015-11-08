@@ -2,11 +2,8 @@ package net.mueller_martin.turirun;
 
 import java.io.IOException;
 
-import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.Camera;
-import com.badlogic.gdx.maps.MapObjects;
 import com.badlogic.gdx.maps.MapProperties;
-import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
@@ -32,12 +29,13 @@ import net.mueller_martin.turirun.utils.CollusionDirections;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Collections;
-import java.util.Collections.*;
 
 public class WorldController {
     public final static String TAG = WorldController.class.getName();
     public int mapPixelWidth =  300;
     public int mapPixelHeight = 300;
+    private int tilePixelWidth = 0;
+    private  int tilePixelHeight = 0;
     Client client;
 
     public Turirun game;
@@ -50,6 +48,10 @@ public class WorldController {
     public int deadTouries = 0;
 
     public float deltaTimeUpdate = 0;
+
+    private boolean[][] freeCells;
+    private float mapCellWidth = 0;
+    private float mapCellHeight = 0;
 
     public CharacterController controller;
 
@@ -81,8 +83,8 @@ public class WorldController {
         int mapHeight = prop.get("height", Integer.class);
         System.out.println("mapWidth: " + mapWidth + ", " + "mapHeight: " + mapHeight);
 
-        int tilePixelWidth = prop.get("tilewidth", Integer.class);
-        int tilePixelHeight = prop.get("tileheight", Integer.class);
+        tilePixelWidth = prop.get("tilewidth", Integer.class);
+        tilePixelHeight = prop.get("tileheight", Integer.class);
 
         System.out.println("tilePixelWidth: " + tilePixelWidth + ", " + "tilePixelHeight: " + tilePixelHeight);
 
@@ -96,15 +98,22 @@ public class WorldController {
         TiledMapTileLayer layer = (TiledMapTileLayer) level.map.getLayers().get("stones");
         System.out.println("Layer: " + layer);
 
+        freeCells = new boolean[layer.getWidth()][layer.getHeight()];
+        mapCellWidth = layer.getWidth();
+        mapCellHeight = layer.getHeight();
         for(int x = 0; x < layer.getWidth(); x++)
         {
             for(int y = 0; y < layer.getHeight(); y++)
             {
+                freeCells[x][y] = true;
                 if(layer.getCell(x, y) != null)
                 {
                     // Spawn Walls
                     WallGameObject wall = new WallGameObject(x * tilePixelWidth + 16, y*tilePixelWidth + 64, 218, 97);
                     this.objs.addObject(wall);
+
+                    //safe blocked cell coordinates for random player position
+                    freeCells[x][y] = false;
                 }
             }
         }
@@ -378,9 +387,15 @@ public class WorldController {
                     CharacterObject playerObj;
 
                     if(msg.type == 1)
-                        playerObj = new TouriCharacterObject(10, 10);
+                    {
+                        Vector2 vec = getRandomPosition();
+                        playerObj = new TouriCharacterObject(vec.x, vec.y);
+                    }
                     else
-                        playerObj = new KannibaleCharacterObject(10, 10);
+                    {
+                        Vector2 vec = getRandomPosition();
+                        playerObj = new KannibaleCharacterObject(vec.x, vec.y);
+                    }
 
                     playerObj.setNick(game.nickname);
                     objs.addObject(playerObj);
@@ -438,6 +453,27 @@ public class WorldController {
             WorldController.events.remove(event);
         }
 
+    }
+
+    private Vector2 getRandomPosition()
+    {
+        boolean foundPosition = false;
+        int x = 10;
+        int y = 10;
+
+        while (!foundPosition)
+        {
+            x = (int) (Math.random() * mapCellWidth);
+            y = (int) (Math.random() * mapCellWidth);
+            if(freeCells[x][y])
+            {
+                System.out.println("Position: " + x + ", " + y);
+                foundPosition = true;
+                freeCells[x][y] = false;
+            }
+        }
+
+        return new Vector2(x * tilePixelWidth, y * tilePixelHeight);
     }
 
 }
