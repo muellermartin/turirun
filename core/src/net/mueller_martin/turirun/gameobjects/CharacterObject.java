@@ -25,6 +25,8 @@ public class CharacterObject extends GameObject {
 	public int xOffsetTexture = 0;
 	public int yOffsetTexture = 0;
 
+	Direction direction = Direction.UP;
+
 	public CharacterObject (float x, float y)
 	{
 		super(x,y,AssetOrganizer.instance.player.player);
@@ -40,10 +42,16 @@ public class CharacterObject extends GameObject {
 	{
 		this.bounds.setPosition(this.currentPosition.x, this.currentPosition.y);
 	}
-
+	public static enum Direction {
+		UP, // passierbar
+		DOWN, // unpassierbar
+		LEFT, // Start (Pfadanfang)
+		RIGHT // Ende (Pfadende)
+	}
 	@Override
 	public void isCollusion(GameObject otherObject, CollusionDirections.CollusionDirectionsTypes type)
 	{
+		System.out.println("Hallo from Parent");
 		if(otherObject instanceof WallGameObject)
 		{
 			switch(type)

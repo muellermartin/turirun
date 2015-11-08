@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import net.mueller_martin.turirun.AssetOrganizer;
 import net.mueller_martin.turirun.CameraHelper;
 import net.mueller_martin.turirun.utils.CollusionDirections;
 
@@ -31,8 +32,10 @@ public class TouriCharacterObject extends CharacterObject
     public void isCollusion(GameObject otherObject , CollusionDirections.CollusionDirectionsTypes type)
     {
         super.isCollusion(otherObject, type);
+        System.out.println("Hallo from Parent: " + otherObject.getClass().toString());
         if(otherObject instanceof BushGameObject)
         {
+            System.out.println("intersection");
             this.invisible = true;
         }
     }

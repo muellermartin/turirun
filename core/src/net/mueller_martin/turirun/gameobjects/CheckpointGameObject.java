@@ -67,18 +67,20 @@ public class CheckpointGameObject extends GameObject {
 
     public void draw(SpriteBatch batch)
     {
+        /*
         shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
         shapeRenderer.setProjectionMatrix(CameraHelper.instance.camera.combined);
         shapeRenderer.setColor(Color.RED);
         shapeRenderer.rect(this.currentPosition.x, this.currentPosition.y, this.size.x, this.size.y);
         shapeRenderer.end();
+        */
 
         if (this.active && !checked)
         {
             shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
             Gdx.gl.glEnable(GL20.GL_BLEND);
             shapeRenderer.setProjectionMatrix(CameraHelper.instance.camera.combined);
-            shapeRenderer.setColor(new Color(0, 150, 0, 0.5f));
+            shapeRenderer.setColor(new Color(150, 150, 150, 0.5f));
             shapeRenderer.circle(this.currentPosition.x + this.size.x / 2, this.currentPosition.y + this.size.y / 2, this.size.x * ((MAX_TIMER - this.timer) / MAX_TIMER));
             shapeRenderer.end();
         }

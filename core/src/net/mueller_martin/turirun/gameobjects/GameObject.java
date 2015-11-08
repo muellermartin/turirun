@@ -10,6 +10,7 @@ import com.badlogic.gdx.graphics.Color;
 
 import net.mueller_martin.turirun.AssetOrganizer;
 import net.mueller_martin.turirun.CameraHelper;
+import net.mueller_martin.turirun.MusicBox;
 import net.mueller_martin.turirun.utils.CollusionDirections;
 import net.mueller_martin.turirun.utils.TheTrueRectangle;
 
@@ -27,6 +28,8 @@ public class GameObject {
 
 	private ShapeRenderer shapeRenderer;
 
+
+
 	public GameObject (float x, float y, TextureRegion t) {
 		this.texture = t;
 		this.currentPosition = new Vector2(x, y);
@@ -34,6 +37,7 @@ public class GameObject {
 		this.size = new Vector2(texture.getRegionWidth(), texture.getRegionHeight());
 		this.bounds = new TheTrueRectangle(x, y,size.x ,size.y );
 		//this.shapeRenderer = new ShapeRenderer();
+
 
 	}
 

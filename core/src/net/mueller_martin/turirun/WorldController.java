@@ -2,6 +2,7 @@ package net.mueller_martin.turirun;
 
 import java.io.IOException;
 
+import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.maps.MapObjects;
 import com.badlogic.gdx.maps.MapProperties;
@@ -25,6 +26,7 @@ import net.mueller_martin.turirun.network.TurirunNetwork.MoveCharacter;
 import net.mueller_martin.turirun.network.TurirunNetwork.RemoveCharacter;
 import net.mueller_martin.turirun.network.TurirunNetwork.HitCharacter;
 import net.mueller_martin.turirun.network.TurirunNetwork.DeadCharacter;
+import net.mueller_martin.turirun.network.TurirunNetwork.AssignCharacter;
 import net.mueller_martin.turirun.utils.CollusionDirections;
 
 import java.util.ArrayList;
@@ -43,8 +45,6 @@ public class WorldController {
     public Level level;
     public int checkpointCount = 0;
     public int checkpointsNeeded = 1;
-
-    public boolean spawnCannibal = false;
 
     public CharacterController controller;
 
@@ -66,29 +66,6 @@ public class WorldController {
 
     // Start Game
     public void init() {
-        //TODO ask server for CharacterObject type
-
-        if(spawnCannibal)
-        {
-            spawnCannibal = !spawnCannibal;
-            KannibaleCharacterObject playerObj = new KannibaleCharacterObject(10, 10);
-            playerObj.setNick(this.game.nickname);
-            this.objs.addObject(playerObj);
-            controller.setPlayerObj(playerObj);
-        }
-        else
-        {
-            spawnCannibal = !spawnCannibal;
-            TouriCharacterObject playerObj = new TouriCharacterObject(10, 10);
-            playerObj.setNick(this.game.nickname);
-            this.objs.addObject(playerObj);
-            controller.setPlayerObj(playerObj);
-        }
-
-        // Spawn Checkpoint
-        CheckpointGameObject checkpoint = new CheckpointGameObject(300, 800, 40, 40);
-        this.objs.addObject(checkpoint);
-
         //map size
         level = new Level();
 
@@ -141,6 +118,22 @@ public class WorldController {
             }
         }
 
+        // checkpoints
+        layer = (TiledMapTileLayer) level.map.getLayers().get("checkpoint");
+
+        for(int x = 0; x < layer.getWidth(); x++)
+        {
+            for(int y = 0; y < layer.getHeight(); y++)
+            {
+                if(layer.getCell(x, y) != null)
+                {
+                    // Spawn Checkpoint
+                    CheckpointGameObject checkpoint = new CheckpointGameObject(x * tilePixelWidth, y*tilePixelWidth, 168, 119);
+                    this.objs.addObject(checkpoint);
+                }
+            }
+        }
+
 		this.client.start();
 
 		// For consistency, the classes to be sent over the network are registered by the same method for both the client and server
@@ -165,12 +158,18 @@ public class WorldController {
 		}
 		catch (IOException e) {
 			Gdx.app.error("Could not connect to server", e.getMessage());
+
+			// Create local player as fallback
+			TouriCharacterObject playerObj = new TouriCharacterObject(10, 10);
+			playerObj.setNick(game.nickname);
+			objs.addObject(playerObj);
+			controller.setPlayerObj(playerObj);
 		}
 
 		Register register = new Register();
 
 		register.nick = this.game.nickname;
-		register.type = 1;
+		register.type = 0;
 
 		client.sendTCP(register);
     }
@@ -189,7 +188,7 @@ public class WorldController {
         // Netzwerk Update
         this.updateEvents();
 
-		if (client != null) {
+		if (controller.character != null) {
 			// FIXME: last and current postition are always equal
 			//if (controller.character.currentPosition.x != controller.character.lastPosition.x || controller.character.currentPosition.y != controller.character.lastPosition.y)
 			{
@@ -207,14 +206,14 @@ public class WorldController {
         float cameraHalfWidth = cam.viewportWidth * .5f;
         float cameraHalfHeight = cam.viewportHeight * .5f;
 
-        // Move camera after player as normal
-        int pos_x = (int)controller.character.currentPosition.x;
-        if (pos_x % 2 == 0)
-            pos_x++;
-        int pos_y = (int)controller.character.currentPosition.y;
-        if (pos_y % 2 == 0)
-            pos_y++;
-        CameraHelper.instance.camera.position.set(pos_x,pos_y,0);
+		// Move camera after player as normal
+		int pos_x = (int)controller.character.currentPosition.x;
+		if (pos_x % 2 == 0)
+			pos_x++;
+		int pos_y = (int)controller.character.currentPosition.y;
+		if (pos_y % 2 == 0)
+			pos_y++;
+		CameraHelper.instance.camera.position.set(pos_x,pos_y,0);
 
         float cameraLeft = cam.position.x - cameraHalfWidth;
         float cameraRight = cam.position.x + cameraHalfWidth;
@@ -324,6 +323,27 @@ public class WorldController {
                     del.add(event);
                     continue;
                 }
+                if (event instanceof AssignCharacter) {
+                    AssignCharacter msg = (AssignCharacter)event;
+
+                    if(msg.type == 1)
+                    {
+                        TouriCharacterObject playerObj = new TouriCharacterObject(10, 10);
+                        playerObj.setNick(game.nickname);
+                        objs.addObject(playerObj);
+                        controller.setPlayerObj(playerObj);
+                    }
+                    else
+                    {
+                        KannibaleCharacterObject playerObj = new KannibaleCharacterObject(10, 10);
+                        playerObj.setNick(game.nickname);
+                        objs.addObject(playerObj);
+                        controller.setPlayerObj(playerObj);
+                    }
+
+                    del.add(event);
+                    continue;
+                }
                 // Update Player
                 if (event instanceof UpdateCharacter) {
                     UpdateCharacter msg = (UpdateCharacter)event;
@@ -350,7 +370,7 @@ public class WorldController {
                     HitCharacter msg = (HitCharacter)event;
                     CharacterObject player = (CharacterObject)objs.getObject(msg.id);
                     if (player != null) {
-                        System.out.println("Player HIT "+msg.id);                        
+                        System.out.println("Player HIT "+msg.id);
                     }
                     del.add(event);
                     continue;

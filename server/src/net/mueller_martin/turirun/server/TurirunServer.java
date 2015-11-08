@@ -16,6 +16,7 @@ import net.mueller_martin.turirun.network.TurirunNetwork.UpdateCharacter;
 import net.mueller_martin.turirun.network.TurirunNetwork.MoveCharacter;
 import net.mueller_martin.turirun.network.TurirunNetwork.HitCharacter;
 import net.mueller_martin.turirun.network.TurirunNetwork.DeadCharacter;
+import net.mueller_martin.turirun.network.TurirunNetwork.AssignCharacter;
 
 public class TurirunServer {
 	static Server server;
@@ -47,13 +48,18 @@ public class TurirunServer {
 							return;
 
 						Register register = (Register)obj;
+						AssignCharacter type = new AssignCharacter();
+
+						type.type = assignCharacterType();
 
 						character = new Character();
 						character.nick = register.nick;
-						character.type = register.type;
+						character.type = type.type;
 						// TO DO: Set random position for each player within world bounds (not in items etc.)
 						character.x = 0;
 						character.y = 0;
+
+						connection.sendTCP(type);
 
 						connection.character = character;
 
@@ -75,6 +81,7 @@ public class TurirunServer {
 						characters.add(connection);
 
 						System.out.println("New player registered: " + character.nick);
+						System.out.println("Assigned type: " + character.type);
 					}
 
 					if (obj instanceof MoveCharacter) {
@@ -143,6 +150,10 @@ public class TurirunServer {
 		catch (IOException e) {
 			// TO DO: Fail
 		}
+	}
+
+	private static int assignCharacterType() {
+		return characters.size() % 2 + 1;
 	}
 
 	static class CharacterConnection extends Connection {
