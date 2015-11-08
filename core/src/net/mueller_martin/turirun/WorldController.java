@@ -339,20 +339,16 @@ public class WorldController {
                 if (event instanceof AssignCharacter) {
                     AssignCharacter msg = (AssignCharacter)event;
 
+                    CharacterObject playerObj;
+
                     if(msg.type == 1)
-                    {
-                        TouriCharacterObject playerObj = new TouriCharacterObject(10, 10);
-                        playerObj.setNick(game.nickname);
-                        objs.addObject(playerObj);
-                        controller.setPlayerObj(playerObj);
-                    }
+                        playerObj = new TouriCharacterObject(10, 10);
                     else
-                    {
-                        KannibaleCharacterObject playerObj = new KannibaleCharacterObject(10, 10);
-                        playerObj.setNick(game.nickname);
-                        objs.addObject(playerObj);
-                        controller.setPlayerObj(playerObj);
-                    }
+                        playerObj = new KannibaleCharacterObject(10, 10);
+
+                    playerObj.setNick(game.nickname);
+                    objs.addObject(playerObj);
+                    controller.setPlayerObj(playerObj);
 
                     del.add(event);
                     continue;

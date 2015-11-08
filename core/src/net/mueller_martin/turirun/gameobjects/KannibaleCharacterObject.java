@@ -13,10 +13,12 @@ public class KannibaleCharacterObject extends CharacterObject
     public KannibaleCharacterObject (float x, float y)
     {
         super(x,y);
+        System.out.println("Kannibale");
 
 
     }
 
+    @Override
     public void draw(SpriteBatch batch) {
 		stateTime += Gdx.graphics.getDeltaTime();
 		currentFrame = ani.getKeyFrame(stateTime, true);
