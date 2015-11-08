@@ -4,8 +4,6 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.GL20;
-
-import net.mueller_martin.turirun.Constants;
 import net.mueller_martin.turirun.MusicBox;
 import net.mueller_martin.turirun.ScreenManager;
 import net.mueller_martin.turirun.Turirun;
