@@ -49,6 +49,7 @@ public class WorldController {
     public int playingTouries = 0;
     public int deadTouries = 0;
 
+    public float deltaTimeUpdate = 0;
 
     public CharacterController controller;
 
@@ -198,7 +199,10 @@ public class WorldController {
 		if (controller.character != null) {
 			// FIXME: last and current postition are always equal
 			//if (controller.character.currentPosition.x != controller.character.lastPosition.x || controller.character.currentPosition.y != controller.character.lastPosition.y)
-			if (controller.isMove){
+			deltaTimeUpdate += deltaTime;
+            System.out.println(deltaTimeUpdate);
+
+            if (deltaTimeUpdate > 1){
 				MoveCharacter move = new MoveCharacter();
 
 				move.x = controller.character.currentPosition.x;
@@ -206,6 +210,8 @@ public class WorldController {
 
 				client.sendTCP(move);
                 controller.isMove = false;
+
+                deltaTimeUpdate = 0;
 			}
 		}
 
