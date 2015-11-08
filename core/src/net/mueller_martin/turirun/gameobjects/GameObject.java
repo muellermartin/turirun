@@ -35,7 +35,6 @@ public class GameObject {
 		this.lastPosition = new Vector2(x,y);
 		this.size = new Vector2(texture.getRegionWidth(), texture.getRegionHeight());
 		this.bounds = new TheTrueRectangle(x, y,size.x ,size.y );
-		//this.shapeRenderer = new ShapeRenderer();
 	}
 
 

@@ -95,6 +95,7 @@ public class CharacterObject extends GameObject {
 		{
 			Gdx.app.log(TAG,"current Frame null");
 		}
+		Gdx.app.log(TAG,"char obj");
 		stateTime += Gdx.graphics.getDeltaTime();
 		currentFrame = ani.getKeyFrame(stateTime, true);
 		batch.begin();

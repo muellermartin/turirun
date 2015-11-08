@@ -1,5 +1,6 @@
 package net.mueller_martin.turirun.gameobjects;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 import net.mueller_martin.turirun.CameraHelper;
@@ -17,9 +18,11 @@ public class KannibaleCharacterObject extends CharacterObject
     }
 
     public void draw(SpriteBatch batch) {
+		stateTime += Gdx.graphics.getDeltaTime();
+		currentFrame = ani.getKeyFrame(stateTime, true);
 		batch.begin();
 		batch.setProjectionMatrix(CameraHelper.instance.camera.combined);
-		batch.draw(texture, currentPosition.x + xOffsetTexture, currentPosition.y + yOffsetTexture, texture.getRegionWidth(), texture.getRegionHeight());
+		batch.draw(currentFrame, currentPosition.x + xOffsetTexture, currentPosition.y + yOffsetTexture, texture.getRegionWidth(), texture.getRegionHeight());
 
 		String nameText = this.username;
 		this.layout.setText(this.font, nameText);

@@ -136,7 +136,7 @@ public class AssetOrganizer implements Disposable, AssetErrorListener
         turiRunDown = new TuriRunDown(atlas);
         turiRunTop = new TuriRunTop(atlas);
         turiRunLeft = new TuriRunLeft(atlas);
-        turiRunTop = new TuriRunTop(atlas);
+        turiRunRight = new TuriRunRight(atlas);
 
         cannibalRunDown = new CannibalRunDown(atlas);
         cannibalRunLeft = new CannibalRunLeft(atlas);
@@ -242,7 +242,6 @@ public class AssetOrganizer implements Disposable, AssetErrorListener
             turiRunRight = new Animation(1/4f,  new TextureRegion(atlas.findRegion("tourist_right_walk1")), new TextureRegion(atlas.findRegion("tourist_right_walk2")), new TextureRegion(atlas.findRegion("tourist_right_walk3")), new TextureRegion(atlas.findRegion("tourist_right_walk4")));
         }
     }
-
 
 
 

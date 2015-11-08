@@ -23,6 +23,17 @@ public class CharacterController {
 		this.objs = objs;
 		this.client = client;
 		this.isTouri = false;
+
+		// NO WORK!! :-0
+		if(this.character instanceof TouriCharacterObject)
+		{
+			isTouri = true;
+			character.ani = AssetOrganizer.instance.turiRunRight.turiRunRight;
+			Gdx.app.log(TAG,"right did Work");
+		}else
+		{
+			Gdx.app.log(TAG,"CRAP IT DIDN'T WORK ");
+		}
 	}
 
 	public void update(float deltaTime) {
@@ -30,13 +41,6 @@ public class CharacterController {
 		if (this.character == null) {
 			System.out.println("Character: null");
 			return;
-		}
-
-		if(this.character instanceof TouriCharacterObject)
-		{
-			isTouri = true;
-			character.ani = AssetOrganizer.instance.turiRunRight.turiRunRight;
-			Gdx.app.log(TAG,"right did Work");
 		}
 
 
