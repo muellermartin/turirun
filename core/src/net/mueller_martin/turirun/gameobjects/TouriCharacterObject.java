@@ -32,7 +32,7 @@ public class TouriCharacterObject extends CharacterObject
     public void isCollusion(GameObject otherObject , CollusionDirections.CollusionDirectionsTypes type)
     {
         super.isCollusion(otherObject, type);
-        System.out.println("Hallo from Parent: " + otherObject.getClass().toString());
+
         if(otherObject instanceof BushGameObject)
         {
             System.out.println("intersection");

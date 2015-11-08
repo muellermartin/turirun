@@ -38,7 +38,6 @@ public class CameraHelper
 	public void update()
 	{
 		camera.update();
-		//System.out.println(camera.position.x);
 	}
 	
 
