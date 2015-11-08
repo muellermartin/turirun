@@ -58,7 +58,7 @@ public class MusicBox
 					AssetOrganizer.instance.audio_MenuSwitch.audio_MenuSwitch.play(0.9f);
 					break;
 				case Constants.AUDIO_CHEERING:
-					AssetOrganizer.instance.audio_Cheering.audio_Cheering.play(0.9f);
+					AssetOrganizer.instance.audio_Cheering.audio_Cheering.play(0.8f);
 					break;
 
 				case Constants.AUDIO_HELICOPTER:

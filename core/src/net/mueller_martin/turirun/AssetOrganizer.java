@@ -62,11 +62,13 @@ public class AssetOrganizer implements Disposable, AssetErrorListener
     public TuriRunTop turiRunTop;
     public TuriRunLeft turiRunLeft;
     public TuriRunRight turiRunRight;
+    public TuriIdle turiIdle;
 
     public CannibalRunDown cannibalRunDown;
     public CannibalRunTop cannibalRunTop;
     public CannibalRunLeft cannibalRunLeft;
     public CannibalRunRight cannibalRunRight;
+    public CannibalIdle cannibalIdle;
 
     public AssetOrganizer()
     {
@@ -137,11 +139,13 @@ public class AssetOrganizer implements Disposable, AssetErrorListener
         turiRunTop = new TuriRunTop(atlas);
         turiRunLeft = new TuriRunLeft(atlas);
         turiRunRight = new TuriRunRight(atlas);
+        turiIdle = new TuriIdle(atlas);
 
         cannibalRunDown = new CannibalRunDown(atlas);
         cannibalRunLeft = new CannibalRunLeft(atlas);
         cannibalRunTop = new CannibalRunTop(atlas);
         cannibalRunRight = new CannibalRunRight(atlas);
+        cannibalIdle = new CannibalIdle(atlas);
 
     }
 
@@ -237,6 +241,15 @@ public class AssetOrganizer implements Disposable, AssetErrorListener
         }
     }
 
+    public class TuriIdle
+    {
+        public final Animation turiIdle;
+
+        public TuriIdle (TextureAtlas atlas) {
+            turiIdle = new Animation(1,  new TextureRegion(atlas.findRegion("tourist_front_walk1")));
+        }
+    }
+
 
 
 
@@ -261,7 +274,7 @@ public class AssetOrganizer implements Disposable, AssetErrorListener
         public final Animation cannibalRunTop;
 
         public CannibalRunTop (TextureAtlas atlas) {
-            cannibalRunTop = new Animation(1/12f, new TextureRegion(atlas.findRegion("cannibal_back_walk1").getTexture()), new TextureRegion(atlas.findRegion("cannibal_back_walk2").getTexture()), new TextureRegion(atlas.findRegion("cannibal_back_walk3")), new TextureRegion(atlas.findRegion("cannibal_back_walk4")));
+            cannibalRunTop = new Animation(1/12f, new TextureRegion(atlas.findRegion("cannibal_back_walk1")), new TextureRegion(atlas.findRegion("cannibal_back_walk2")), new TextureRegion(atlas.findRegion("cannibal_back_walk3")), new TextureRegion(atlas.findRegion("cannibal_back_walk4")));
         }}
 
     public class CannibalRunLeft
@@ -269,7 +282,7 @@ public class AssetOrganizer implements Disposable, AssetErrorListener
         public final Animation cannibalRunLeft;
 
         public CannibalRunLeft (TextureAtlas atlas) {
-            cannibalRunLeft = new Animation(1/12f, new TextureRegion(atlas.findRegion("cannibal_left_walk1").getTexture()), new TextureRegion(atlas.findRegion("cannibal_left_walk2").getTexture()), new TextureRegion(atlas.findRegion("cannibal_left_walk3")), new TextureRegion(atlas.findRegion("cannibal_left_walk4")));
+            cannibalRunLeft = new Animation(1/12f, new TextureRegion(atlas.findRegion("cannibal_left_walk1")), new TextureRegion(atlas.findRegion("cannibal_left_walk2")), new TextureRegion(atlas.findRegion("cannibal_left_walk3")), new TextureRegion(atlas.findRegion("cannibal_left_walk4")));
         }}
 
 
@@ -278,8 +291,18 @@ public class AssetOrganizer implements Disposable, AssetErrorListener
         public final Animation cannibalRunRight;
 
         public CannibalRunRight (TextureAtlas atlas) {
-            cannibalRunRight = new Animation(1/12f, new TextureRegion(atlas.findRegion("cannibal_right_walk1").getTexture()), new TextureRegion(atlas.findRegion("cannibal_right_walk2").getTexture()), new TextureRegion(atlas.findRegion("cannibal_right_walk3")), new TextureRegion(atlas.findRegion("cannibal_right_walk4")));
-        }}
+            cannibalRunRight = new Animation(1/12f, new TextureRegion(atlas.findRegion("cannibal_right_walk1")), new TextureRegion(atlas.findRegion("cannibal_right_walk2")), new TextureRegion(atlas.findRegion("cannibal_right_walk3")), new TextureRegion(atlas.findRegion("cannibal_right_walk4")));
+        }
+    }
+
+    public class CannibalIdle
+    {
+        public final Animation cannibalIdle;
+
+        public CannibalIdle (TextureAtlas atlas) {
+            cannibalIdle = new Animation(1, new TextureRegion(atlas.findRegion("cannibal_front_walk1")));
+        }
+    }
 
 
     // AUDIO

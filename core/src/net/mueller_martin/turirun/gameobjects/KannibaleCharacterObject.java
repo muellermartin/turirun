@@ -22,7 +22,7 @@ public class KannibaleCharacterObject extends CharacterObject
 		currentFrame = ani.getKeyFrame(stateTime, true);
 		batch.begin();
 		batch.setProjectionMatrix(CameraHelper.instance.camera.combined);
-		batch.draw(currentFrame, currentPosition.x + xOffsetTexture, currentPosition.y + yOffsetTexture, texture.getRegionWidth(), texture.getRegionHeight());
+		batch.draw(currentFrame, currentPosition.x + xOffsetTexture, currentPosition.y + yOffsetTexture, currentFrame.getRegionWidth(), currentFrame.getRegionHeight());
 
 		String nameText = this.username;
 		this.layout.setText(this.font, nameText);

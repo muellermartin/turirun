@@ -85,6 +85,18 @@ public class CharacterController {
 				character.ani = AssetOrganizer.instance.cannibalRunDown.cannibalRunDown;
 			}
 		}
+		else if(!Gdx.input.isKeyPressed(Input.Keys.ANY_KEY))
+		{
+			if(isTouri)
+			{
+				character.ani = AssetOrganizer.instance.turiIdle.turiIdle;
+			}
+			else
+			{
+				character.ani = AssetOrganizer.instance.cannibalIdle.cannibalIdle;
+			}
+
+		}
 		if (Gdx.input.isKeyPressed(Input.Keys.SPACE)) {
 			this.tryBattle();
 		}
