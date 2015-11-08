@@ -47,22 +47,8 @@ public class TouriCharacterObject extends CharacterObject
     public void update(float deltaTime)
     {
         this.bounds.setPosition(this.currentPosition.x, this.currentPosition.y);
-        if(isDead)
-        {
-            if(!deadAnimationPlayed)
-            {
-                this.ani = AssetOrganizer.instance.sterbeAnimation.sterbeanimation;
-                if(ani.isAnimationFinished(stateTime))
-                {
-                    this.deadAnimationPlayed = true;
-                }
-            }
-            else
-            {
-                this.ani = AssetOrganizer.instance.deadBody.deadBody;
-            }
 
-        }
+
         // Reset für nächsten Test
         this.invisible = false;
     }
@@ -73,7 +59,7 @@ public class TouriCharacterObject extends CharacterObject
         {
             stateTime += Gdx.graphics.getDeltaTime();
 
-            if (!idle) {
+            if (!idle &&!isDead) {
                 switch (this.direction) {
                     case LEFT:
                         ani = moveLeft;
@@ -93,9 +79,27 @@ public class TouriCharacterObject extends CharacterObject
                 }
             }
             else {
-                ani = idleGfx;
-            }
+                if(idle)
+                {
+                    ani = idleGfx;
+                }
+                else if(isDead)
+                {
 
+                    if(!deadAnimationPlayed)
+                    {
+                        this.ani = AssetOrganizer.instance.sterbeAnimation.sterbeanimation;
+                        if(ani.isAnimationFinished(stateTime))
+                        {
+                            this.deadAnimationPlayed = true;
+                        }
+                    }
+                    else
+                    {
+                        this.ani = AssetOrganizer.instance.deadBody.deadBody;
+                    }
+                }
+            }
             currentFrame = ani.getKeyFrame(stateTime, true);
             batch.begin();
             batch.setProjectionMatrix(CameraHelper.instance.camera.combined);

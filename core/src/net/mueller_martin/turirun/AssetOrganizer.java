@@ -320,7 +320,7 @@ public class AssetOrganizer implements Disposable, AssetErrorListener
         public final Animation sterbeanimation;
 
         public SterbeAnimation (TextureAtlas atlas) {
-            sterbeanimation = new Animation(1/6f, new TextureRegion(atlas.findRegion("tourist_death1")),new TextureRegion(atlas.findRegion("tourist_death2")),new TextureRegion(atlas.findRegion("tourist_death3")),new TextureRegion(atlas.findRegion("tourist_death4")),new TextureRegion(atlas.findRegion("tourist_death5")),new TextureRegion(atlas.findRegion("tourist_death6")));
+            sterbeanimation = new Animation(1.5f, new TextureRegion(atlas.findRegion("tourist_death1")),new TextureRegion(atlas.findRegion("tourist_death2")),new TextureRegion(atlas.findRegion("tourist_death3")),new TextureRegion(atlas.findRegion("tourist_death4")),new TextureRegion(atlas.findRegion("tourist_death5")),new TextureRegion(atlas.findRegion("tourist_death6")));
         }
     }
 
