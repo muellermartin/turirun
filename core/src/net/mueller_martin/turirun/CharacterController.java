@@ -34,6 +34,10 @@ public class CharacterController {
 			return;
 		}
 
+
+
+
+
 		this.character.lastPosition = new Vector2(this.character.currentPosition.x, this.character.currentPosition.y);
 
 		if (!this.character.isDead) {
