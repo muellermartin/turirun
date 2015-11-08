@@ -3,6 +3,9 @@
  <tileset firstgid="1" name="tileset2" tilewidth="250" tileheight="250" tilecount="7">
   <image source="tileset2.png" width="1750" height="250"/>
  </tileset>
+ <tileset firstgid="8" name="animated" tilewidth="250" tileheight="250" tilecount="3">
+  <image source="animated.png" width="750" height="250"/>
+ </tileset>
  <layer name="ground" width="25" height="25">
   <data encoding="base64" compression="zlib">
    eJytlEsOgDAIBVvvf2g3mhjzPoNxQWJbgfIGutda+7Ljsuf6uX+UvS183ffbR8VXvu/86p4qpjKSX9WkNEhrqmXKQTk4vVKdLRbhnHg1tkSTVkuqIbElTFNcx69pnWaM8m93SXPj+oQySD3naqOz42In3aYxCYvJDJEaUt+1nm595jRyrEmepmWrhbwRlOEfb0qLR3gn39QbjlXjOGHQ2E75Nl/qR//5wtGd07u2nIoRsclsqx4gOt12AkpdA/s=
@@ -10,7 +13,7 @@
  </layer>
  <layer name="stengel" width="25" height="25">
   <data encoding="base64" compression="zlib">
-   eJylVUkOxDAIQ0r//+Y5RbIs20DGl6YQ9iVVVV9pHPr/BJ3vONqlKx1XN/tx6It8vM9nxjQ+BecvxoI056vTweeU2yNoCS7uLdDmJr/I4ztf6VhcD1yeymuy26G718W+waR2k5x09H/kk840v0hLfX7r7naLkkObau4YmzopGy91drOp+l7ZTXjtu67f0p7e6pvUU+Glt1ONVH91OU9vR+cL2+v8xvM2Z8jfvF0TmS4Hne6E6Ww4WfwquWmcLka3txxcHXhPKX63X9x+ZKD+HwdWAgQ=
+   eJy1VUcOgDAMi9Qe+P+LEYdKlmVngPCFkjR7NCJih8ai/y3ofMfRHlxGx9HNfiz6Ih/v85nRjU/B+buE3hXeV6eDz1lul6BlcHFPgTYn+UUe39mhY3E9cHgqr5ndCtW9KvYJOrXr5KSif5HPdGLPZ3Of9fmpu9stSg5tqrljTOqkbLyps5tN1ffKboa3fVf1m+NP6Yr3R2+irUyOa1HlPHs7Kl/YXuU3nqc5Q/7k7erIVDmodGfozoaTxa+S68bpYnR7y8HVgffUg4v41X5x+5GBPt84AgIO
   </data>
  </layer>
  <layer name="bushs" width="25" height="25">
