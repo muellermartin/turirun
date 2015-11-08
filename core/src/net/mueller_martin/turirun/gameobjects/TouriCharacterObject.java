@@ -27,15 +27,13 @@ public class TouriCharacterObject extends CharacterObject
         super(x,y);
     }
 
-
     @Override
-    public void isCollusion(GameObject otherObject , CollusionDirections.CollusionDirectionsTypes type)
+    public void isCollusion(GameObject otherObject, CollusionDirections.CollusionDirectionsTypes type)
     {
         super.isCollusion(otherObject, type);
 
         if(otherObject instanceof BushGameObject)
         {
-            System.out.println("intersection");
             this.invisible = true;
         }
     }

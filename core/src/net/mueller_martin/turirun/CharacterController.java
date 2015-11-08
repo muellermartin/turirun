@@ -31,6 +31,8 @@ public class CharacterController {
 		}
 
 
+
+
 		this.character.lastPosition = new Vector2(this.character.currentPosition.x, this.character.currentPosition.y);
 		if (Gdx.input.isKeyPressed(Input.Keys.LEFT))
 		{

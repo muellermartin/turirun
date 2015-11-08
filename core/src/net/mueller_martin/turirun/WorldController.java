@@ -44,7 +44,7 @@ public class WorldController {
     public ObjectController objs;
     public Level level;
     public int checkpointCount = 0;
-    public int checkpointsNeeded = 1;
+    public int checkpointsNeeded = 0;
 
     public CharacterController controller;
 
@@ -130,6 +130,7 @@ public class WorldController {
                     // Spawn Checkpoint
                     CheckpointGameObject checkpoint = new CheckpointGameObject(x * tilePixelWidth, y*tilePixelWidth, 168, 119);
                     this.objs.addObject(checkpoint);
+                    checkpointsNeeded++;
                 }
             }
         }
