@@ -12,7 +12,8 @@ public class Turirun extends Game
 	String host = "127.0.0.1";
 	int port = 1337;
 	String nickname = "Unnamed";
-	
+	String winner = "";
+
 	@Override
 	public void create () {
 		batch = new SpriteBatch();

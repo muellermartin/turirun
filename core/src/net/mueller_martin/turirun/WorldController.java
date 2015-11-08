@@ -301,8 +301,12 @@ public class WorldController {
             checkpointCount++;
 
             if (checkpointCount == checkpointsNeeded) {
-                // TODO Tourist won!
-                System.out.println("Tourist won!");
+                // TODO Tourists won!
+                System.out.println("Tourists won!");
+
+                // Set string for game over screen
+                this.game.winner = "Tourists";
+                this.game.screenManager.setScreenState(Constants.GAMEOVERSCREEN);
             }
         }
     }

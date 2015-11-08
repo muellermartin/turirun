@@ -7,12 +7,14 @@ import com.badlogic.gdx.Screen;
 import net.mueller_martin.turirun.screens.GameScreen;
 import net.mueller_martin.turirun.MainMenuScreen;
 import net.mueller_martin.turirun.JoinMenuScreen;
+import net.mueller_martin.turirun.GameOverScreen;
 
 public class ScreenManager {
     public final static String TAG = ScreenManager.class.getName();
     GameScreen gameScreen;
     MainMenuScreen menuScreen;
     JoinMenuScreen joinMenuScreen;
+    GameOverScreen gameOverScreen;
     public Turirun game;
     boolean switchScreen;
     int state = 0;
@@ -49,7 +51,6 @@ public class ScreenManager {
                 case Constants.MENUSCREEN:
                     MusicBox.instance.playSound(Constants.AUDIO_MENUSWITCH);
                     menuScreen = new MainMenuScreen(this);
-
                     game.setScreen(menuScreen);
                     break;
 
@@ -59,6 +60,12 @@ public class ScreenManager {
                     game.setScreen(joinMenuScreen);
                     menuScreen.dispose();
                     break;
+
+                case Constants.GAMEOVERSCREEN:
+                    gameOverScreen = new GameOverScreen(this);
+                    MusicBox.instance.playSound(Constants.AUDIO_MENUSWITCH);
+                    game.setScreen(gameOverScreen);
+                    break;
             }
         }
     }
@@ -67,7 +74,6 @@ public class ScreenManager {
     {
         if(game.getScreen() != null)
         {
-
             switch(state)
             {
                 case Constants.GAMESCREEN:
@@ -81,6 +87,7 @@ public class ScreenManager {
 
                 case Constants.JOINMENUSCREEN:
                     joinMenuScreen.render(delta);
+                    break;
 
               //  case Constants.SCREEN_MENU_AFTER_GAMEOVER:
               //      menuScreen.render(delta);

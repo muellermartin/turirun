@@ -5,7 +5,6 @@ import com.badlogic.gdx.graphics.Color;
 
 public class Constants
 {
-
 	// GFX
 	public final static String TEXTURE_ATLAS_OBJECTS = "gfx/turirun.pack";
 
@@ -23,6 +22,7 @@ public class Constants
 	public final static int GAMESCREEN = 10;
 	public final static int MENUSCREEN = 20;
 	public final static int JOINMENUSCREEN = 30;
+	public final static int GAMEOVERSCREEN = 40;
 
 	// AUDIO
 	public final static int AUDIO_CANNIBALEAT = 10;
@@ -43,16 +43,12 @@ public class Constants
 	public final static int AUDIO_LOOP5 = 160;
 	public final static int AUDIO_LOOP6 = 170;
 
-
 	// Battle Radius
 	public final static int BATTLE_RADIUS = 64;
 
-	//PlayerMove
+	// Player movement
 	public final static int PLAYER_RUN_BOTTOM = 10;
 	public final static int PLAYER_RUN_TOP = 20;
 	public final static int PLAYER_RUN_LEFT = 30;
 	public final static int PLAYER_RUN_RIGHT = 40;
-
-
-
 }

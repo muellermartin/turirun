@@ -12,23 +12,22 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle;
-import com.badlogic.gdx.scenes.scene2d.ui.TextField.TextFieldStyle;
 import com.badlogic.gdx.scenes.scene2d.utils.BaseDrawable;
-import com.badlogic.gdx.scenes.scene2d.ui.TextField;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton.TextButtonStyle;
 
-public class JoinMenuScreen extends ScreenAdapter {
-	public final static String TAG = JoinMenuScreen.class.getName();
+public class GameOverScreen extends ScreenAdapter {
+	public final static String TAG = GameOverScreen.class.getName();
 	ScreenManager screenManager;
 	Stage stage;
 	Table table;
-	TextField nickText;
-	TextField hostText;
-	TextField portText;
+	String winner;
 
-	public JoinMenuScreen(ScreenManager s) {
+	public GameOverScreen(ScreenManager s) {
 		this.screenManager = s;
+
+		// Load winner string from main class
+		winner = s.game.winner;
 
 		MusicBox.instance.loopTheme(Constants.AUDIO_LOOP1);
 		stage = new Stage();
@@ -37,51 +36,38 @@ public class JoinMenuScreen extends ScreenAdapter {
 		BaseDrawable dummy = new BaseDrawable(); // Replaces cursor, background etc.
 
 		LabelStyle labelStyle = new LabelStyle(font, Color.WHITE);
-		Label nickLabel = new Label("Nickname:", labelStyle);
-		Label hostLabel = new Label("Host:", labelStyle);
-		Label portLabel = new Label("Port:", labelStyle);
-
-		TextFieldStyle textFieldStyle = new TextFieldStyle(font, Color.WHITE, dummy, dummy, dummy);
-		nickText = new TextField("Unnamed", textFieldStyle);
-		hostText = new TextField("127.0.0.1", textFieldStyle);
-		portText = new TextField("1337", textFieldStyle);
+		Label gameOverLabel = new Label("Game Over", labelStyle);
+		Label winnerLabel = new Label(winner + " win", labelStyle);
 
 		TextButtonStyle textButtonStyle = new TextButtonStyle(dummy, dummy, dummy, font);
-		TextButton backButton = new TextButton("Back", textButtonStyle);
-		TextButton startButton = new TextButton("Start", textButtonStyle);
+		TextButton quitButton = new TextButton("Quit", textButtonStyle);
+		TextButton menuButton = new TextButton("Menu", textButtonStyle);
 
 		table.setFillParent(true);
 		stage.addActor(table);
 
 		table.row();
-		table.add(nickLabel).left().padRight(10);
-		table.add(nickText);
+		table.add(gameOverLabel).expand().colspan(2);
 		table.row();
-		table.add(hostLabel).left();
-		table.add(hostText);
+		table.add(winnerLabel).expand().top().colspan(2);
 		table.row();
-		table.add(portLabel).left();
-		table.add(portText);
-		table.row();
-		table.add(backButton);
-		table.add(startButton);
+		table.add(quitButton).minHeight(100);
+		table.add(menuButton);
 
-		backButton.addListener(new ClickListener() {
+		quitButton.addListener(new ClickListener() {
 			@Override
 			public void clicked(InputEvent event, float x, float y) {
 				MusicBox.instance.stopMusic(Constants.AUDIO_LOOP1);
-				screenManager.setScreenState(Constants.MENUSCREEN);
+				Gdx.app.exit();
 			}
 		});
 
-		startButton.addListener(new ClickListener() {
+		menuButton.addListener(new ClickListener() {
 			@Override
 			public void clicked(InputEvent event, float x, float y) {
-				screenManager.game.host = hostText.getText();
-				screenManager.game.port = Integer.parseInt(portText.getText());
-				screenManager.game.nickname = nickText.getText();
+				screenManager.game.reset();
 				MusicBox.instance.stopMusic(Constants.AUDIO_LOOP1);
-				screenManager.setScreenState(Constants.GAMESCREEN);
+				screenManager.setScreenState(Constants.MENUSCREEN);
 			}
 		});
 
