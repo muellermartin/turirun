@@ -72,7 +72,7 @@ public class CharacterController {
 			{
 				character.ani = AssetOrganizer.instance.cannibalRunTop.cannibalRunTop;
 			}
-			this.character.currentPosition.add(0,speed);
+			this.character.currentPosition.add(0, speed);
 		} else if (Gdx.input.isKeyPressed(Input.Keys.DOWN)) {
 			//Gdx.app.log(TAG,"DOWN");
 			this.character.currentPosition.add(0,-speed);

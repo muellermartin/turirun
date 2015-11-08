@@ -23,7 +23,6 @@ public class MusicBox
 		audio = true;
 		jukeBoxPlay = false;
 
-		Gdx.app.log(TAG,"audio: "+audio);
 
 	}
 
@@ -31,8 +30,6 @@ public class MusicBox
 	{
 		if(audio)
 		{
-
-
 			switch(x)
 			{
 			case Constants.AUDIO_CANNIBALEAT:
@@ -96,11 +93,7 @@ public class MusicBox
 				case Constants.AUDIO_LOOP6:
 					AssetOrganizer.instance.music_loop6.music_loop6.play();
 					break;
-
-
 			}
-
-
 		}
 	}
 
@@ -200,8 +193,10 @@ public class MusicBox
 	{
 		if(!checkIfMusicPlays())
 		{
-			Gdx.app.log(TAG,"new Loop");
-			this.playSound(musicArray[MathUtils.random(0,5)]);
+			Gdx.app.log(TAG, "new Loop");
+			int a = MathUtils.random(0,5);
+			Gdx.app.log(TAG,"RANDOM MATH: "+a);
+			this.playSound(musicArray[a]);
 		}
 	}
 

@@ -10,6 +10,8 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import net.mueller_martin.turirun.CameraHelper;
+import net.mueller_martin.turirun.Constants;
+import net.mueller_martin.turirun.MusicBox;
 import net.mueller_martin.turirun.network.TurirunNetwork;
 import net.mueller_martin.turirun.utils.CollusionDirections;
 
@@ -58,6 +60,7 @@ public class CheckpointGameObject extends GameObject {
                 this.timer = 0.0f;
                 checked = true;
                 System.out.println("TIMER BAAAAAAM");
+                MusicBox.instance.playSound(Constants.AUDIO_CHEERING);
             }
 
             // Reset für nächsten Test

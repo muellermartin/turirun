@@ -143,8 +143,6 @@ public class AssetOrganizer implements Disposable, AssetErrorListener
         cannibalRunTop = new CannibalRunTop(atlas);
         cannibalRunRight = new CannibalRunRight(atlas);
 
-
-
     }
 
         public class MenuBtnBg
@@ -173,10 +171,6 @@ public class AssetOrganizer implements Disposable, AssetErrorListener
             btnPlay = atlas.findRegion("btnPlay");
         }
     }
-
-
-
-
     // GFX
     public class Stone
     {
