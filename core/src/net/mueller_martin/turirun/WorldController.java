@@ -25,6 +25,7 @@ import net.mueller_martin.turirun.network.TurirunNetwork.RemoveCharacter;
 import net.mueller_martin.turirun.network.TurirunNetwork.HitCharacter;
 import net.mueller_martin.turirun.network.TurirunNetwork.DeadCharacter;
 import net.mueller_martin.turirun.network.TurirunNetwork.AssignCharacter;
+import net.mueller_martin.turirun.network.TurirunNetwork.CheckpointCheck;
 import net.mueller_martin.turirun.utils.CollusionDirections;
 
 import java.util.ArrayList;
@@ -138,6 +139,7 @@ public class WorldController {
         // checkpoints
         layer = (TiledMapTileLayer) level.map.getLayers().get("checkpoint");
 
+        int ci = 0;
         for(int x = 0; x < layer.getWidth(); x++)
         {
             for(int y = 0; y < layer.getHeight(); y++)
@@ -146,8 +148,11 @@ public class WorldController {
                 {
                     // Spawn Checkpoint
                     CheckpointGameObject checkpoint = new CheckpointGameObject(x * tilePixelWidth, y*tilePixelWidth, 168, 119);
+                    checkpoint.client = this.client;
+                    checkpoint.checkpointID = ci;
                     this.objs.addObject(checkpoint);
                     checkpointsNeeded++;
+                    ci++;
                 }
             }
         }
@@ -472,6 +477,19 @@ public class WorldController {
                     }
                     del.add(event);
                     continue;
+                }
+                // Checkpoint Checked
+                if (event instanceof CheckpointCheck) {
+                    CheckpointCheck msg = (CheckpointCheck)event;
+
+                    for(GameObject obj : objs.getObjects()) {
+                        if (obj instanceof CheckpointGameObject) {
+                            CheckpointGameObject cObj = (CheckpointGameObject)obj;
+                            if (cObj.checkpointID == obj.id) {
+                                cObj.checked = true;
+                            }
+                        }
+                    }
                 }
             }
         }

@@ -2,6 +2,7 @@ package net.mueller_martin.turirun.server;
 
 import java.io.IOException;
 import java.util.HashSet;
+import java.util.ArrayList;
 
 import com.esotericsoftware.kryonet.Server;
 import com.esotericsoftware.kryonet.Connection;
@@ -17,6 +18,7 @@ import net.mueller_martin.turirun.network.TurirunNetwork.MoveCharacter;
 import net.mueller_martin.turirun.network.TurirunNetwork.HitCharacter;
 import net.mueller_martin.turirun.network.TurirunNetwork.DeadCharacter;
 import net.mueller_martin.turirun.network.TurirunNetwork.AssignCharacter;
+import net.mueller_martin.turirun.network.TurirunNetwork.CheckpointCheck;
 
 public class TurirunServer {
 	static Server server;
@@ -24,6 +26,7 @@ public class TurirunServer {
 	static HashSet<CharacterConnection> characters = new HashSet<CharacterConnection>();
 
 	public static int next_uuid = 0;
+	public static ArrayList<Integer> checkedCheckpoints = new ArrayList<Integer>();
 
 	public static void main(String[] args) {
 		try {
@@ -86,6 +89,14 @@ public class TurirunServer {
 
 						characters.add(connection);
 
+						// Send Checked Checkpoints
+						for (int checkpoint : checkedCheckpoints) {
+							CheckpointCheck msg = new CheckpointCheck();
+							msg.id = checkpoint;
+							connection.sendTCP(msg);
+						}
+
+
 						System.out.println("New player registered: " + character.nick);
 						System.out.println("Assigned type: " + character.type);
 					}
@@ -134,6 +145,13 @@ public class TurirunServer {
 
 						DeadCharacter hit = (DeadCharacter)obj;
 						server.sendToAllTCP(hit);
+					}
+					if (obj instanceof CheckpointCheck) {
+						CheckpointCheck msg = (CheckpointCheck)obj;
+						if (!checkedCheckpoints.contains(msg.id))
+							checkedCheckpoints.add(msg.id);
+
+						server.sendToAllTCP(msg);
 					}
 				}
 
