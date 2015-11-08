@@ -19,11 +19,13 @@ public class CharacterController {
 	private ObjectController objs;
 	private Client client;
 	private boolean isTouri;
+	public boolean isMove;
 
 	public CharacterController(ObjectController objs, Client client) {
 		this.objs = objs;
 		this.client = client;
 		this.isTouri = false;
+		this.isMove = false;
 
 		//prevent null animation
 
@@ -42,6 +44,7 @@ public class CharacterController {
 		this.character.lastPosition = new Vector2(this.character.currentPosition.x, this.character.currentPosition.y);
 		if (Gdx.input.isKeyPressed(Input.Keys.LEFT))
 		{
+			this.isMove = true;
 			this.character.currentPosition.add(-speed*Gdx.graphics.getDeltaTime(),0);
 			if(isTouri)
 			{
@@ -53,6 +56,7 @@ public class CharacterController {
 			}
 
 		} else if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
+			this.isMove = true;
 			this.character.currentPosition.add(+speed*Gdx.graphics.getDeltaTime(), 0);
 			if(isTouri)
 			{
@@ -64,6 +68,7 @@ public class CharacterController {
 			}
 		}
 		if (Gdx.input.isKeyPressed(Input.Keys.UP)) {
+			this.isMove = true;
 			if(isTouri)
 			{
 				character.ani = AssetOrganizer.instance.turiRunTop.turiRunTop;
@@ -74,6 +79,7 @@ public class CharacterController {
 			}
 			this.character.currentPosition.add(0, speed*Gdx.graphics.getDeltaTime());
 		} else if (Gdx.input.isKeyPressed(Input.Keys.DOWN)) {
+			this.isMove = true;
 			//Gdx.app.log(TAG,"DOWN");
 			this.character.currentPosition.add(0,-speed*Gdx.graphics.getDeltaTime());
 			if(isTouri)
@@ -87,6 +93,7 @@ public class CharacterController {
 		}
 		else if(!Gdx.input.isKeyPressed(Input.Keys.ANY_KEY))
 		{
+			this.isMove = true;
 			if(isTouri)
 			{
 				character.ani = AssetOrganizer.instance.turiIdle.turiIdle;

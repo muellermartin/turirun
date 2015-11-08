@@ -60,7 +60,7 @@ public class CheckpointGameObject extends GameObject {
                 this.timer = 0.0f;
                 checked = true;
                 System.out.println("TIMER BAAAAAAM");
-                MusicBox.instance.playSound(Constants.AUDIO_CHEERING);
+                MusicBox.instance.playSound(Constants.AUDIO_CAMERASOUND);
             }
 
             // Reset für nächsten Test
