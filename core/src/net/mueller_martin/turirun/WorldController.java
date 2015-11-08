@@ -50,10 +50,13 @@ public class WorldController {
 
     public static List<Object> events;
 
+    public long lastUpdate;
+
     public WorldController(Turirun game) {
     	this.game = game;
     	this.objs = new ObjectController();
     	this.client = new Client();
+        this.lastUpdate = System.currentTimeMillis()/10;
 
         // Create Character Input Controller
         controller = new CharacterController(this.objs, this.client);
@@ -194,13 +197,17 @@ public class WorldController {
 		if (controller.character != null) {
 			// FIXME: last and current postition are always equal
 			//if (controller.character.currentPosition.x != controller.character.lastPosition.x || controller.character.currentPosition.y != controller.character.lastPosition.y)
-			{
+            long t = System.currentTimeMillis()/10;
+			if (controller.isMove && t%2==0 && t != this.lastUpdate){
 				MoveCharacter move = new MoveCharacter();
 
 				move.x = controller.character.currentPosition.x;
 				move.y = controller.character.currentPosition.y;
 
 				client.sendTCP(move);
+                controller.isMove = false;
+
+                this.lastUpdate = t;
 			}
 		}
 
