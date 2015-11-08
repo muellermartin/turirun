@@ -36,7 +36,6 @@ public class BushGameObject  extends GameObject
     @Override
     public void draw(SpriteBatch batch)
     {
-
         /*
         shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
         shapeRenderer.setProjectionMatrix(CameraHelper.instance.camera.combined);
@@ -44,7 +43,5 @@ public class BushGameObject  extends GameObject
         shapeRenderer.rect(this.currentPosition.x, this.currentPosition.y, this.size.x, this.size.y);
         shapeRenderer.end();
         */
-
-
     }
 }
