@@ -72,6 +72,8 @@ public class AssetOrganizer implements Disposable, AssetErrorListener
 
     public SterbeAnimation sterbeAnimation;
 
+    public DeadBody deadBody;
+
     public AssetOrganizer()
     {
 
@@ -150,6 +152,7 @@ public class AssetOrganizer implements Disposable, AssetErrorListener
         cannibalIdle = new CannibalIdle(atlas);
 
         sterbeAnimation = new SterbeAnimation(atlas);
+        deadBody = new DeadBody(atlas);
     }
 
         public class MenuBtnBg
@@ -187,11 +190,15 @@ public class AssetOrganizer implements Disposable, AssetErrorListener
             stone = atlas.findRegion("tile_5botanik");
         }
     }
-    public class Player
-    {
+    public class Player {
         public final TextureAtlas.AtlasRegion player;
-        public Player(TextureAtlas atlas){ player = atlas.findRegion("tourist_front_walk1");}
+
+        public Player(TextureAtlas atlas) {
+            player = atlas.findRegion("tourist_front_walk1");
+        }
     }
+
+
 
 
 
@@ -315,6 +322,16 @@ public class AssetOrganizer implements Disposable, AssetErrorListener
             sterbeanimation = new Animation(1/6f, new TextureRegion(atlas.findRegion("tourist_death1")),new TextureRegion(atlas.findRegion("tourist_death2")),new TextureRegion(atlas.findRegion("tourist_death3")),new TextureRegion(atlas.findRegion("tourist_death4")),new TextureRegion(atlas.findRegion("tourist_death5")),new TextureRegion(atlas.findRegion("tourist_death6")));
         }
     }
+
+    public class DeadBody
+    {
+        public final Animation deadBody;
+
+        public DeadBody (TextureAtlas atlas) {
+            deadBody = new Animation(1, new TextureRegion(atlas.findRegion("tourist_death6")));
+        }
+    }
+
 
 
     // AUDIO
@@ -470,6 +487,9 @@ public class AssetOrganizer implements Disposable, AssetErrorListener
             music_loop6 = audio.newMusic(Gdx.files.internal("audio/audio_themeLoop6.ogg"));
         }
     }
+
+
+
 
 
 

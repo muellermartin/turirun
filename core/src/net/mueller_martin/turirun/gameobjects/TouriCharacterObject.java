@@ -17,6 +17,7 @@ import net.mueller_martin.turirun.utils.CollusionDirections;
 public class TouriCharacterObject extends CharacterObject
 {
     public boolean invisible = false;
+    public boolean deadAnimationPlayed = false;
     public float timer = 0.0f;
     public boolean cooldown = false;
 
@@ -29,7 +30,7 @@ public class TouriCharacterObject extends CharacterObject
 
     public TouriCharacterObject (float x, float y)
     {
-        super(x,y);
+        super(x, y);
     }
 
     @Override
@@ -46,7 +47,22 @@ public class TouriCharacterObject extends CharacterObject
     public void update(float deltaTime)
     {
         this.bounds.setPosition(this.currentPosition.x, this.currentPosition.y);
+        if(isDead)
+        {
+            if(!deadAnimationPlayed)
+            {
+                this.ani = AssetOrganizer.instance.sterbeAnimation.sterbeanimation;
+                if(ani.isAnimationFinished(stateTime))
+                {
+                    this.deadAnimationPlayed = true;
+                }
+            }
+            else
+            {
+                this.ani = AssetOrganizer.instance.deadBody.deadBody;
+            }
 
+        }
         // Reset für nächsten Test
         this.invisible = false;
     }
