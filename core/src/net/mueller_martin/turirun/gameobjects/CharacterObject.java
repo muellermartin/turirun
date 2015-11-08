@@ -28,6 +28,14 @@ public class CharacterObject extends GameObject {
 	protected BitmapFont font;
 	protected GlyphLayout layout;
 	public Animation ani;
+	public enum Direction {
+		LEFT,
+		RIGHT,
+		TOP,
+		DOWN
+	};
+	public Direction direction = Direction.DOWN;
+	public boolean idle = true;
 
 	public int xOffsetTexture = 0;
 	public int yOffsetTexture = 0;
@@ -43,9 +51,6 @@ public class CharacterObject extends GameObject {
 		this.shapeRenderer = new ShapeRenderer();
 		this.font = new BitmapFont();
 		this.layout = new GlyphLayout();
-
-		ani = AssetOrganizer.instance.turiRunTop.turiRunTop;
-
 	}
 
 	@Override
@@ -73,7 +78,6 @@ public class CharacterObject extends GameObject {
 					break;
 			}
 		}
-
 	}
 
 	@Override
@@ -86,12 +90,14 @@ public class CharacterObject extends GameObject {
 		shapeRenderer.rect(this.bounds.x, this.bounds.y, this.bounds.getWidth(), this.bounds.getHeight());
 		shapeRenderer.end();
 		*/
+		/*
 		stateTime += Gdx.graphics.getDeltaTime();
 		currentFrame = ani.getKeyFrame(stateTime, true);
 		batch.begin();
 		batch.setProjectionMatrix(CameraHelper.instance.camera.combined);
 		batch.draw(currentFrame, currentPosition.x + xOffsetTexture, currentPosition.y + yOffsetTexture, currentFrame.getRegionWidth(), currentFrame.getRegionHeight());
 		batch.end();
+		*/
 	}
 
 	public void setNick(String nick) {
