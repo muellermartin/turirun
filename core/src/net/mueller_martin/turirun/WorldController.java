@@ -46,6 +46,11 @@ public class WorldController {
     public int checkpointCount = 0;
     public int checkpointsNeeded = 0;
 
+    public int playingTouries = 0;
+    public int deadTouries = 0;
+
+    public float deltaTimeUpdate = 0;
+
     public CharacterController controller;
 
     public static List<Object> events;
@@ -194,13 +199,19 @@ public class WorldController {
 		if (controller.character != null) {
 			// FIXME: last and current postition are always equal
 			//if (controller.character.currentPosition.x != controller.character.lastPosition.x || controller.character.currentPosition.y != controller.character.lastPosition.y)
-			{
+			deltaTimeUpdate += deltaTime;
+            System.out.println(deltaTimeUpdate);
+
+            if (deltaTimeUpdate > 1){
 				MoveCharacter move = new MoveCharacter();
 
 				move.x = controller.character.currentPosition.x;
 				move.y = controller.character.currentPosition.y;
 
 				client.sendTCP(move);
+                controller.isMove = false;
+
+                deltaTimeUpdate = 0;
 			}
 		}
 
@@ -259,6 +270,16 @@ public class WorldController {
     		obj.update(deltaTime);
             resetIfOutsideOfMap(obj);
             checkCheckpoints(obj);
+            checkDeadTouries();
+
+            // check for dead players
+            if (obj instanceof CharacterObject)
+            {
+                if(((CharacterObject) obj).isDead)
+                {
+                    deadTouries++;
+                }
+            }
     	}
 
         // check for collusion
@@ -315,6 +336,19 @@ public class WorldController {
         }
     }
 
+    private void checkDeadTouries()
+    {
+        if (deadTouries == playingTouries && deadTouries > 0)
+        {
+            // TODO Kannibalen won!
+            System.out.println("Cannibals won!");
+
+            // Set string for game over screen
+            this.game.winner = "Cannibals";
+            this.game.screenManager.setScreenState(Constants.GAMEOVERSCREEN);
+        }
+    }
+
     private void updateEvents() {
         ArrayList<Object> del = new ArrayList<Object>();
 
@@ -326,9 +360,13 @@ public class WorldController {
                     CharacterObject newPlayer;
 
                     if (msg.character.type == 1)
+                    {
                         newPlayer = new TouriCharacterObject(msg.character.x, msg.character.y);
-                    else
+                        playingTouries++;
+                    }
+                    else {
                         newPlayer = new KannibaleCharacterObject(msg.character.x, msg.character.y);
+                    }
 
                     newPlayer.setNick(msg.character.nick);
                     objs.addObject(msg.character.id, newPlayer);
