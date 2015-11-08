@@ -224,6 +224,7 @@ public class WorldController {
 				move.x = controller.character.currentPosition.x;
 				move.y = controller.character.currentPosition.y;
 				move.direction = controller.character.direction.getValue();
+				move.idle = controller.character.idle;
 
 				client.sendTCP(move);
 
@@ -442,7 +443,7 @@ public class WorldController {
                     if (player != null) {
                         player.currentPosition = new Vector2(msg.x, msg.y);
                         player.direction = Direction.values()[msg.direction];
-                        player.idle = false; // FIXME: This is an *ugly* hack ;D
+                        player.idle = msg.idle;
                     }
                     del.add(event);
                     continue;
