@@ -342,7 +342,7 @@ public class AssetOrganizer implements Disposable, AssetErrorListener
         public final Sound audio_cannibalsEat;
         public Audio_CannibalsEat()
         {
-            audio_cannibalsEat = audio.newSound(Gdx.files.internal("audio/audio_CannibalsEat.ogg"));
+            audio_cannibalsEat = audio.newSound(Gdx.files.internal("audio/audio_cannibalsEat.ogg"));
         }
     }
 
