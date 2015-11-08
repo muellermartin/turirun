@@ -65,7 +65,7 @@ public class GameOverScreen extends ScreenAdapter {
 		menuButton.addListener(new ClickListener() {
 			@Override
 			public void clicked(InputEvent event, float x, float y) {
-				screenManager.game.reset();
+				//screenManager.game.reset();
 				MusicBox.instance.stopMusic(Constants.AUDIO_LOOP1);
 				screenManager.setScreenState(Constants.MENUSCREEN);
 			}

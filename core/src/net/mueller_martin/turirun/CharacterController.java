@@ -12,15 +12,17 @@ import net.mueller_martin.turirun.network.TurirunNetwork.HitCharacter;
 import net.mueller_martin.turirun.network.TurirunNetwork.DeadCharacter;
 
 public class CharacterController {
-
-	public GameObject character;
+	public final static String TAG = CharacterController.class.getName();
+	public CharacterObject character;
 	private int speed = 7;
 	private ObjectController objs;
 	private Client client;
+	private boolean isTouri;
 
 	public CharacterController(ObjectController objs, Client client) {
 		this.objs = objs;
 		this.client = client;
+		this.isTouri = false;
 	}
 
 	public void update(float deltaTime) {
@@ -30,27 +32,72 @@ public class CharacterController {
 			return;
 		}
 
+		if(this.character instanceof TouriCharacterObject)
+		{
+			isTouri = true;
+			character.ani = AssetOrganizer.instance.turiRunRight.turiRunRight;
+			Gdx.app.log(TAG,"right did Work");
+		}
 
 
 
 		this.character.lastPosition = new Vector2(this.character.currentPosition.x, this.character.currentPosition.y);
 		if (Gdx.input.isKeyPressed(Input.Keys.LEFT))
 		{
+			Gdx.app.log(TAG,"LEFT");
 			this.character.currentPosition.add(-speed,0);
+			if(isTouri)
+			{
+				character.ani = AssetOrganizer.instance.turiRunLeft.turiRunLeft;
+			}
+			else
+			{
+				character.ani = AssetOrganizer.instance.cannibalRunLeft.cannibalRunLeft;
+			}
+
 		} else if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
 			this.character.currentPosition.add(+speed,0);
+			Gdx.app.log(TAG, "RIGHT");
+			if(isTouri)
+			{
+
+				character.ani = AssetOrganizer.instance.turiRunRight.turiRunRight;
+			}
+			else
+			{
+				character.ani = AssetOrganizer.instance.cannibalRunRight.cannibalRunRight;
+			}
 		}
 		if (Gdx.input.isKeyPressed(Input.Keys.UP)) {
+			Gdx.app.log(TAG, "UP");
+
+			if(isTouri)
+			{
+				character.ani = AssetOrganizer.instance.turiRunTop.turiRunTop;
+			}
+			else
+			{
+				character.ani = AssetOrganizer.instance.cannibalRunTop.cannibalRunTop;
+			}
 			this.character.currentPosition.add(0,speed);
 		} else if (Gdx.input.isKeyPressed(Input.Keys.DOWN)) {
+			Gdx.app.log(TAG,"DOWN");
 			this.character.currentPosition.add(0,-speed);
+			if(isTouri)
+			{
+				character.ani = AssetOrganizer.instance.turiRunDown.turiRunDown;
+			}
+			else
+			{
+				character.ani = AssetOrganizer.instance.cannibalRunDown.cannibalRunDown;
+			}
 		}
 		if (Gdx.input.isKeyPressed(Input.Keys.SPACE)) {
 			this.tryBattle();
 		}
 	}
 
-	public void setPlayerObj(GameObject character) {
+	public void setPlayerObj(CharacterObject character) {
 		this.character = character;
 	}
 

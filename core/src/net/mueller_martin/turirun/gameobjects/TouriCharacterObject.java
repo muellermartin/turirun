@@ -31,6 +31,7 @@ public class TouriCharacterObject extends CharacterObject
     public void isCollusion(GameObject otherObject, CollusionDirections.CollusionDirectionsTypes type)
     {
         super.isCollusion(otherObject, type);
+       // System.out.println("Hallo from Parent: " + otherObject.getClass().toString());
 
         if(otherObject instanceof BushGameObject)
         {
@@ -50,9 +51,12 @@ public class TouriCharacterObject extends CharacterObject
     {
         if (!this.invisible)
         {
+            Gdx.app.log(TAG,"TuriRender");
+            stateTime += Gdx.graphics.getDeltaTime();
+            currentFrame = ani.getKeyFrame(stateTime, true);
             batch.begin();
             batch.setProjectionMatrix(CameraHelper.instance.camera.combined);
-            batch.draw(texture, currentPosition.x + super.xOffsetTexture, currentPosition.y + super.yOffsetTexture, texture.getRegionWidth(), texture.getRegionHeight());
+            batch.draw(currentFrame, currentPosition.x + super.xOffsetTexture, currentPosition.y + super.yOffsetTexture, texture.getRegionWidth(), texture.getRegionHeight());
 
             String nameText = this.username;
             this.layout.setText(this.font, nameText);

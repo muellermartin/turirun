@@ -198,66 +198,96 @@ public class AssetOrganizer implements Disposable, AssetErrorListener
     // ANIMATION
     // TURI
 
-    private class TuriRunDown
+
+
+    //das workt
+    public class TuriRunDown
     {
         public final Animation turiRunDown;
-        public TuriRunDown(TextureAtlas atlas) {
-            turiRunDown = new Animation(1/4f, new TextureRegion( atlas.findRegion("tourist_front_walk1").getTexture()),new TextureRegion(atlas.findRegion("tourist_front_walk2").getTexture()),new TextureRegion(atlas.findRegion("tourist_front_walk3")),new TextureRegion(atlas.findRegion("tourist_front_walk4")));}
+
+        public TuriRunDown (TextureAtlas atlas) {
+            turiRunDown = new Animation(1/4f, new TextureRegion( atlas.findRegion("tourist_front_walk1")),new TextureRegion(atlas.findRegion("tourist_front_walk2")),new TextureRegion(atlas.findRegion("tourist_front_walk3")),new TextureRegion(atlas.findRegion("tourist_front_walk4")));
+        }
     }
-    private class TuriRunTop {
+
+
+
+
+    public class TuriRunTop
+    {
         public final Animation turiRunTop;
 
-        public TuriRunTop(TextureAtlas atlas) {
-            turiRunTop = new Animation(1 / 4f, new TextureRegion(atlas.findRegion("tourist_back_walk1").getTexture()), new TextureRegion(atlas.findRegion("tourist_back_walk2").getTexture()), new TextureRegion(atlas.findRegion("tourist_back_walk3")), new TextureRegion(atlas.findRegion("tourist_back_walk4")));
-
-        }}
-
-        private class TuriRunLeft {
-            public final Animation turiRunLeft;
-
-            public TuriRunLeft(TextureAtlas atlas) {
-                turiRunLeft = new Animation(1 / 4f, new TextureRegion(atlas.findRegion("tourist_left_walk1").getTexture()), new TextureRegion(atlas.findRegion("tourist_left_walk2").getTexture()), new TextureRegion(atlas.findRegion("tourist_left_walk3")), new TextureRegion(atlas.findRegion("tourist_left_walk4")));
-            }
+        public TuriRunTop (TextureAtlas atlas) {
+            turiRunTop = new Animation(1/4f, new TextureRegion(atlas.findRegion("tourist_back_walk1")), new TextureRegion(atlas.findRegion("tourist_back_walk2")), new TextureRegion(atlas.findRegion("tourist_back_walk3")), new TextureRegion(atlas.findRegion("tourist_back_walk4")));
         }
+    }
 
-        private class TuriRunRight {
-            public final Animation turiRunRight;
 
-            public TuriRunRight(TextureAtlas atlas) {
-                turiRunRight = new Animation(1 / 4f, new TextureRegion(atlas.findRegion("tourist_right_walk1").getTexture()), new TextureRegion(atlas.findRegion("tourist_right_walk2").getTexture()), new TextureRegion(atlas.findRegion("tourist_right_walk3")), new TextureRegion(atlas.findRegion("tourist_right_walk4")));
-            }
+
+    public class TuriRunLeft
+    {
+        public final Animation turiRunLeft;
+
+        public TuriRunLeft (TextureAtlas atlas) {
+            turiRunLeft = new Animation(1/4f,  new TextureRegion(atlas.findRegion("tourist_left_walk1")), new TextureRegion(atlas.findRegion("tourist_left_walk2")), new TextureRegion(atlas.findRegion("tourist_left_walk3")), new TextureRegion(atlas.findRegion("tourist_left_walk4")));
         }
+    }
+
+
+    public class TuriRunRight
+    {
+        public final Animation turiRunRight;
+
+        public TuriRunRight (TextureAtlas atlas) {
+            turiRunRight = new Animation(1/4f,  new TextureRegion(atlas.findRegion("tourist_right_walk1")), new TextureRegion(atlas.findRegion("tourist_right_walk2")), new TextureRegion(atlas.findRegion("tourist_right_walk3")), new TextureRegion(atlas.findRegion("tourist_right_walk4")));
+        }
+    }
+
+
+
+
+
+
+
+
+
+
 
     // ANIMATION
     // Cannibal
-    private class CannibalRunDown
+    public class CannibalRunDown
     {
         public final Animation cannibalRunDown;
-        public CannibalRunDown(TextureAtlas atlas) {
-            cannibalRunDown = new Animation(1/4f, new TextureRegion( atlas.findRegion("cannibal_front_walk1").getTexture()),new TextureRegion(atlas.findRegion("cannibal_front_walk2").getTexture()),new TextureRegion(atlas.findRegion("cannibal_front_walk3")),new TextureRegion(atlas.findRegion("cannibal_front_walk4")));}
+
+        public CannibalRunDown (TextureAtlas atlas) {
+            cannibalRunDown = new Animation(1/4f, new TextureRegion( atlas.findRegion("cannibal_front_walk1")),new TextureRegion(atlas.findRegion("cannibal_front_walk2")),new TextureRegion(atlas.findRegion("cannibal_front_walk3")),new TextureRegion(atlas.findRegion("cannibal_front_walk1")));}
     }
-    private class CannibalRunTop {
+
+    public class CannibalRunTop
+    {
         public final Animation cannibalRunTop;
 
-        public CannibalRunTop(TextureAtlas atlas) {
+        public CannibalRunTop (TextureAtlas atlas) {
             cannibalRunTop = new Animation(1 / 4f, new TextureRegion(atlas.findRegion("cannibal_back_walk1").getTexture()), new TextureRegion(atlas.findRegion("cannibal_back_walk2").getTexture()), new TextureRegion(atlas.findRegion("cannibal_back_walk3")), new TextureRegion(atlas.findRegion("cannibal_back_walk4")));
         }}
 
-    private class CannibalRunLeft {
+    public class CannibalRunLeft
+    {
         public final Animation cannibalRunLeft;
 
-        public CannibalRunLeft(TextureAtlas atlas) {
-            cannibalRunLeft = new Animation(1 / 4f, new TextureRegion(atlas.findRegion("tourist_front_walk1").getTexture()), new TextureRegion(atlas.findRegion("tourist_front_walk2").getTexture()), new TextureRegion(atlas.findRegion("tourist_front_walk3")), new TextureRegion(atlas.findRegion("tourist_front_walk4")));
-        }
-    }
+        public CannibalRunLeft (TextureAtlas atlas) {
+            cannibalRunLeft = new Animation(1 / 4f, new TextureRegion(atlas.findRegion("cannibal_left_walk1").getTexture()), new TextureRegion(atlas.findRegion("cannibal_left_walk2").getTexture()), new TextureRegion(atlas.findRegion("cannibal_left_walk3")), new TextureRegion(atlas.findRegion("cannibal_left_walk4")));
+        }}
 
-    private class CannibalRunRight {
+
+    public class CannibalRunRight
+    {
         public final Animation cannibalRunRight;
 
-        public CannibalRunRight(TextureAtlas atlas) {
-            cannibalRunRight = new Animation(1 / 4f, new TextureRegion(atlas.findRegion("tourist_front_walk1").getTexture()), new TextureRegion(atlas.findRegion("tourist_front_walk2").getTexture()), new TextureRegion(atlas.findRegion("tourist_front_walk3")), new TextureRegion(atlas.findRegion("tourist_front_walk4")));
-        }
-    }
+        public CannibalRunRight (TextureAtlas atlas) {
+            cannibalRunRight = new Animation(1 / 4f, new TextureRegion(atlas.findRegion("cannibal_right_walk1").getTexture()), new TextureRegion(atlas.findRegion("cannibal_right_walk2").getTexture()), new TextureRegion(atlas.findRegion("cannibal_right_walk3")), new TextureRegion(atlas.findRegion("cannibal_right_walk4")));
+        }}
+
 
     // AUDIO
 

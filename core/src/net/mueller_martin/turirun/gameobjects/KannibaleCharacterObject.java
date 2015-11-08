@@ -2,7 +2,6 @@ package net.mueller_martin.turirun.gameobjects;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
-import net.mueller_martin.turirun.AssetOrganizer;
 import net.mueller_martin.turirun.CameraHelper;
 
 /**
@@ -13,6 +12,8 @@ public class KannibaleCharacterObject extends CharacterObject
     public KannibaleCharacterObject (float x, float y)
     {
         super(x,y);
+
+
     }
 
     public void draw(SpriteBatch batch) {

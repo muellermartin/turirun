@@ -29,7 +29,6 @@ public class GameObject {
 	private ShapeRenderer shapeRenderer;
 
 
-
 	public GameObject (float x, float y, TextureRegion t) {
 		this.texture = t;
 		this.currentPosition = new Vector2(x, y);
@@ -37,9 +36,8 @@ public class GameObject {
 		this.size = new Vector2(texture.getRegionWidth(), texture.getRegionHeight());
 		this.bounds = new TheTrueRectangle(x, y,size.x ,size.y );
 		//this.shapeRenderer = new ShapeRenderer();
-
-
 	}
+
 
 	public void update(float deltaTime)
 	{
@@ -47,6 +45,7 @@ public class GameObject {
 	}
 
 	public void draw(SpriteBatch batch) {
+
 		batch.begin();
 		batch.setProjectionMatrix(CameraHelper.instance.camera.combined);
 		batch.draw(texture, currentPosition.x, currentPosition.y, bounds.width,bounds.height);

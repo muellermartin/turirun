@@ -1,7 +1,11 @@
 package net.mueller_martin.turirun.gameobjects;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -16,16 +20,20 @@ import net.mueller_martin.turirun.utils.TheTrueRectangle;
  * Created by DM on 06.11.15.
  */
 public class CharacterObject extends GameObject {
+	public final static String TAG = CharacterObject.class.getName();
+
 	public String username = "Gast";
 	private ShapeRenderer shapeRenderer;
 	public boolean isDead = false;
 	protected BitmapFont font;
 	protected GlyphLayout layout;
+	public Animation ani;
 
 	public int xOffsetTexture = 0;
 	public int yOffsetTexture = 0;
 
-	Direction direction = Direction.UP;
+	float stateTime = 0;
+	public TextureRegion currentFrame;
 
 	public CharacterObject (float x, float y)
 	{
@@ -35,6 +43,9 @@ public class CharacterObject extends GameObject {
 		this.shapeRenderer = new ShapeRenderer();
 		this.font = new BitmapFont();
 		this.layout = new GlyphLayout();
+
+		ani = AssetOrganizer.instance.turiRunTop.turiRunTop;
+
 	}
 
 	@Override
@@ -42,12 +53,7 @@ public class CharacterObject extends GameObject {
 	{
 		this.bounds.setPosition(this.currentPosition.x, this.currentPosition.y);
 	}
-	public static enum Direction {
-		UP, // passierbar
-		DOWN, // unpassierbar
-		LEFT, // Start (Pfadanfang)
-		RIGHT // Ende (Pfadende)
-	}
+
 	@Override
 	public void isCollusion(GameObject otherObject, CollusionDirections.CollusionDirectionsTypes type)
 	{
@@ -81,9 +87,20 @@ public class CharacterObject extends GameObject {
 		shapeRenderer.end();
 		*/
 
+		if(ani == null)
+		{
+			Gdx.app.log(TAG,"ANI null");
+		}
+		if(currentFrame == null)
+		{
+			Gdx.app.log(TAG,"current Frame null");
+		}
+		stateTime += Gdx.graphics.getDeltaTime();
+		currentFrame = ani.getKeyFrame(stateTime, true);
 		batch.begin();
 		batch.setProjectionMatrix(CameraHelper.instance.camera.combined);
-		batch.draw(texture, currentPosition.x + xOffsetTexture, currentPosition.y + yOffsetTexture, texture.getRegionWidth(), texture.getRegionHeight());
+		batch.draw(currentFrame, currentPosition.x + xOffsetTexture, currentPosition.y + yOffsetTexture, texture.getRegionWidth(), texture.getRegionHeight());
+
 		batch.end();
 	}
 

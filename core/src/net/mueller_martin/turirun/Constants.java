@@ -51,4 +51,5 @@ public class Constants
 	public final static int PLAYER_RUN_TOP = 20;
 	public final static int PLAYER_RUN_LEFT = 30;
 	public final static int PLAYER_RUN_RIGHT = 40;
+
 }
