@@ -23,6 +23,7 @@ import net.mueller_martin.turirun.gameobjects.CharacterObject;
  */
 public class CheckpointGameObject extends GameObject {
     public boolean active = false;
+    private boolean playCameraSound = true;
 
     public float timer = 0.0f;
     public boolean checked = false;
@@ -52,7 +53,17 @@ public class CheckpointGameObject extends GameObject {
         {
             // Steht ein Spieler auf dem Feld
             if (this.active)
+            {
+
+
                 this.timer += deltaTime;
+                if(playCameraSound)
+                {
+                    MusicBox.instance.playSound(Constants.AUDIO_CAMERASOUND);
+                    playCameraSound = false;
+                }
+
+            }
             else
                 this.timer = 0.0f;
 
@@ -60,11 +71,13 @@ public class CheckpointGameObject extends GameObject {
                 this.timer = 0.0f;
                 checked = true;
                 System.out.println("TIMER BAAAAAAM");
-                MusicBox.instance.playSound(Constants.AUDIO_CAMERASOUND);
+
+                playCameraSound = true;
             }
 
             // Reset für nächsten Test
             this.active = false;
+
         }
     }
 
