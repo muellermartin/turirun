@@ -45,6 +45,7 @@ public class CharacterObject extends GameObject {
 	@Override
 	public void isCollusion(GameObject otherObject, CollusionDirections.CollusionDirectionsTypes type)
 	{
+		System.out.println("Hallo from Parent");
 		if(otherObject instanceof WallGameObject)
 		{
 			switch(type)

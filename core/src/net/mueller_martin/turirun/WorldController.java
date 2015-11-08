@@ -127,7 +127,7 @@ public class WorldController {
             {
                 if(layer.getCell(x, y) != null)
                 {
-                    // Spawn Bush
+                    // Spawn Checkpoint
                     CheckpointGameObject checkpoint = new CheckpointGameObject(x * tilePixelWidth, y*tilePixelWidth, 168, 119);
                     this.objs.addObject(checkpoint);
                 }
