@@ -304,9 +304,9 @@ public class WorldController {
                 }
             }
     	}
-        System.out.println(" timer: " +  timer);
+       // System.out.println(" timer: " +  timer);
         checkDeadTouries(this.timer > MAX_TIMER && MAX_TIMER != 0);
-        System.out.println(" MAX_TIMER: " +  MAX_TIMER);
+      //  System.out.println(" MAX_TIMER: " +  MAX_TIMER);
 
         // check for collusion
         for (GameObject obj: objs.getObjects()) {
@@ -368,7 +368,7 @@ public class WorldController {
     private void checkDeadTouries(boolean switchScreen)
     {
         System.out.println("switchScreen: " + switchScreen);
-        if (deadTouries == playingTouries && deadTouries > 0)
+         if (deadTouries == playingTouries && deadTouries > 0)
         {
             System.out.println("Cannibals won!");
             if(MAX_TIMER == 0)
