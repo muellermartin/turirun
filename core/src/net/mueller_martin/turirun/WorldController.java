@@ -47,6 +47,8 @@ public class WorldController {
 
     public int playingTouries = 0;
     public int deadTouries = 0;
+    int timer = 0;
+    int MAX_TIMER = 0;
 
     public float deltaTimeUpdate = 0;
 
@@ -197,7 +199,9 @@ public class WorldController {
     	}
     }
 
-    public void update(float deltaTime) {
+    public void update(float deltaTime)
+    {
+        this.timer += deltaTime; // timer for endscreen
         // Input Update
         controller.update(deltaTime);
 
@@ -277,7 +281,7 @@ public class WorldController {
     		obj.update(deltaTime);
             resetIfOutsideOfMap(obj);
             checkCheckpoints(obj);
-            checkDeadTouries();
+            checkDeadTouries(this.timer > MAX_TIMER && MAX_TIMER != 0);
 
             // check for dead players
             if (obj instanceof CharacterObject)
@@ -343,16 +347,19 @@ public class WorldController {
         }
     }
 
-    private void checkDeadTouries()
+    private void checkDeadTouries(boolean switchScreen)
     {
         if (deadTouries == playingTouries && deadTouries > 0)
         {
             // TODO Kannibalen won!
             System.out.println("Cannibals won!");
-
-            // Set string for game over screen
-            this.game.winner = "Cannibals";
-            this.game.screenManager.setScreenState(Constants.GAMEOVERSCREEN);
+            MAX_TIMER = 10;
+            if(switchScreen)
+            {
+                // Set string for game over screen
+                this.game.winner = "Cannibals";
+                this.game.screenManager.setScreenState(Constants.GAMEOVERSCREEN);
+            }
         }
     }
 
@@ -447,7 +454,7 @@ public class WorldController {
                     CharacterObject player = (CharacterObject)objs.getObject(msg.id);
                     if (player != null && !player.isDead) {
                         player.isDead = true;
-                        //System.out.println("Dead "+msg.id);
+                        System.out.println("Dead "+msg.id);
                     }
                     del.add(event);
                     continue;
